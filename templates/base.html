@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Cocktail Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="static/starter-template/css/materialize.css" type="text/css" />
+    <link rel="stylesheet" href="static/starter-template/css/materialize.min.css" type="text/css" />
+    <link rel="stylesheet" href="static/starter-template/css/style.css" type="text/css" />
+</head>
+
+<body>
+    <nav class="#ab47bc purple lighten-1">Navigation Here</nav>
+    <div class="container my-container">
+        {% block content %} {% endblock %}
+    </div>
+    <footer class="page-footer orange" id="footer-custom">
+        <div class="container">
+            <div class="row no-margin">
+                <div class="col l6 s12">
+                    <h5 class="white-text footer-heading">About Mix and Shake</h5>
+                    <p class="grey-text text-lighten-4 footer-text">
+                        Mix it, shake it, share it!
+                    </p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text footer-heading">Settings</h5>
+                    <ul>
+                        <li class="footer-text"><a class="white-text" href="#!">About</a></li>
+                        <li class="footer-text"><a class="white-text" href="#!">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text footer-heading">Social Media</h5>
+                    <ul>
+                        <li class="footer-text"><a class="white-text" href="#!">Link 1</a></li>
+                        <li class="footer-text"><a class="white-text" href="#!">Link 2</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright footer-text">
+            <div class="container">
+                Made by GabyGuedez H. using <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/starter-template/js/init.js"></script>
+    <script type="text/javascript" src="static/starter-template/js/materialize.js"></script>
+    <script type="text/javascript" src="static/starter-template/js/materialize.min.js"></script>
+</body>
+
+</html>
