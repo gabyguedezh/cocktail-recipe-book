@@ -26,6 +26,10 @@ def get_cocktails():
 def get_my_recipes():
     return render_template("my_recipes.html")
 
+@app.route('/get_login')
+def get_login():
+    return render_template("login.html")
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
