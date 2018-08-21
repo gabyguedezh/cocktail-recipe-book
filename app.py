@@ -18,9 +18,13 @@ def get_home():
 def get_about():
     return render_template("about.html")
 
-@app.route('/get_contact')
-def get_contact():
-    return render_template("contact.html")
+@app.route('/get_cocktails')
+def get_cocktails():
+    return render_template("cocktails.html")
+
+@app.route('/get_my_recipes')
+def get_my_recipes():
+    return render_template("my_recipes.html")
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
