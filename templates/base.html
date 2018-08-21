@@ -20,16 +20,16 @@
 <body>
     <nav class="#4a148c purple darken-4" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href=""{{url_for('get_home')}}"" class="brand-logo">
+            <a id="logo-container" href="{{url_for('get_home')}}" class="brand-logo">
                 <span class="art-deco-font">Mix and Shake</span> <i class="fas fa-cocktail mobile-hide"></i>
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{{url_for('get_about')}}">About</a></li>
+                <li><a href="{{url_for('get_contact')}}">Contact</a></li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="{{url_for('get_about')}}">About</a></li>
+                <li><a href="{{url_for('get_contact')}}">Contact</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
         </div>
@@ -40,20 +40,20 @@
     <footer class="page-footer orange" id="footer-custom">
         <div class="container">
             <div class="row no-margin">
-                <div class="col l6 mobile-hide">
+                <div class="col l6 m3 mobile-hide">
                     <h5 class="white-text footer-heading">About Mix and Shake</h5>
                     <p class="grey-text text-lighten-4 footer-text">
                         Mix it, shake it, share it!
                     </p>
                 </div>
-                <div class="col l3 mobile-hide">
+                <div class="col l3 m3 mobile-hide">
                     <h5 class="white-text footer-heading">Settings</h5>
                     <ul>
-                        <li class="footer-text"><a class="white-text" href="#!">About</a></li>
-                        <li class="footer-text"><a class="white-text" href="#!">Contact</a></li>
+                        <li class="footer-text"><a class="white-text" href="{{url_for('get_about')}}">About</a></li>
+                        <li class="footer-text"><a class="white-text" href="{{url_for('get_contact')}}">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col l3 s12">
+                <div class="col l3 m3 s12">
                     <h5 class="white-text footer-heading">Social Media</h5>
                     <ul>
                         <li class="footer-text"><a class="white-text" href="#!">Link 1</a></li>
