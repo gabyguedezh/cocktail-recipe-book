@@ -72,6 +72,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- Inspiration for the colour palette [HERE](https://www.pinterest.ie/pin/263882859399545467/)
 
 ### Media
 - The photos used in this site were obtained from ...
