@@ -28,17 +28,35 @@ def get_cocktails():
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
-    # if request.method == 'POST':
-    #     session['username'] = request.form["username"]
+    logged_in = False
+    # session.clear()
+    if request.method == 'GET' and not 'username' in session:
+        return render_template('login.html',
+                               logged_in=logged_in)
+    elif request.method == 'GET' and 'username' in session:
+        logged_in = True
+        return render_template('login.html',
+                               username=session['username'],
+                               logged_in=logged_in)
+    if request.method == 'POST':
+        session['username'] = request.form["username"]
+        logged_in = True
+    #     print('posted')
     #     print(session['username'])
-    #     return render_template('dashboard.html',
-    #                           username=session['username'])
-    # return render_template('login.html')
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-    return home()
+    #     print(logged_in)
+        return render_template('login.html',
+                              username=session['username'],
+                              logged_in=logged_in)
+    # if request.method == 'GET' and session['username'] != "":
+    #     print(session['username'])
+    #     logged_in = True
+    #     print('are you logged in', logged_in)
+    #     return render_template('login.html',
+    #                           username=session['username'],
+    #                           logged_in=logged_in)
+    # return render_template('login.html',
+    #                       username=session['username'],
+    #                       logged_in=logged_in)
     
 @app.route('/get_logout', methods=['POST'])
 def get_logout():
