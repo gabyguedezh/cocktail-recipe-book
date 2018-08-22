@@ -59,6 +59,8 @@ def get_logout():
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
 def get_my_recipes():
+    if not 'username' in session:
+        return redirect('/get_login')
     return render_template('my_recipes.html')
 
 
