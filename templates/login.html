@@ -1,16 +1,21 @@
 {% extends 'base.html'%} {% block content %}
 <p>enter your username and start mixing and shaking</p>
-<div class="row white">
-    <form class="col s12" method="POST">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="username" name="username" type="text" class="validate" required>
-                <label for="username"><i class="fas fa-user"></i> Username</label>
+{% if not logged_in %}
+    <div class="row white">
+        <form class="col s12" method="POST">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="username" name="username" type="text" class="validate" required>
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                </div>
             </div>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit">
-            Submit
-        </button>
-    </form>
-</div>
+            <button class="btn waves-effect waves-light" type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+{% endif %}
+{% if logged_in %}
+    <p>Hi there, {{username}}. Welcome to Mix and Shake!</p>
+{% endif %}
 {% endblock %}

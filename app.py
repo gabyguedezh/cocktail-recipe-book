@@ -24,12 +24,19 @@ def get_cocktails():
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
+    logged_in = False
     if request.method == 'POST':
         username = request.form["username"]
+        logged_in = True
         print('posted')
         print(username)
-        return redirect(url_for('get_my_recipes'))
-    return render_template('login.html')
+        print(logged_in)
+        # return redirect(url_for('get_my_recipes'))
+        return render_template('login.html',
+                               username=username,
+                               logged_in=logged_in)
+    return render_template('login.html',
+                           logged_in=logged_in)
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
 def get_my_recipes():
