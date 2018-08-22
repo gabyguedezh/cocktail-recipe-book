@@ -1,29 +1,22 @@
 {% extends 'base.html'%} {% block content %}
 <p>enter your username and start mixing and shaking</p>
-{% if not logged_in %}
+{% if session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
 <div class="row white">
-    <form class="col s12" method="POST">
+    <form class="col s12" action="/get_login" method="POST">
         <div class="row">
             <div class="input-field col s12">
                 <input id="username" name="username" type="text" class="validate" required>
                 <label for="username"><i class="fas fa-user"></i> Username</label>
+                <input id="password" name="password" type="password" class="validate" required>
+                <input class="btn waves-effect waves-light" type="submit" value="Log in">
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">
-            Submit
-        </button>
+        <!--<button class="btn waves-effect waves-light" type="submit">-->
+        <!--    Submit-->
+        <!--</button>-->
     </form>
 </div>
-{% endif %} {% if logged_in %}
-<p>Hi there, {{username}}. Welcome to Mix and Shake!</p>
-<p>Your dashboard</p>
-<p>Author Name</p>
-<div>
-    <form class="col s12" method="POST">
-        <button class="btn waves-effect waves-light" type="submit" name="logout">Log out
-            <i class="fas fa-sign-out-alt"></i>
-        </button>
-    </form>
-</div>
-
-{% endif %} {% endblock %}
+{% endif %}
+{% endblock %}

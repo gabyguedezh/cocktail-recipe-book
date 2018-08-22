@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, flash, redirect, request, url_for, session, abort
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -28,33 +28,23 @@ def get_cocktails():
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
-    # logged_in = False
-    if request.method == 'POST':
-        session['username'] = request.form["username"]
-        logged_in = True
-        print(session['username'])
-        print('are you logged in', logged_in)
-        return render_template('login.html',
-                              username=session['username'],
-                              logged_in=logged_in)
-    if request.method == 'GET':
-        logged_in = True
-        session['username'] = request.form["username"]
-        print('are you logged in', logged_in)
-        return render_template('login.html',
-                              username=session['username'],
-                              logged_in=logged_in)
-    print('are you logged in', logged_in)
-    return render_template('login.html')
+    # if request.method == 'POST':
+    #     session['username'] = request.form["username"]
+    #     print(session['username'])
+    #     return render_template('dashboard.html',
+    #                           username=session['username'])
+    # return render_template('login.html')
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return home()
     
-# @app.route('/get_logout', methods=['POST'])
-# def get_logout():
-#     if request.method == 'POST':
-#         # session['logout'] = request.form["logout"]
-#     # session.pop('username', None)
-#         print('logged out')
-#         print(request.form["logout"])
-#         return redirect(url_for('get_home'))
+@app.route('/get_logout', methods=['POST'])
+def get_logout():
+        print('logged out')
+        print(request.form["logout"])
+        return redirect(url_for('get_home'))
 
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
