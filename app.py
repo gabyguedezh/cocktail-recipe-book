@@ -15,40 +15,52 @@ mongo = PyMongo(app)
 def get_home():
     return render_template('index.html')
 
+
 @app.route('/get_about')
 def get_about():
     return render_template('about.html')
+
 
 @app.route('/get_cocktails')
 def get_cocktails():
     return render_template('cocktails.html')
 
+
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
-    logged_in = False
+    # logged_in = False
     if request.method == 'POST':
         session['username'] = request.form["username"]
         logged_in = True
-        print('posted')
         print(session['username'])
-        print(logged_in)
-        # return redirect(url_for('get_my_recipes'))
-        return render_template('login.html',
-                               username=session['username'],
-                               logged_in=logged_in)
-    if request.method == 'GET' and session['username'] != "":
-        logged_in = True
         print('are you logged in', logged_in)
         return render_template('login.html',
-                               username=session['username'],
-                               logged_in=logged_in)
-    return render_template('login.html',
-                           username=session['username'],
-                           logged_in=logged_in)
+                              username=session['username'],
+                              logged_in=logged_in)
+    if request.method == 'GET':
+        logged_in = True
+        session['username'] = request.form["username"]
+        print('are you logged in', logged_in)
+        return render_template('login.html',
+                              username=session['username'],
+                              logged_in=logged_in)
+    print('are you logged in', logged_in)
+    return render_template('login.html')
+    
+# @app.route('/get_logout', methods=['POST'])
+# def get_logout():
+#     if request.method == 'POST':
+#         # session['logout'] = request.form["logout"]
+#     # session.pop('username', None)
+#         print('logged out')
+#         print(request.form["logout"])
+#         return redirect(url_for('get_home'))
+
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
 def get_my_recipes():
     return render_template('my_recipes.html')
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
