@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
+app.secret_key = "mix_and_shake_secret"
 app.config['MONGO_DBNAME'] = 'cocktail_book'
 app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
 
@@ -26,16 +27,23 @@ def get_cocktails():
 def get_login():
     logged_in = False
     if request.method == 'POST':
-        username = request.form["username"]
+        session['username'] = request.form["username"]
         logged_in = True
         print('posted')
-        print(username)
+        print(session['username'])
         print(logged_in)
         # return redirect(url_for('get_my_recipes'))
         return render_template('login.html',
-                               username=username,
+                               username=session['username'],
+                               logged_in=logged_in)
+    if request.method == 'GET' and session['username'] != "":
+        logged_in = True
+        print('are you logged in', logged_in)
+        return render_template('login.html',
+                               username=session['username'],
                                logged_in=logged_in)
     return render_template('login.html',
+                           username=session['username'],
                            logged_in=logged_in)
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
