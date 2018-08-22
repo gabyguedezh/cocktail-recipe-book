@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
@@ -22,15 +22,18 @@ def get_about():
 def get_cocktails():
     return render_template('cocktails.html')
 
-@app.route('/get_my_recipes')
-def get_my_recipes():
-    return render_template('my_recipes.html')
-
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
     if request.method == 'POST':
+        username = request.form["username"]
         print('posted')
+        print(username)
+        return redirect(url_for('get_my_recipes'))
     return render_template('login.html')
+
+@app.route('/get_my_recipes', methods=['GET', 'POST'])
+def get_my_recipes():
+    return render_template('my_recipes.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
