@@ -47,21 +47,13 @@ def get_login():
         return render_template('login.html',
                               username=session['username'],
                               logged_in=logged_in)
-    # if request.method == 'GET' and session['username'] != "":
-    #     print(session['username'])
-    #     logged_in = True
-    #     print('are you logged in', logged_in)
-    #     return render_template('login.html',
-    #                           username=session['username'],
-    #                           logged_in=logged_in)
-    # return render_template('login.html',
-    #                       username=session['username'],
-    #                       logged_in=logged_in)
-    
-@app.route('/get_logout', methods=['POST'])
+
+
+@app.route('/get_logout')
 def get_logout():
         print('logged out')
-        print(request.form["logout"])
+        session.clear()
+        # print(request.form["logout"])
         return redirect(url_for('get_home'))
 
 
