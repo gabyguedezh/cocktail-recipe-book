@@ -12,23 +12,25 @@ mongo = PyMongo(app)
 @app.route('/')
 @app.route('/get_home')
 def get_home():
-    return render_template("index.html")
+    return render_template('index.html')
 
 @app.route('/get_about')
 def get_about():
-    return render_template("about.html")
+    return render_template('about.html')
 
 @app.route('/get_cocktails')
 def get_cocktails():
-    return render_template("cocktails.html")
+    return render_template('cocktails.html')
 
 @app.route('/get_my_recipes')
 def get_my_recipes():
-    return render_template("my_recipes.html")
+    return render_template('my_recipes.html')
 
-@app.route('/get_login')
+@app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
-    return render_template("login.html")
+    if request.method == 'POST':
+        print('posted')
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
