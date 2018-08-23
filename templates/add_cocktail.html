@@ -37,13 +37,31 @@
         </div>
         <div class="input-field col s12">
             <select multiple>
-                <option value="" disabled selected>Select Cocktail Type or Types</option>
+                <option value="" disabled selected>Choose Cocktail Type or Types</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
             </select>
             <label>Cocktail Type</label>
         </div>
+        <div class="input-field col s12">
+            <select>
+                <option value="" disabled selected>Choose Flavour Profile</option>
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+            <label>Flavour Profile</label>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="{{session['username']}}" id="disabled" type="text" class="validate">
+                <label for="disabled">Author Name</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Submit <i class="fas fa-glass-martini-alt fa-xs"></i>
+        </button>
     </form>
 </div>
 {% endblock %}
