@@ -16,11 +16,6 @@ def get_home():
     return render_template('index.html')
 
 
-@app.route('/get_about')
-def get_about():
-    return render_template('about.html')
-
-
 @app.route('/get_cocktails')
 def get_cocktails():
     return render_template('cocktails.html')
@@ -76,7 +71,7 @@ def write_to_cocktail_database():
     recipe as the most recently added
     """
     print('writing to database in my imaginary typewriter')
-    return redirect(url_for('get_my_recipes'))
+    return redirect(url_for('get_home'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
