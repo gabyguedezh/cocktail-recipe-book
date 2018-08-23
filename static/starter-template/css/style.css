@@ -39,7 +39,7 @@
 
 #footer-custom {
     width: 100%;
-    position: absolute;
+    position: relative;
     bottom: 0px;
     padding: 0px;
 }

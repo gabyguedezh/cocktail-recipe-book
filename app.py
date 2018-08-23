@@ -64,6 +64,12 @@ def get_my_recipes():
     return render_template('my_recipes.html')
 
 
+@app.route('/get_add_cocktail_form')
+def get_add_cocktail_form():
+    print('lets add our cocktail')
+    return render_template('add_cocktail.html')
+
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
