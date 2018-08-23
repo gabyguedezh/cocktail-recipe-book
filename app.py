@@ -63,7 +63,7 @@ def get_add_cocktail_form():
                            autor=mongo.db.author.find())
 
 
-app.route('/write_to_cocktail_database', methods='POST')
+app.route('/write_to_cocktail_database', methods=['POST'])
 def write_to_cocktail_database():
     """ 
     This function takes the input from get_add_cocktail_form and writes it into
