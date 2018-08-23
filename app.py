@@ -29,7 +29,6 @@ def get_cocktails():
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
     logged_in = False
-    # session.clear()
     if request.method == 'GET' and not 'username' in session:
         return render_template('login.html',
                                logged_in=logged_in)
@@ -41,9 +40,6 @@ def get_login():
     if request.method == 'POST':
         session['username'] = request.form["username"]
         logged_in = True
-    #     print('posted')
-    #     print(session['username'])
-    #     print(logged_in)
         return render_template('login.html',
                               username=session['username'],
                               logged_in=logged_in)
@@ -53,7 +49,6 @@ def get_login():
 def get_logout():
         print('logged out')
         session.clear()
-        # print(request.form["logout"])
         return redirect(url_for('get_home'))
 
 
@@ -66,13 +61,22 @@ def get_my_recipes():
 
 @app.route('/get_add_cocktail_form')
 def get_add_cocktail_form():
-    print('lets add our cocktail')
     return render_template('add_cocktail.html',
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
                            flavour_profile=mongo.db.flavour_profile.find(),
                            autor=mongo.db.author.find())
 
+
+app.route('/write_to_cocktail_database', methods='POST')
+def write_to_cocktail_database():
+    """ 
+    This function takes the input from get_add_cocktail_form and writes it into
+    our database. The it redirects to get_my_recipes, where you'll see your 
+    recipe as the most recently added
+    """
+    print('writing to database in my imaginary typewriter')
+    return redirect(url_for('get_my_recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
