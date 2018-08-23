@@ -18,6 +18,9 @@ def get_home():
 
 @app.route('/get_cocktails')
 def get_cocktails():
+    """
+    This function shows all the updated recipes in the database
+    """
     return render_template('cocktails.html')
 
 
@@ -63,7 +66,7 @@ def get_add_cocktail_form():
                            autor=mongo.db.author.find())
 
 
-app.route('/write_to_cocktail_database', methods=['POST'])
+@app.route('/write_to_cocktail_database', methods=['POST'])
 def write_to_cocktail_database():
     """ 
     This function takes the input from get_add_cocktail_form and writes it into
@@ -71,7 +74,7 @@ def write_to_cocktail_database():
     recipe as the most recently added
     """
     print('writing to database in my imaginary typewriter')
-    return redirect(url_for('get_home'))
+    return redirect(url_for('get_my_recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
