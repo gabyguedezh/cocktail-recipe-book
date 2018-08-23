@@ -42,9 +42,9 @@
         <div class="input-field col s12">
             <select>
                 <option value="" disabled selected>Choose Base Spirit</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                {% for spirit in base_spirit %}
+                <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
+                {% endfor %}
             </select>
             <label>Base Spirit</label>
         </div>
