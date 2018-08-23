@@ -51,18 +51,18 @@
         <div class="input-field col s12">
             <select multiple>
                 <option value="" disabled selected>Choose Cocktail Type or Types</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                {% for type in cocktail_type %}
+                <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
+                {% endfor %}
             </select>
             <label>Cocktail Type</label>
         </div>
         <div class="input-field col s12">
             <select>
                 <option value="" disabled selected>Choose Flavour Profile</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+                {% for flavour in flavour_profile %}
+                <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
+                {% endfor %}
             </select>
             <label>Flavour Profile</label>
         </div>

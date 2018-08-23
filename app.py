@@ -69,7 +69,7 @@ def get_add_cocktail_form():
     print('lets add our cocktail')
     return render_template('add_cocktail.html',
                            base_spirit=mongo.db.base_spirit.find(),
-                           bcocktail_type=mongo.db.cocktail_type.find(),
+                           cocktail_type=mongo.db.cocktail_type.find(),
                            flavour_profile=mongo.db.flavour_profile.find(),
                            autor=mongo.db.author.find())
 
