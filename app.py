@@ -78,7 +78,8 @@ def write_to_cocktail_database():
     categories.insert_one(category_doc)
     """
     recipes = mongo.db.recipes
-    recipes.insert_one(request.form.to_dict())
+    recipe_name = {'recipe_name': request.form['recipe_name']}
+    recipes.insert_one(recipe_name)
     print('writing to database in my imaginary typewriter')
     return redirect(url_for('get_my_recipes'))
 
