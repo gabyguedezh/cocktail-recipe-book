@@ -1,15 +1,19 @@
 import os
 from flask import Flask, render_template, flash, redirect, request, url_for, session
 from flask_pymongo import PyMongo
+import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.secret_key = "mix_and_shake_secret"
-MONGODB_URI = os.environ.get('MONGODB_URI')  
-MONGODB_NAME = os.environ.get('MONGODB_NAME')
+app.config['MONGO_DBNAME'] = 'cocktail_book'
+app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+# MONGO_DBNAME = 'cocktail_book'
+# MONGODB_URI = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
 
 mongo = PyMongo(app)
+
 
 @app.route('/')
 @app.route('/get_home')
