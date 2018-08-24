@@ -1,12 +1,15 @@
 import os
-from flask import Flask, render_template, flash, redirect, request, url_for, session, abort
+from flask import Flask, render_template, flash, redirect, request, url_for, session
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.secret_key = "mix_and_shake_secret"
-app.config['MONGO_DBNAME'] = 'cocktail_book'
-app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+# app.config['MONGO_DBNAME'] = 'cocktail_book'
+# app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+MONGO_DBNAME = 'cocktail_book'
+MONGODB_URI = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
 
 mongo = PyMongo(app)
 
@@ -20,6 +23,10 @@ def get_home():
 def get_cocktails():
     """
     This function shows all the updated recipes in the database
+    EXAMPLE:
+    def get_categories():
+    return render_template('categories.html',
+    categories=mongo.db.categories.find())
     """
     return render_template('cocktails.html')
 
@@ -73,13 +80,36 @@ def write_to_cocktail_database():
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
     EXAMPLE:
-    categories = mongo.db.categories
-    category_doc = {'category_name': request.form['category_name']}
-    categories.insert_one(category_doc)
+    to_insert = [
+    {"screen_name":"user1", "foobar":"foo"}, 
+    {"screen_name":"user2", "foobar":"bar"}
+]
     """
     recipes = mongo.db.recipes
-    recipe_name = {'recipe_name': request.form['recipe_name']}
-    recipes.insert_one(recipe_name)
+    # recipe_name = {'recipe_name': request.form['recipe_name']}
+    # recipe_description = {'recipe_description': request.form['recipe_description']}
+    # is_vegan = {'is_vegan': request.form['is_vegan']}
+    # base_spirit = {'base_spirit': request.form['base_spirit']}
+    # cocktail_type = {'cocktail_type': request.form['cocktail_type']}
+    # flavour_profile = {'flavour_profile': request.form['flavour_profile']}
+    # author_name = {'author_name': request.form['author_name']}
+    new_cocktail = (
+        {'recipe_name': request.form['recipe_name']},
+        {'recipe_description': request.form['recipe_description']}
+        )
+    with MongoClient(MONGODB_URI) as conn:          
+        db = conn[MONGO_DBNAME]        
+        coll = db['recipes']          
+        coll.insert(new_cocktail)
+    # recipes.insert(recipe_name, recipe_description)
+        
+    # recipes.insert_one(recipe_name)
+    # recipes.insert_one(recipe_description)
+    # recipes.insert_one(is_vegan)
+    # recipes.insert_one(base_spirit)
+    # recipes.insert_one(cocktail_type)
+    # recipes.insert_one(flavour_profile)
+    # recipes.insert_one(author_name)
     print('writing to database in my imaginary typewriter')
     return redirect(url_for('get_my_recipes'))
 
