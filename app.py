@@ -5,32 +5,33 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+
+# MONGO_DBNAME = os.environ.get('MONGODB_NAME')
+# MONGODB_URI = os.environ.get('MONGODB_URI')
+
+
 app = Flask(__name__)
+app.config['TESTING'] = True
+app.testing = True
 app.secret_key = "mix_and_shake_secret"
+
 app.config['MONGO_DBNAME'] = 'cocktail_book'
 app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
-# MONGO_DBNAME = 'cocktail_book'
-# MONGODB_URI = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
 
 mongo = PyMongo(app)
-
 
 @app.route('/')
 @app.route('/get_home')
 def get_home():
     return render_template('index.html')
 
-
 @app.route('/get_cocktails')
 def get_cocktails():
     """
     This function shows all the updated recipes in the database
-    EXAMPLE:
-    def get_categories():
-    return render_template('categories.html',
-    categories=mongo.db.categories.find())
     """
-    return render_template('cocktails.html')
+    return render_template('cocktails.html',
+                           recipes=mongo.db.recipes.find())
 
 
 @app.route('/get_login', methods=['GET', 'POST'])
@@ -61,9 +62,13 @@ def get_logout():
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
 def get_my_recipes():
+    recipes = mongo.db.recipes
     if not 'username' in session:
         return redirect('/get_login')
-    return render_template('my_recipes.html')
+    return render_template('my_recipes.html',
+                           username=session['username'],
+                           autor=mongo.db.author.find(),
+                           recipes=mongo.db.recipes.find())
 
 
 @app.route('/get_add_cocktail_form')
@@ -81,13 +86,8 @@ def write_to_cocktail_database():
     This function takes the input from get_add_cocktail_form and writes it into
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
-    EXAMPLE:
-    to_insert = [
-    {"screen_name":"user1", "foobar":"foo"}, 
-    {"screen_name":"user2", "foobar":"bar"}
-]
     """
-    recipes = mongo.db.recipes
+    # recipes = mongo.db.recipes
     # recipe_name = {'recipe_name': request.form['recipe_name']}
     # recipe_description = {'recipe_description': request.form['recipe_description']}
     # is_vegan = {'is_vegan': request.form['is_vegan']}
@@ -95,24 +95,18 @@ def write_to_cocktail_database():
     # cocktail_type = {'cocktail_type': request.form['cocktail_type']}
     # flavour_profile = {'flavour_profile': request.form['flavour_profile']}
     # author_name = {'author_name': request.form['author_name']}
-    new_cocktail = (
+    new_cocktail = [
         {'recipe_name': request.form['recipe_name']},
         {'recipe_description': request.form['recipe_description']}
-        )
-    with MongoClient(MONGODB_URI) as conn:          
-        db = conn[MONGO_DBNAME]        
-        coll = db['recipes']          
-        coll.insert(new_cocktail)
-    # recipes.insert(recipe_name, recipe_description)
-        
-    # recipes.insert_one(recipe_name)
-    # recipes.insert_one(recipe_description)
-    # recipes.insert_one(is_vegan)
-    # recipes.insert_one(base_spirit)
-    # recipes.insert_one(cocktail_type)
-    # recipes.insert_one(flavour_profile)
-    # recipes.insert_one(author_name)
-    print('writing to database in my imaginary typewriter')
+        ]
+    # AFTER SAVING THE URI IN BASH RC - START
+    # with MongoClient(MONGODB_URI) as conn:          
+    #     db = conn[MONGO_DBNAME]        
+    #     coll = db['recipes']          
+    #     coll.insert(new_cocktail)
+    # AFTER SAVING THE URI IN BASH RC - END
+    # recipes.insert(new_cocktail)
+    print(new_cocktail)
     return redirect(url_for('get_my_recipes'))
 
 if __name__ == '__main__':

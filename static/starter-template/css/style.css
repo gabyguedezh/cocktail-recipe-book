@@ -6,6 +6,8 @@
  * Made By MaterializeCSS.com
  */
 
+/* PENDING - Make sure the recipe_descriptions texts are truncated so they
+don't overflow their boxes*/
 
 
 /* GENERAL */
@@ -36,6 +38,18 @@
 
 /* FORMS */
 
+
+/* ALL COCKTAILS */
+
+.class-size {
+    height: 9em;
+}
+
+#description {
+    height: 7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* FOOTER */
 
