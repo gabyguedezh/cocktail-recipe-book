@@ -3,13 +3,18 @@ from flask import Flask, render_template, flash, redirect, request, url_for, ses
 from flask_pymongo import PyMongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from app_ignore import get_mongo_dbname, get_mongodb_uri, get_secret_key
 
 app = Flask(__name__)
-app.secret_key = "mix_and_shake_secret"
+secret_key = get_secret_key
+# app.secret_key = "mix_and_shake_secret"
 # app.config['MONGO_DBNAME'] = 'cocktail_book'
 # app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
-MONGO_DBNAME = 'cocktail_book'
-MONGODB_URI = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+# MONGO_DBNAME = 'cocktail_book'
+# MONGODB_URI = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+
+MONGO_DBNAME = get_mongo_dbname
+MONGODB_URI = get_mongodb_uri
 
 mongo = PyMongo(app)
 
