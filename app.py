@@ -72,7 +72,13 @@ def write_to_cocktail_database():
     This function takes the input from get_add_cocktail_form and writes it into
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
+    EXAMPLE:
+    categories = mongo.db.categories
+    category_doc = {'category_name': request.form['category_name']}
+    categories.insert_one(category_doc)
     """
+    recipes = mongo.db.recipes
+    recipes.insert_one(request.form.to_dict())
     print('writing to database in my imaginary typewriter')
     return redirect(url_for('get_my_recipes'))
 

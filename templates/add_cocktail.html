@@ -4,44 +4,44 @@
     <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
         <div class="row">
             <div class="input-field col s12">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Cocktail Name</label>
+                <input placeholder="Placeholder" id="recipe_name" name="recipe_name" type="text" class="validate" required>
+                <label for="recipe_name">Cocktail Name</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
-                <label for="first_name">Description</label>
+                <input placeholder="Placeholder" id="recipe_description" name="recipe_description" type="text" class="validate" required>
+                <label for="recipe_description">Description</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input disabled value="Not Available yet" id="disabled" type="text" class="validate">
+                <input disabled value="Not Available yet" id="disabled" name="recipe_image" type="text" class="validate">
                 <label for="disabled">Cocktail Image</label>
             </div>
         </div>
         <div class="switch">
             <label>
-            <input type="checkbox">
+            <input type="checkbox" id="is_vegan" name="is_vegan">
             <span class="lever"></span>
                     Suitable for Vegans
             </label>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input disabled value="Not Available yet" id="disabled" type="text" class="validate">
+                <input disabled value="Not Available yet" id="disabled" name="ingredients" type="text" class="validate">
                 <label for="disabled">Ingredients</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input disabled value="Not Available yet" id="disabled" type="text" class="validate">
+                <input disabled value="Not Available yet" id="disabled" name="steps" type="text" class="validate">
                 <label for="disabled">Steps</label>
             </div>
         </div>
         <div class="input-field col s12">
-            <select>
-                <option value="" disabled selected>Choose Base Spirit</option>
+            <select name="base_spirit" required>
+                <option value="" disabled selected>Choose Base Spirit (Required)</option>
                 {% for spirit in base_spirit %}
                 <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
                 {% endfor %}
@@ -49,8 +49,8 @@
             <label>Base Spirit</label>
         </div>
         <div class="input-field col s12">
-            <select multiple>
-                <option value="" disabled selected>Choose Cocktail Type or Types</option>
+            <select multiple name="cocktail_type" required>
+                <option value="" disabled selected>Choose Cocktail Type or Types (Required)</option>
                 {% for type in cocktail_type %}
                 <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
                 {% endfor %}
@@ -58,8 +58,8 @@
             <label>Cocktail Type</label>
         </div>
         <div class="input-field col s12">
-            <select>
-                <option value="" disabled selected>Choose Flavour Profile</option>
+            <select name="flavour_profile" required>
+                <option value="" disabled selected>Choose Flavour Profile (Required)</option>
                 {% for flavour in flavour_profile %}
                 <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
                 {% endfor %}
@@ -68,7 +68,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input disabled value="{{session['username']}}" id="disabled" type="text" class="validate">
+                <input disabled value="{{session['username']}}" id="disabled" name="author_name" type="text" class="validate">
                 <label for="disabled">Author Name</label>
             </div>
         </div>
