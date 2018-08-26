@@ -25,6 +25,7 @@ mongo = PyMongo(app)
 def get_home():
     return render_template('index.html')
 
+
 @app.route('/get_cocktails')
 def get_cocktails():
     """
@@ -32,6 +33,21 @@ def get_cocktails():
     """
     return render_template('cocktails.html',
                            recipes=mongo.db.recipes.find())
+
+
+@app.route('/show_cocktail/<recipe_name>')
+def show_cocktail(recipe_name):
+    """
+    This function takes you to the recipe page o a specific cocktail
+    you've selected
+    """
+    # cocktail = {}
+    
+    # recipes = mongo.db.recipes
+    # for recipe in recipes:
+    #     if recipe:
+    #         print('hi there')
+    return render_template('show_cocktail.html')
 
 
 @app.route('/get_login', methods=['GET', 'POST'])
