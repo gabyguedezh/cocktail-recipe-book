@@ -29,6 +29,12 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
+                <select id="measure_unit" name="measure_unit" required>
+                <option value="" disabled selected>Choose Measure Unit (Required)</option>
+                {% for unit in measure_units %}
+                <option value="{{unit.measure_unit_name}}">{{unit.measure_unit_name}}</option>
+                {% endfor %}
+            </select>
                 <input disabled value="Not Available yet" id="disabled" name="ingredients" type="text" class="validate">
                 <label for="disabled">Ingredients</label>
             </div>
@@ -68,7 +74,7 @@
         </div>
         <div class="row">
             <div class="input-field col s12">
-                <input value="{{session['username']}}" id="author_name" name="author_name" type="text" class="validate">
+                <input disabled value="{{session['username']}}" id="author_name" name="author_name" type="text" class="validate">
                 <label for="author_name">Author Name</label>
             </div>
         </div>

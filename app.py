@@ -88,6 +88,7 @@ def get_my_recipes():
 @app.route('/get_add_cocktail_form')
 def get_add_cocktail_form():
     return render_template('add_cocktail.html',
+                           measure_units=mongo.db.measure_units.find(),
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
                            flavour_profile=mongo.db.flavour_profile.find(),
