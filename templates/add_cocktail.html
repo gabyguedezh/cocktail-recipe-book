@@ -37,12 +37,17 @@
                     <label for="quantity-0">Quantity (*)</label>
                     <span class="helper-text">Up to two decimals</span>
                 </div>
-                <div class="input-field col s12 m3" id="unit-selector-0">
-                    <select id="measure_unit" name="measure_unit" required>
+                <div class="input-field col s12 m3">
+                    <select id="measure_unit-0" name="measure_unit" required>
                         <option value="" disabled selected>Measure Unit</option>
-                        {% for unit in measure_units %}
-                        <option value="{{unit.measure_unit_name}}">{{unit.measure_unit_name}}</option>
-                        {% endfor %}
+                        <option value="{{measure_units.0}}">{{measure_units.0}}</option>
+                        <option value="{{measure_units.1}}">{{measure_units.1}}</option>
+                        <option value="{{measure_units.2}}">{{measure_units.2}}</option>
+                        <option value="{{measure_units.3}}">{{measure_units.3}}</option>
+                        <option value="{{measure_units.4}}">{{measure_units.4}}</option>
+                        <option value="{{measure_units.5}}">{{measure_units.5}}</option>
+                        <option value="{{measure_units.6}}">{{measure_units.6}}</option>
+                        <option value="{{measure_units.7}}">{{measure_units.7}}</option>
                     </select>
                 </div>
                 <div class="input-field col s12 m6">
