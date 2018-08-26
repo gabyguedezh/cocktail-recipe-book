@@ -78,12 +78,10 @@ def get_logout():
 
 @app.route('/get_my_recipes', methods=['GET', 'POST'])
 def get_my_recipes():
-    recipes = mongo.db.recipes
     if not 'username' in session:
         return redirect('/get_login')
     return render_template('my_recipes.html',
                            username=session['username'],
-                           autor=mongo.db.author.find(),
                            recipes=mongo.db.recipes.find())
 
 
