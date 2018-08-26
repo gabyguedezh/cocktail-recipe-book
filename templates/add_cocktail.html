@@ -27,19 +27,33 @@
                     Suitable for Vegans
             </label>
         </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <select id="measure_unit" name="measure_unit" required>
-                <option value="" disabled selected>Choose Measure Unit (Required)</option>
-                {% for unit in measure_units %}
-                <option value="{{unit.measure_unit_name}}">{{unit.measure_unit_name}}</option>
-                {% endfor %}
-            </select>
-                <input disabled value="Not Available yet" id="disabled" name="ingredients" type="text" class="validate">
-                <label for="disabled">Ingredients</label>
+        <div class="row white">
+            <div>
+                <h5>Ingredients:</h5>
             </div>
+            <div id="ingredient-adder">
+                <div class="input-field col s12 m3">
+                    <input id="quantity-0" type="number" step="0.01" class="validate">
+                    <label for="quantity-0">Quantity (*)</label>
+                    <span class="helper-text">Up to two decimals</span>
+                </div>
+                <div class="input-field col s12 m3" id="unit-selector-0">
+                    <select id="measure_unit" name="measure_unit" required>
+                        <option value="" disabled selected>Measure Unit</option>
+                        {% for unit in measure_units %}
+                        <option value="{{unit.measure_unit_name}}">{{unit.measure_unit_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input value="" id="ingredient_name" name="ingredient_name" type="text" class="validate" required>
+                    <label for="ingredient_name">Ingredient Name (Required)</label>
+                </div>
+            </div>
+            <a id="add-ingredient-btn" class="waves-effect waves-light btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
         </div>
         <div class="row">
+            <h5>Steps:</h5>
             <div class="input-field col s12">
                 <input disabled value="Not Available yet" id="disabled" name="steps" type="text" class="validate">
                 <label for="disabled">Steps</label>
@@ -47,7 +61,7 @@
         </div>
         <div class="input-field col s12">
             <select id="base_spirit" name="base_spirit" required>
-                <option value="" disabled selected>Choose Base Spirit (Required)</option>
+                <option value="" disabled selected>Choose Base Spirit (*)</option>
                 {% for spirit in base_spirit %}
                 <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
                 {% endfor %}
@@ -65,7 +79,7 @@
         </div>
         <div class="input-field col s12">
             <select id="flavour_profile" name="flavour_profile" required>
-                <option value="" disabled selected>Choose Flavour Profile (Required)</option>
+                <option value="" disabled selected>Choose Flavour Profile (*)</option>
                 {% for flavour in flavour_profile %}
                 <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
                 {% endfor %}
