@@ -45,7 +45,6 @@ def show_cocktail(recipe_url):
     recipes = mongo.db.recipes.find()
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
-            print("------------------------------------", recipe['recipe_url'])
             cocktail = recipe
     return render_template('show_cocktail.html',
                            recipe = cocktail)
