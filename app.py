@@ -35,19 +35,20 @@ def get_cocktails():
                            recipes=mongo.db.recipes.find())
 
 
-@app.route('/show_cocktail/<recipe_name>')
-def show_cocktail(recipe_name):
+@app.route('/show_cocktail/<recipe_url>')
+def show_cocktail(recipe_url):
     """
     This function takes you to the recipe page o a specific cocktail
     you've selected
     """
-    # cocktail = {}
-    
-    # recipes = mongo.db.recipes
-    # for recipe in recipes:
-    #     if recipe:
-    #         print('hi there')
-    return render_template('show_cocktail.html')
+    cocktail = {}
+    recipes = mongo.db.recipes.find()
+    for recipe in recipes:
+        if recipe['recipe_url'] == recipe_url:
+            print("------------------------------------", recipe['recipe_url'])
+            cocktail = recipe
+    return render_template('show_cocktail.html',
+                           recipe = cocktail)
 
 
 @app.route('/get_login', methods=['GET', 'POST'])
