@@ -38,7 +38,7 @@ def get_cocktails():
 @app.route('/show_cocktail/<recipe_url>')
 def show_cocktail(recipe_url):
     """
-    This function takes you to the recipe page o a specific cocktail
+    This function takes you to the recipe page of a specific cocktail
     you've selected
     """
     cocktail = {}
@@ -88,12 +88,8 @@ def get_my_recipes():
 @app.route('/get_add_cocktail_form')
 def get_add_cocktail_form():
     """
-    EXAMPLE
-    cocktail = {}
-    recipes = mongo.db.recipes.find()
-    for recipe in recipes:
-        if recipe['recipe_url'] == recipe_url:
-            cocktail = recipe
+    This function renders the form that we'll use to fill the fields to 
+    create a cocktail recipe
     """
     # measure_unit_list = []
     # measure_units = mongo.db.measure_units.find()
@@ -114,7 +110,7 @@ def write_to_cocktail_database():
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
     """
-    # recipes = mongo.db.recipes
+    recipes = mongo.db.recipes
     # recipe_name = {'recipe_name': request.form['recipe_name']}
     # recipe_description = {'recipe_description': request.form['recipe_description']}
     # is_vegan = {'is_vegan': request.form['is_vegan']}
@@ -126,14 +122,9 @@ def write_to_cocktail_database():
         {'recipe_name': request.form['recipe_name']},
         {'recipe_description': request.form['recipe_description']}
         ]
-    # AFTER SAVING THE URI IN BASH RC - START
-    # with MongoClient(MONGODB_URI) as conn:          
-    #     db = conn[MONGO_DBNAME]        
-    #     coll = db['recipes']          
-    #     coll.insert(new_cocktail)
-    # AFTER SAVING THE URI IN BASH RC - END
     # recipes.insert(new_cocktail)
     print(new_cocktail)
+    recipes.insert(new_cocktail)
     return redirect(url_for('get_my_recipes'))
 
 if __name__ == '__main__':
