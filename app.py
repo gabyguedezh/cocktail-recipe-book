@@ -118,11 +118,20 @@ def write_to_cocktail_database():
     'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
     'is_vegan': request.form['is_vegan'],
     'ingredients': {
-        'ingredient': [{
+        'ingredient': [
+            {
                 "quantity": request.form['quantity-0'],
                 "measure_unit": request.form['measure_unit-0'],
                 "ingredient_name": request.form['ingredient_name-0']
-            }]
+            }
+        ]
+    },
+    'steps': {
+      'step': [
+          {
+           "step_description": request.form['step-0']
+          }
+          ]  
     },
     'base_spirit': request.form['base_spirit'],
     'cocktail_type': request.form['cocktail_type'],
