@@ -118,7 +118,10 @@ def write_to_cocktail_database():
     # cocktail_type = {'cocktail_type': request.form['cocktail_type']}
     # flavour_profile = {'flavour_profile': request.form['flavour_profile']}
     # author_name = {'author_name': request.form['author_name']}
-    new_cocktail = { 'recipe_name': request.form['recipe_name'], 'recipe_description': request.form['recipe_description']}
+    new_cocktail = { 'recipe_name': request.form['recipe_name'], 
+    'recipe_description': request.form['recipe_description'],
+    'recipe_url': request.form['recipe_name'].lower(),
+    }
     # recipes.insert(new_cocktail)
     print(new_cocktail)
     recipes.insert_one(new_cocktail)
