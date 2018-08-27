@@ -28,25 +28,27 @@
             </label>
         </div>
         <div class="row white">
-            <div>
                 <h5>Ingredients:</h5>
-            </div>
             <div id="ingredient-adder">
-                <div class="input-field col s12 m3">
-                    <input id="quantity-0" type="number" step="0.01" class="validate">
-                    <label for="quantity-0">Quantity (*)</label>
-                    <span class="helper-text">Up to two decimals</span>
-                </div>
-                <div class="input-field col s12 m2">
-                    <input value="" id="measure_unit-0" name="measure_unit" type="text" class="validate" required>
-                    <label for="measure_unit">Measure Unit (*)</label>
-                </div>
-                <div class="input-field col s12 m6">
-                    <input value="" id="ingredient_name" name="ingredient_name" type="text" class="validate" required>
-                    <label for="ingredient_name">Ingredient Name (Required)</label>
+                <div class="ingredient-field">
+                    <div class="input-field col s12 m3">
+                        <input id="quantity-0" type="number" step="0.01" class="validate">
+                        <label for="quantity-0">Quantity (*)</label>
+                    </div>
+                    <div class="input-field col s12 m2">
+                        <input value="" id="measure_unit-0" name="measure_unit" type="text" class="validate" required>
+                        <label for="measure_unit">Measure Unit (*)</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <input value="" id="ingredient_name" name="ingredient_name" type="text" class="validate" required>
+                        <label for="ingredient_name">Ingredient Name (Required)</label>
+                    </div>
                 </div>
             </div>
-            <a id="add-ingredient-btn" class="waves-effect waves-light btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
+            <div class="float_right">
+                    <a id="remove-ingredient-btn" class="#b71c1c red darken-4 btn-small">Remove Ingredient <i class="fas fa-minus-circle fa-xs"></i></a>
+                    <a id="add-ingredient-btn" class="btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
+                </div>
         </div>
         <div class="row white">
             <h5>Steps:</h5>
@@ -56,7 +58,7 @@
                     <label for="step-0">Step</label>
                 </div>
             </div>
-            <a id="add-step-btn" class="waves-effect waves-light btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
+            <a id="add-step-btn" class="btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
         </div>
         <div class="input-field col s12">
             <select id="base_spirit" name="base_spirit" required>

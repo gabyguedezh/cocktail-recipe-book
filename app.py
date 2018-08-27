@@ -95,14 +95,12 @@ def get_add_cocktail_form():
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
     """
-    measure_unit_list = []
-    measure_units = mongo.db.measure_units.find()
-    for unit in measure_units:
-        if unit['measure_unit_name']:
-            measure_unit_list.append(unit['measure_unit_name'])
-    print(measure_unit_list)
+    # measure_unit_list = []
+    # measure_units = mongo.db.measure_units.find()
+    # for unit in measure_units:
+    #     if unit['measure_unit_name']:
+    #         measure_unit_list.append(unit['measure_unit_name'])
     return render_template('add_cocktail.html',
-                           measure_units=measure_unit_list,
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
                            flavour_profile=mongo.db.flavour_profile.find(),
