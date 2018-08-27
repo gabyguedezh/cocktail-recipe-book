@@ -145,17 +145,13 @@ def write_to_cocktail_database():
     print(new_cocktail)
     return redirect(url_for('get_my_recipes'))
 
-@app.route('/delete_cocktail/<cocktail_id>')
-def delete_cocktail(cocktail_id):
+@app.route('/delete_cocktail/<recipe_id>')
+def delete_cocktail(recipe_id):
     """
     This function deletes a cocktail from the database
-    EXAMPLE
-    @app.route('/delete_task/<task_id>')
-    def delete_task(task_id):
-        mongo.db.tasks.remove({'_id': ObjectId(task_id)})
-        return redirect(url_for('get_tasks'))
+
     """
-    mongo.db.recipes.remove({'_id': ObjectId(cocktail_id)})
+    mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_my_recipes'))
 
 
