@@ -112,7 +112,10 @@ def write_to_cocktail_database():
     """
     recipes = mongo.db.recipes
     
- 
+    # The var below stores a dictionary that corresponds with the structure
+    # of my bson file in mongodb
+    # PENDIG - Get the dictionary to pass to the data base orderly and 
+    # get the ingredients and steps to take id dynamically to allow more than 1
     new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     'recipe_description': request.form['recipe_description'],
     'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
@@ -139,7 +142,22 @@ def write_to_cocktail_database():
     'author_name': session['username']
     }
     recipes.insert_one(new_cocktail)
+    print(new_cocktail)
     return redirect(url_for('get_my_recipes'))
+
+@app.route('/delete_cocktail/<cocktail_id>')
+def delete_cocktail(cocktail_id):
+    """
+    This function deletes a cocktail from the database
+    EXAMPLE
+    @app.route('/delete_task/<task_id>')
+    def delete_task(task_id):
+        mongo.db.tasks.remove({'_id': ObjectId(task_id)})
+        return redirect(url_for('get_tasks'))
+    """
+    mongo.db.recipes.remove({'_id': ObjectId(cocktail_id)})
+    return redirect(url_for('get_my_recipes'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
