@@ -155,6 +155,11 @@ def delete_cocktail(recipe_id):
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_my_recipes'))
 
+@app.route('/get_edit_cocktail_form/<recipe_id>')
+def get_edit_cocktail_form(recipe_id):
+    print('lets edit this cocktail')
+    return render_template('edit_cocktail.html')
+    
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
