@@ -21,16 +21,15 @@
             </div>
         </div>
         <div class="row white">
-            <div class="switch">
-                <label>
-                <input type="checkbox" id="is_vegan" name="is_vegan">
-                <span class="lever"></span>
-                        Suitable for Vegans
-                </label>
-            </div>
+            <select id="is_vegan" name="is_vegan" required>
+                <option value="" disabled selected>Is it vegan? (*)</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <label>Base Spirit</label>
         </div>
         <div class="row white">
-                <h5>Ingredients:</h5>
+            <h5>Ingredients:</h5>
             <div id="ingredient-adder">
                 <div class="ingredient-field">
                     <div class="input-field col s12 m3">
