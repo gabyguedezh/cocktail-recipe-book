@@ -120,7 +120,7 @@ def write_to_cocktail_database():
     # author_name = {'author_name': request.form['author_name']}
     new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     'recipe_description': request.form['recipe_description'],
-    'recipe_url': request.form['recipe_name'].lower(),
+    'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
     }
     # recipes.insert(new_cocktail)
     print(new_cocktail)
