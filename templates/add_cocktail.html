@@ -2,30 +2,32 @@
 <h3 class="art-deco-font mb-3">Add your Recipe</h3>
 <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
-        <div class="row">
+        <div class="row white">
             <div class="input-field col s12">
                 <input placeholder="Placeholder" id="recipe_name" name="recipe_name" type="text" class="validate" required>
                 <label for="recipe_name">Cocktail Name</label>
             </div>
         </div>
-        <div class="row">
+        <div class="row white">
             <div class="input-field col s12">
                 <input placeholder="Placeholder" id="recipe_description" name="recipe_description" type="text" class="validate" required>
                 <label for="recipe_description">Description</label>
             </div>
         </div>
-        <div class="row">
+        <div class="row white">
             <div class="input-field col s12">
                 <input disabled value="Not Available yet" id="disabled" name="recipe_image" type="text" class="validate">
                 <label for="disabled">Cocktail Image</label>
             </div>
         </div>
-        <div class="switch">
-            <label>
-            <input type="checkbox" id="is_vegan" name="is_vegan">
-            <span class="lever"></span>
-                    Suitable for Vegans
-            </label>
+        <div class="row white">
+            <div class="switch">
+                <label>
+                <input type="checkbox" id="is_vegan" name="is_vegan">
+                <span class="lever"></span>
+                        Suitable for Vegans
+                </label>
+            </div>
         </div>
         <div class="row white">
                 <h5>Ingredients:</h5>
@@ -65,34 +67,36 @@
                 <a id="add-step-btn" class="btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
             </div>
         </div>
-        <div class="input-field col s12">
-            <select id="base_spirit" name="base_spirit" required>
-                <option value="" disabled selected>Choose Base Spirit (*)</option>
-                {% for spirit in base_spirit %}
-                <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
-                {% endfor %}
-            </select>
-            <label>Base Spirit</label>
+        <div class="row white">
+            <div class="input-field col s12">
+                <select id="base_spirit" name="base_spirit" required>
+                    <option value="" disabled selected>Choose Base Spirit (*)</option>
+                    {% for spirit in base_spirit %}
+                    <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
+                    {% endfor %}
+                </select>
+                <label>Base Spirit</label>
+            </div>
+            <div class="input-field col s12">
+                <select multiple id="cocktail_type" name="cocktail_type" required>
+                    <option value="" disabled selected>Choose Cocktail Type or Types (Required)</option>
+                    {% for type in cocktail_type %}
+                    <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
+                    {% endfor %}
+                </select>
+                <label>Cocktail Type</label>
+            </div>
+            <div class="input-field col s12">
+                <select id="flavour_profile" name="flavour_profile" required>
+                    <option value="" disabled selected>Choose Flavour Profile (*)</option>
+                    {% for flavour in flavour_profile %}
+                    <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
+                    {% endfor %}
+                </select>
+                <label>Flavour Profile</label>
+            </div>
         </div>
-        <div class="input-field col s12">
-            <select multiple id="cocktail_type" name="cocktail_type" required>
-                <option value="" disabled selected>Choose Cocktail Type or Types (Required)</option>
-                {% for type in cocktail_type %}
-                <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
-                {% endfor %}
-            </select>
-            <label>Cocktail Type</label>
-        </div>
-        <div class="input-field col s12">
-            <select id="flavour_profile" name="flavour_profile" required>
-                <option value="" disabled selected>Choose Flavour Profile (*)</option>
-                {% for flavour in flavour_profile %}
-                <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
-                {% endfor %}
-            </select>
-            <label>Flavour Profile</label>
-        </div>
-        <div class="row">
+        <div class="row white">
             <div class="input-field col s12">
                 <input disabled value="{{session['username']}}" id="author_name" name="author_name" type="text" class="validate">
                 <label for="author_name">Author Name</label>
