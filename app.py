@@ -119,6 +119,7 @@ def write_to_cocktail_database():
     new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     'recipe_description': request.form['recipe_description'],
     'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
+    'recipe_image': '../static/images/default-cocktail-image.png',
     'is_vegan': request.form['is_vegan'],
     'ingredients': {
         'ingredient': [
