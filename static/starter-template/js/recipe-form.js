@@ -8,15 +8,15 @@ $(document).ready(function(){
             $('#add-ingredient-btn').click(function(){
                 $('#ingredient-adder').append('<div class="ingredient-field">\
                     <div class="input-field col s12 m3">\
-                        <input id="quantity-' + ingredientCount + '" type="number" step="0.01" class="validate">\
+                        <input id="quantity-' + ingredientCount + '" name="quantity-' + ingredientCount + '" type="number" step="0.01" class="validate">\
                         <label for="quantity-' + ingredientCount + '">Quantity (*)</label>\
                     </div>\
                     <div class="input-field col s12 m2">\
-                        <input value="" id="measure_unit-' + ingredientCount + '" name="measure_unit" type="text" class="validate" required>\
+                        <input value="" id="measure_unit-' + ingredientCount + '" name="measure_unit-' + ingredientCount + '" type="text" class="validate" required>\
                         <label for="measure_unit">Measure Unit (*)</label>\
                     </div>\
                     <div class="input-field col s12 m6">\
-                        <input value="" id="ingredient_name-' + ingredientCount + '" name="ingredient_name" type="text" class="validate" required>\
+                        <input value="" id="ingredient_name-' + ingredientCount + '" name="ingredient_name' + ingredientCount + '" type="text" class="validate" required>\
                         <label for="ingredient_name-' + ingredientCount + '">Ingredient Name (*)</label>\
                     </div>\
                 </div>');
