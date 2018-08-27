@@ -150,7 +150,6 @@ def write_to_cocktail_database():
 def delete_cocktail(recipe_id):
     """
     This function deletes a cocktail from the database
-
     """
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_my_recipes'))

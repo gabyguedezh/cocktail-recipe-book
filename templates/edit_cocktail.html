@@ -26,7 +26,7 @@
                 <option value="true">Yes</option>
                 <option value="false">No</option>
             </select>
-            <label>Base Spirit</label>
+            <label>Vegan</label>
         </div>
         <div class="row white">
             <h5>Ingredients:</h5>
@@ -110,4 +110,12 @@
         
     </form>
 </div>
+
+<script>
+    $(document).ready(function() {
+        var veganSelect = "{{recipe.is_vegan}}"
+        console.log(veganSelect)
+        // $('#is_vegan').modal();
+    });
+</script>
 {% endblock %}
