@@ -121,6 +121,11 @@ def write_to_cocktail_database():
     new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     'recipe_description': request.form['recipe_description'],
     'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
+    'is_vegan': request.form['is_vegan'],
+    'base_spirit': request.form['base_spirit'],
+    'cocktail_type': request.form['cocktail_type'],
+    'flavour_profile': request.form['flavour_profile'],
+    'author_name': session['username']
     }
     # recipes.insert(new_cocktail)
     print(new_cocktail)
