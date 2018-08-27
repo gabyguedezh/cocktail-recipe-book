@@ -20,8 +20,10 @@ $(document).ready(function(){
                 ingredientCount ++;
             });
             $('#remove-ingredient-btn').click(function(){
-                 $('.ingredient-field').last().remove();
-                 ingredientCount --;
+                if ($('.ingredient-field').length > 1) {
+                    $('.ingredient-field').last().remove();
+                    ingredientCount --; 
+                }
             });
             $('#add-step-btn').click(function(){
                 $('#step-adder').append('<div class="input-field col s12">\
