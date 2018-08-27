@@ -41,24 +41,29 @@
                     </div>
                     <div class="input-field col s12 m6">
                         <input value="" id="ingredient_name" name="ingredient_name" type="text" class="validate" required>
-                        <label for="ingredient_name">Ingredient Name (Required)</label>
+                        <label for="ingredient_name">Ingredient Name (*)</label>
                     </div>
                 </div>
             </div>
-            <div class="float_right">
-                    <a id="remove-ingredient-btn" class="#b71c1c red darken-4 btn-small">Remove Ingredient <i class="fas fa-minus-circle fa-xs"></i></a>
-                    <a id="add-ingredient-btn" class="btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
-                </div>
+            <div class="float-right">
+                <a id="remove-ingredient-btn" class="#b71c1c red darken-4 btn-small">Remove Ingredient <i class="fas fa-minus-circle fa-xs"></i></a>
+                <a id="add-ingredient-btn" class="btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
+            </div>
         </div>
         <div class="row white">
             <h5>Steps:</h5>
             <div id="step-adder">
                 <div class="input-field col s12">
-                    <input value="" id="step-0" name="step-0" type="text" class="validate">
-                    <label for="step-0">Step</label>
+                    <div class="step-field">
+                        <input value="" id="step-0" name="step-0" type="text" class="validate" required>
+                        <label for="step-0">Step</label>
+                    </div>
                 </div>
             </div>
-            <a id="add-step-btn" class="btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
+            <div class="float-right">
+                <a id="remove-step-btn" class="#b71c1c red darken-4 btn-small">Remove Step <i class="fas fa-minus-circle fa-xs"></i></a>
+                <a id="add-step-btn" class="btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
+            </div>
         </div>
         <div class="input-field col s12">
             <select id="base_spirit" name="base_spirit" required>

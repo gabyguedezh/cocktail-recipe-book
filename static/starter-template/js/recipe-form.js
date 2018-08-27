@@ -2,6 +2,9 @@ $(document).ready(function(){
             $('select').formSelect();
             var ingredientCount = 1;
             var stepCount = 1
+            if ($('.ingredient-field').length > 1) {
+                $('#remove-ingredient-btn').attr('disabled', 'false');
+            }
             $('#add-ingredient-btn').click(function(){
                 $('#ingredient-adder').append('<div class="ingredient-field">\
                     <div class="input-field col s12 m3">\
@@ -17,6 +20,9 @@ $(document).ready(function(){
                         <label for="ingredient_name-' + ingredientCount + '">Ingredient Name (*)</label>\
                     </div>\
                 </div>');
+                if ($('.ingredient-field').length > 1) {
+                    $('#remove-ingredient-btn').css('visibility', 'visible');
+                }
                 ingredientCount ++;
             });
             $('#remove-ingredient-btn').click(function(){
@@ -27,9 +33,17 @@ $(document).ready(function(){
             });
             $('#add-step-btn').click(function(){
                 $('#step-adder').append('<div class="input-field col s12">\
-                    <input value="" id="step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate">\
-                    <label for="step-' + stepCount + '">Steps</label\
+                    <div class="step-field">\
+                        <input value="" id="step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate" required>\
+                        <label for="step-' + stepCount + '">Steps</label\
+                    </div>\
                 </div>');
                 stepCount ++;
+            });
+            $('#remove-step-btn').click(function(){
+                if ($('.step-field').length > 1) {
+                    $('.step-field').last().remove();
+                    stepCount --; 
+                }
             });
         });
