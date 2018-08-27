@@ -37,18 +37,9 @@
                     <label for="quantity-0">Quantity (*)</label>
                     <span class="helper-text">Up to two decimals</span>
                 </div>
-                <div class="input-field col s12 m3">
-                    <select id="measure_unit-0" name="measure_unit" required>
-                        <option value="" disabled selected>Measure Unit</option>
-                        <option value="{{measure_units.0}}">{{measure_units.0}}</option>
-                        <option value="{{measure_units.1}}">{{measure_units.1}}</option>
-                        <option value="{{measure_units.2}}">{{measure_units.2}}</option>
-                        <option value="{{measure_units.3}}">{{measure_units.3}}</option>
-                        <option value="{{measure_units.4}}">{{measure_units.4}}</option>
-                        <option value="{{measure_units.5}}">{{measure_units.5}}</option>
-                        <option value="{{measure_units.6}}">{{measure_units.6}}</option>
-                        <option value="{{measure_units.7}}">{{measure_units.7}}</option>
-                    </select>
+                <div class="input-field col s12 m2">
+                    <input value="" id="measure_unit-0" name="measure_unit" type="text" class="validate" required>
+                    <label for="measure_unit">Measure Unit (*)</label>
                 </div>
                 <div class="input-field col s12 m6">
                     <input value="" id="ingredient_name" name="ingredient_name" type="text" class="validate" required>
@@ -57,12 +48,15 @@
             </div>
             <a id="add-ingredient-btn" class="waves-effect waves-light btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
         </div>
-        <div class="row">
+        <div class="row white">
             <h5>Steps:</h5>
-            <div class="input-field col s12">
-                <input disabled value="Not Available yet" id="disabled" name="steps" type="text" class="validate">
-                <label for="disabled">Steps</label>
+            <div id="step-adder">
+                <div class="input-field col s12">
+                    <input value="" id="step-0" name="step-0" type="text" class="validate">
+                    <label for="step-0">Step</label>
+                </div>
             </div>
+            <a id="add-step-btn" class="waves-effect waves-light btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
         </div>
         <div class="input-field col s12">
             <select id="base_spirit" name="base_spirit" required>
