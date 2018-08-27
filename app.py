@@ -158,7 +158,11 @@ def delete_cocktail(recipe_id):
 @app.route('/get_edit_cocktail_form/<recipe_id>')
 def get_edit_cocktail_form(recipe_id):
     print('lets edit this cocktail')
-    return render_template('edit_cocktail.html')
+    return render_template('edit_cocktail.html',
+                           base_spirit=mongo.db.base_spirit.find(),
+                           cocktail_type=mongo.db.cocktail_type.find(),
+                           flavour_profile=mongo.db.flavour_profile.find(),
+                           recipe=mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)}))
     
 
 if __name__ == '__main__':
