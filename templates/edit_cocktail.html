@@ -4,13 +4,13 @@
     <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
         <div class="row white">
             <div class="input-field col s12">
-                <input value="{{recipe.recipe_name}}" id="recipe_name" name="recipe_name" type="text" class="validate" required>
+                <input value="{{recipe.recipe_name}}" id="recipe_name" name="recipe_name" type="text" class="validate">
                 <label for="recipe_name">Cocktail Name</label>
             </div>
         </div>
         <div class="row white">
             <div class="input-field col s12">
-                <input value="{{recipe.recipe_description}}" id="recipe_description" name="recipe_description" type="text" class="validate" required>
+                <input value="{{recipe.recipe_description}}" id="recipe_description" name="recipe_description" type="text" class="validate">
                 <label for="recipe_description">Description</label>
             </div>
         </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row white">
-            <select id="is_vegan" name="is_vegan" required>
+            <select id="is_vegan" name="is_vegan">
                 <option value="" disabled selected>Is it vegan? (*)</option>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
@@ -37,11 +37,11 @@
                         <label for="quantity-0">Quantity (*)</label>
                     </div>
                     <div class="input-field col s12 m2">
-                        <input value="" id="measure_unit-0" name="measure_unit-0" type="text" class="validate" required>
+                        <input value="" id="measure_unit-0" name="measure_unit-0" type="text" class="validate">
                         <label for="measure_unit">Measure Unit (*)</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input value="" id="ingredient_name-0" name="ingredient_name-0" type="text" class="validate" required>
+                        <input value="" id="ingredient_name-0" name="ingredient_name-0" type="text" class="validate">
                         <label for="ingredient_name">Ingredient Name (*)</label>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
             <div id="step-adder">
                 <div class="input-field col s12">
                     <div class="step-field">
-                        <input value="" id="step-0" name="step-0" type="text" class="validate" required>
+                        <input value="" id="step-0" name="step-0" type="text" class="validate">
                         <label for="step-0">Step</label>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="row white">
             <div class="input-field col s12">
-                <select id="base_spirit" name="base_spirit" required>
+                <select id="base_spirit" name="base_spirit">
                     <option value="" disabled selected>Choose Base Spirit (*)</option>
                     {% for spirit in base_spirit %}
                     <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
@@ -77,8 +77,8 @@
                 <label>Base Spirit</label>
             </div>
             <div class="input-field col s12">
-                <select multiple id="cocktail_type" name="cocktail_type" required>
-                    <option value="" disabled selected>Choose Cocktail Type or Types (Required)</option>
+                <select multiple id="cocktail_type" name="cocktail_type">
+                    <option value="" disabled selected>Choose Cocktail Type or Types</option>
                     {% for type in cocktail_type %}
                     <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
                     {% endfor %}
@@ -86,7 +86,7 @@
                 <label>Cocktail Type</label>
             </div>
             <div class="input-field col s12">
-                <select id="flavour_profile" name="flavour_profile" required>
+                <select id="flavour_profile" name="flavour_profile">
                     <option value="" disabled selected>Choose Flavour Profile (*)</option>
                     {% for flavour in flavour_profile %}
                     <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
@@ -107,15 +107,16 @@
         <button class="btn waves-effect waves-light" type="submit" name="action">
             Save changes <i class="far fa-save fa-xs"></i>
         </button>
-        
     </form>
 </div>
 
 <script>
     $(document).ready(function() {
-        var veganSelect = "{{recipe.is_vegan}}"
+        var veganSelect = "{{recipe.is_vegan}}";
         console.log(veganSelect);
-        // $('#is_vegan').modal();
+        console.log('hello');
+        $('#is_vegan').formSelect();
     });
 </script>
+
 {% endblock %}

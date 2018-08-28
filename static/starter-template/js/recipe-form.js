@@ -46,4 +46,10 @@ $(document).ready(function(){
                     stepCount --; 
                 }
             });
+            
+            // EDIT FORM FUNCTIONALITY SCRIPTS
+            var veganSelect = "{{recipe.is_vegan}}";
+            console.log(veganSelect);
+            console.log('hello');
+            $('#is_vegan').formSelect();
         });
