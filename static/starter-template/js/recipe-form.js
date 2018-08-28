@@ -46,4 +46,7 @@ $(document).ready(function(){
                     stepCount --; 
                 }
             });
+            
+            // FOR THE DELETE CONFIRMATION MODAL
+            $('.modal').modal();
         });
