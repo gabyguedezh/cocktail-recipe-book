@@ -23,8 +23,13 @@
         <div class="row white">
             <select id="is_vegan" name="is_vegan">
                 <option value="" disabled selected>Is it vegan? (*)</option>
-                <option value="true">Yes</option>
+                {% if recipe['is_vegan'] == 'true' %}
+                <option value="true" selected >Yes</option>
                 <option value="false">No</option>
+                {% else %}
+                <option value="true">Yes</option>
+                <option value="false" selected >No</option>
+                {% endif %}
             </select>
             <label>Vegan</label>
         </div>
@@ -117,9 +122,12 @@
             var veganBoolean = "{{recipe.is_vegan}}";
             $('#is_vegan').formSelect();
             if (veganBoolean == 'true') {
-                console.log(veganBoolean)
+                console.log(veganBoolean);
                 console.log('this recipe is vegan');
                 // PENDING - Pre-Select the option that was chosen when created
+            } else {
+                console.log(veganBoolean);
+                console.log('this recipe is not vegan');
             }
         });
     </script>
