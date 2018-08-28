@@ -120,15 +120,12 @@
         $(document).ready(function(){
             // FOR EDIT COCKTAIL FORM
             var veganBoolean = "{{recipe.is_vegan}}";
-            $('#is_vegan').formSelect();
             if (veganBoolean == 'true') {
-                console.log(veganBoolean);
-                console.log('this recipe is vegan');
-                // PENDING - Pre-Select the option that was chosen when created
+                console.log('is this vegan?', veganBoolean);
             } else {
-                console.log(veganBoolean);
-                console.log('this recipe is not vegan');
+                console.log('is this vegan?', veganBoolean);
             }
+            $('#is_vegan').formSelect();
         });
     </script>
 {% endblock %}
