@@ -74,18 +74,24 @@
         <div class="row white">
             <div class="input-field col s12">
                 <select id="base_spirit" name="base_spirit">
-                    <option value="" disabled selected>Choose Base Spirit (*)</option>
                     {% for spirit in base_spirit %}
-                    <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
+                        {% if spirit.spirit_name == recipe['base_spirit'] %}
+                            <option value="{{spirit.spirit_name}}" selected>{{spirit.spirit_name}}</option>
+                        {% else %}
+                            <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 <label>Base Spirit</label>
             </div>
             <div class="input-field col s12">
                 <select multiple id="cocktail_type" name="cocktail_type">
-                    <option value="" disabled selected>Choose Cocktail Type or Types</option>
                     {% for type in cocktail_type %}
-                    <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
+                        {% if type.cocktail_type_name == recipe['cocktail_type'] %}
+                            <option value="{{type.cocktail_type_name}}" selected>{{type.cocktail_type_name}}</option>
+                        {% else %}
+                            <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 <label>Cocktail Type</label>
@@ -94,7 +100,11 @@
                 <select id="flavour_profile" name="flavour_profile">
                     <option value="" disabled selected>Choose Flavour Profile (*)</option>
                     {% for flavour in flavour_profile %}
-                    <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
+                        {% if flavour.flavour_profile_name == recipe['flavour_profile'] %}
+                            <option value="{{flavour.flavour_profile_name}}" selected>{{flavour.flavour_profile_name}}</option>
+                        {% else %}
+                            <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 <label>Flavour Profile</label>
@@ -114,18 +124,4 @@
         </button>
     </form>
 </div>
-{% endblock %}
-{% block js %}
-    <script>
-        $(document).ready(function(){
-            // FOR EDIT COCKTAIL FORM
-            var veganBoolean = "{{recipe.is_vegan}}";
-            if (veganBoolean == 'true') {
-                console.log('is this vegan?', veganBoolean);
-            } else {
-                console.log('is this vegan?', veganBoolean);
-            }
-            $('#is_vegan').formSelect();
-        });
-    </script>
 {% endblock %}
