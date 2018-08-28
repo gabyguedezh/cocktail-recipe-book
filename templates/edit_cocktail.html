@@ -1,5 +1,5 @@
 {% extends 'base.html'%} {% block content %}
-<h3 class="art-deco-font mb-3">Add your Recipe</h3>
+<h3 class="art-deco-font mb-3">Edit your Recipe</h3>
 <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
         <div class="row white">
@@ -114,10 +114,13 @@
     <script>
         $(document).ready(function(){
             // FOR EDIT COCKTAIL FORM
-            var veganSelect = "{{recipe.is_vegan}}";
-            console.log(veganSelect);
-            console.log('hello');
+            var veganBoolean = "{{recipe.is_vegan}}";
             $('#is_vegan').formSelect();
+            if (veganBoolean == 'true') {
+                console.log(veganBoolean)
+                console.log('this recipe is vegan');
+                // PENDING - Pre-Select the option that was chosen when created
+            }
         });
     </script>
 {% endblock %}

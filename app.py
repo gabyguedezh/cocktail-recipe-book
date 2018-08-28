@@ -159,12 +159,15 @@ def get_edit_cocktail_form(recipe_id):
     """
     This function reopens de form and lets you rewrite on a recipe
     """
+    # recipes = mongo.db.recipes
     this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    is_vegan = this_recipe['is_vegan']
     all_base_spirit = mongo.db.base_spirit.find()
     all_cocktail_type = mongo.db.cocktail_type.find()
     all_flavour_profile = mongo.db.flavour_profile.find()
-    print('lets edit this cocktail')
+    print('is this vegan? ', this_recipe['is_vegan'])
     return render_template('edit_cocktail.html',
+                           is_vegan=is_vegan,
                            base_spirit=all_base_spirit,
                            cocktail_type=all_cocktail_type,
                            flavour_profile=all_flavour_profile,
