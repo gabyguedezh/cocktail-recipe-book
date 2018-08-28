@@ -109,14 +109,15 @@
         </button>
     </form>
 </div>
-
-<script>
-    $(document).ready(function() {
-        var veganSelect = "{{recipe.is_vegan}}";
-        console.log(veganSelect);
-        console.log('hello');
-        $('#is_vegan').formSelect();
-    });
-</script>
-
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            // FOR EDIT COCKTAIL FORM
+            var veganSelect = "{{recipe.is_vegan}}";
+            console.log(veganSelect);
+            console.log('hello');
+            $('#is_vegan').formSelect();
+        });
+    </script>
+{% endblock %}
 {% endblock %}

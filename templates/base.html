@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Cocktail Guide</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <link rel="stylesheet" href="static/starter-template/css/materialize.css" type="text/css" />
-    <link rel="stylesheet" href="static/starter-template/css/materialize.min.css" type="text/css" />
-    <link rel="stylesheet" href="static/starter-template/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='starter-template/css/materialize.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{url_for('static', filename='starter-template/css/materialize.min.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{url_for('static', filename='starter-template/css/style.css')}}" type="text/css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <!-- Custom fonts for this template -->
@@ -83,11 +83,8 @@
     <script type="text/javascript" src="static/starter-template/js/materialize.min.js"></script>
     <!-- Custom JS -->
     <script type="text/javascript" src="static/starter-template/js/recipe-form.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.modal').modal();
-        });
-    </script>
+
+    {% block js %} {% endblock %}
 </body>
 
 </html>
