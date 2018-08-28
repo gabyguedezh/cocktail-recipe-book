@@ -1,4 +1,5 @@
 $(document).ready(function(){
+            $('.carousel').carousel();
             $('select').formSelect();
             var ingredientCount = 1;
             var stepCount = 1
@@ -34,7 +35,7 @@ $(document).ready(function(){
             $('#add-step-btn').click(function(){
                 $('#step-adder').append('<div class="input-field col s12">\
                     <div class="step-field">\
-                        <input value="" id="step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate" required>\
+                        <input value="" id="new-step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate" required>\
                         <label for="step-' + stepCount + '">Steps</label\
                     </div>\
                 </div>');
@@ -49,4 +50,18 @@ $(document).ready(function(){
             
             // FOR THE DELETE CONFIRMATION MODAL
             $('.modal').modal();
+            
+            // COLLECTING THE ADDED STEPS
+            function getNewSteps() {
+                // I'll collect all the steps that start with 'new' as these
+                // are created when the user clicks on the add new step button
+                var stepsArray = [];
+                $('input'[id^='new-step']).each(function(i) {
+                    stepsArray.push($(this).val());
+                });
+            }
+            $('#submit-form-button').on('click', function() {
+                getNewSteps();
+                console.log(stepsArray);
+            });
         });
