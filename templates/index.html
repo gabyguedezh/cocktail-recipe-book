@@ -1,13 +1,34 @@
+
 {% extends 'base.html'%} {% block content %}
-    <p>let's make cocktails</p>
-    <div class="carousel white">
-        <h2 class="art-deco-font" >Featured Cocktails</h2>
-        {% for recipe in recipes %}
-            {% if loop.index < 4 %}
-                <div>
-                    <a class="carousel-item" href="#one!"><img src="{{recipe.recipe_image}}"></a>
+    <div class="row no-margin">
+        <div class="carousel carousel-slider">
+            <a class="carousel-item fix-image-size" href="#one!"><img src="{{url_for('static', filename='images/header-image.jpg')}}"></a>
+            <a class="carousel-item fix-image-size" href="#two!"><img src="{{url_for('static', filename='images/mojito.jpg')}}"></a>
+            <a class="carousel-item fix-image-size" href="#three!"><img src="{{url_for('static', filename='images/cocktail-margarita-glass.jpg')}}"></a>
+        </div>
+        <h2 class="art-deco-font">Featured Cocktails</h2>
+    </div>
+    <div class="row">
+        {% for recipe in recipes %} 
+            {% if loop.index < 5 %} 
+                <div class="col s12 m6">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="{{recipe.recipe_image}}">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h5>{{recipe.recipe_name}}</h5>
+                                <p>{{recipe.recipe_description}}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">See Recipe</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            {% endif %}
+            {% endif %} 
         {% endfor %}
-  </div>
-{% endblock %}
+    </div>
+    {% endblock %}
+

@@ -1,5 +1,8 @@
 $(document).ready(function(){
-            $('.carousel').carousel();
+            $('.carousel.carousel-slider').carousel({
+                fullWidth: true,
+                indicators: true
+            });
             $('select').formSelect();
             var ingredientCount = 1;
             var stepCount = 1
