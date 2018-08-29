@@ -79,24 +79,26 @@ $(document).ready(function(){
     // }
     
     // COLLECTING THE ADDED STEPS - ATTEMPT 2
-    $('#add-step-btn').on('click', function() {
-        var inputTagStep = ($('#step-adder').find('input'));
-        console.log(inputTagStep);
-    });
-    $('#remove-step-btn').on('click', function() {
-        // PENDING - Get the remove button to get rid of deleted inputs
-        // if ($('.step-field').length > 1) {
-        //     var inputTagStep = ($('#step-adder').find('inputstep-field').last().remove());
-        //     console.log(inputTagStep);
-        // }
-    });
+    // $('#add-step-btn').on('click', function() {
+    //     var inputTagStep = ($('#step-adder').find('input'));
+    //     console.log(inputTagStep);
+    // });
+    // $('#remove-step-btn').on('click', function() {
+    //     PENDING - Get the remove button to get rid of deleted inputs
+    //     if ($('.step-field').length > 1) {
+    //         var inputTagStep = ($('#step-adder').find('inputstep-field').last().remove());
+    //         console.log(inputTagStep);
+    //     }
+    // });
     
     // COLLECTING THE ADDED STEPS - ATTEMPT 3
-    // var inputTagStep = ($('#step-adder').find('input'));
-    // $(inputTagStep).on('change', function(){
-    //     console.log('you changed the input');
-    // });
     $('#step-adder').on('change', function() {
-        console.log('you changed the input');
+        var inputTagStep = ($('#step-adder').find('input'));
+        console.log('you changed an input');
+        console.log(inputTagStep);
+        $(inputTagStep).each(function(){
+            console.log($(this).val());
+        });
+
     });
 });
