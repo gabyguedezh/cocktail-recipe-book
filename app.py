@@ -145,6 +145,7 @@ def write_to_cocktail_database():
     }
     recipes.insert_one(new_cocktail)
     print(new_cocktail)
+    print(request.form.getlist('step-0'))
     return redirect(url_for('get_my_recipes'))
 
 @app.route('/delete_cocktail/<recipe_id>')

@@ -31,10 +31,6 @@ don't overflow their boxes*/
     font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-/*.fix-image-size {*/
-/*    width: 100%;*/
-/*    height:100%;*/
-/*}*/
 
 /* NAV BAR */
 
@@ -43,7 +39,7 @@ don't overflow their boxes*/
 /* HOMEPAGE */
 .fix-image-size {
     background-size: cover;
-    width: 60em;
+    width: 62em;
     height: 32em;
 }
 .carousel-image-1 {
@@ -73,6 +69,10 @@ don't overflow their boxes*/
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/*#cocktail-card {*/
+/*    display:none;*/
+/*}*/
 
 /* FOOTER */
 

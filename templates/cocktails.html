@@ -2,19 +2,22 @@
 <p>here are all the recipes</p>
 <div class="row">
     {% for recipe in recipes %}
-    <div class="col s12 m4 l3">
-        <div class="card">
-            <div class="card-image">
-                <img src="{{recipe.recipe_image}}">
-                <span id="recipe_name" name="recipe_name" class="card-title">{{recipe.recipe_name}}</span>
+        <div class="col s12 m4 l3" id="cocktail-card">
+            <div class="card">
+                <div class="card-image">
+                    <img src="{{recipe.recipe_image}}">
+                    <span id="recipe_name" name="recipe_name" class="card-title">{{recipe.recipe_name}}</span>
+                </div>
+                <div class="card-content class-size">
+                    <p id="description">{{recipe.recipe_description}}</p>
+                </div>
+                <div class="card-action">
+                    <a href="/show_cocktail/{{ recipe.recipe_url }}">See Recipe</a>
+                </div>
             </div>
-            <div class="card-content class-size">
-                <p id="description">{{recipe.recipe_description}}</p>
-            </div>
-            <div class="card-action">
-                <a href="/show_cocktail/{{ recipe.recipe_url }}">See Recipe</a>
-            </div>
+            <!-- more display -->
         </div>
-        <!-- more display -->
-    </div>
-    {% endfor %} {% endblock %}
+    {% endfor %} 
+    <a id="loadMore" class="btn-small center">Load More <i class="fas fa-plus fa-xs"></i></a>
+    {% endblock %}
+

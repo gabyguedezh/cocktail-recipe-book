@@ -1,60 +1,56 @@
-
 {% extends 'base.html'%} {% block content %}
-    <div class="row">
-        <div class="carousel carousel-slider">
-            <a class="carousel-item">
-                <div class="carousel-image-1 fix-image-size" href="#!">
-                    <h2 class="no-margin"><i class="fas fa-cocktail"></i></h2>
-                    <h4 class="no-margin art-deco-font">Welcome to Mix and Shake!</h4>
-                    <h5>BUTTON LOGIN</h5>
-                </div>
-            </a>
-            <a class="carousel-item">
-                <div class="carousel-image-2 fix-image-size" href="#!">
-                    <h4 class="no-margin art-deco-font">Where cocktail enthusiasts discover new favourites.</h4>
-                    <h5>BUTTON SEE ALL COCKTAILS</h5>
-                </div>
-            </a>
-            <a class="carousel-item">
-                <div class="carousel-image-3 fix-image-size" href="#!">
-                    <h4 class="no-margin art-deco-font">Find and share cocktail recipes and save your favourites for later!</h4>
-                    <h5>BUTTON SEARCH</h5>
-                </div>
-            </a>
+<div class="row">
+    <div class="carousel carousel-slider">
+        <a class="carousel-item">
+            <div class="carousel-image-1 fix-image-size" href="#!">
+                <h2 class="no-margin"><i class="fas fa-cocktail"></i></h2>
+                <h4 class="no-margin art-deco-font">Welcome to Mix and Shake!</h4>
+                <h5>BUTTON LOGIN</h5>
+            </div>
+        </a>
+        <a class="carousel-item">
+            <div class="carousel-image-2 fix-image-size" href="#!">
+                <h4 class="no-margin art-deco-font">Where cocktail enthusiasts discover new favourites.</h4>
+                <h5>BUTTON SEE ALL COCKTAILS</h5>
+            </div>
+        </a>
+        <a class="carousel-item">
+            <div class="carousel-image-3 fix-image-size" href="#!">
+                <h4 class="no-margin art-deco-font">Find and share cocktail recipes and save your favourites for later!</h4>
+                <h5>BUTTON SEARCH</h5>
+            </div>
+        </a>
 
-        </div>
-        <h2 class="art-deco-font">Featured Cocktails</h2>
     </div>
-    <div class="row">
-        {% for recipe in recipes %} 
-            {% if loop.index < 5 %} 
-                <div class="col s12 m6">
-                    <div class="card horizontal">
-                        <div class="card-image">
-                            <img src="{{recipe.recipe_image}}">
-                        </div>
-                        <div class="card-stacked">
-                            <h5>{{recipe.recipe_name}}</h5>
-                            <div class="card-content class-size">
-                                <p id="description">{{recipe.recipe_description}}</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">See Recipe</a>
-                            </div>
-                        </div>
-                    </div>
+    <h2 class="art-deco-font">Featured Cocktails</h2>
+</div>
+<div class="row">
+    {% for recipe in recipes %} {% if loop.index
+    < 5 %} <div class="col s12 m6">
+        <div class="card horizontal">
+            <div class="card-image">
+                <img src="{{recipe.recipe_image}}">
+            </div>
+            <div class="card-stacked">
+                <h5>{{recipe.recipe_name}}</h5>
+                <div class="card-content class-size">
+                    <p id="description">{{recipe.recipe_description}}</p>
                 </div>
-            {% endif %} 
-        {% endfor %}
-    </div>
-    <div class="row">
-        <div class="col s12">
-          <div class="icon-block">
+                <div class="card-action">
+                    <a href="#">See Recipe</a>
+                </div>
+            </div>
+        </div>
+</div>
+{% endif %} {% endfor %}
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="icon-block">
             <h2 class="center brown-text"><i class="fas fa-cocktail mobile-hide"></i></h2>
-            <h4 class="center art-deco-font">Welcome to Mix and Shake!</h4>
-            <p class="light">Where cocktail enthusiasts discover new favourites, delight on the classics and enjoy sharing their favourite tipples.</p>
-          </div>
+            <h4 class="center art-deco-font">Fancy More Mixing and Shaking?</h4>
+            <p class="light">Sign up or login to add your recipes and save your favourites or search our delicious menu with ideas for any occasion!</p>
         </div>
     </div>
-    {% endblock %}
-
+</div>
+{% endblock %}
