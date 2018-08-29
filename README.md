@@ -73,6 +73,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 ### Content
 - The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 - Inspiration for the colour palette [HERE](https://www.pinterest.ie/pin/263882859399545467/)
+- I used the [Rating Stars with Simple Jquery](https://codepen.io/depy/pen/vEWWdw) by Deepak Kamat to let users rate drinks
 
 ### Media
 - The photos used in this site were obtained from ...
