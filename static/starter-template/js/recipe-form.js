@@ -47,8 +47,8 @@ $(document).ready(function(){
     $('#add-step-btn').click(function(){
         $('#step-adder').append('<div class="input-field col s12">\
             <div class="step-field">\
-                <input value="" id="new-step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate" required>\
-                <label for="step-' + stepCount + '">Steps</label\
+                <input value="" id="new-step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate step-class" required>\
+                <label for="step-' + stepCount + '">Step</label\
             </div>\
         </div>');
         stepCount ++;
@@ -97,9 +97,11 @@ $(document).ready(function(){
         var stepsList = [];
         console.log('you changed an input');
         // console.log(inputTagStep);
-        $(inputTagStep).each(function(){
-            stepsList = ($(this).val());
-            console.log(stepsList);
+        inputTagStep.each(function(){
+            if ( $(this).val() != "" ) {
+                stepsList.push($(this).val());
+                console.log(stepsList); 
+            }
         });
     });
 });
