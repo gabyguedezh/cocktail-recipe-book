@@ -94,11 +94,12 @@ $(document).ready(function(){
     // COLLECTING THE ADDED STEPS - ATTEMPT 3
     $('#step-adder').on('change', function() {
         var inputTagStep = ($('#step-adder').find('input'));
+        var stepsList = [];
         console.log('you changed an input');
-        console.log(inputTagStep);
+        // console.log(inputTagStep);
         $(inputTagStep).each(function(){
-            console.log($(this).val());
+            stepsList = ($(this).val());
+            console.log(stepsList);
         });
-
     });
 });
