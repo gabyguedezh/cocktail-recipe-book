@@ -77,8 +77,8 @@
                 <label>Base Spirit</label>
             </div>
             <div class="input-field col s12">
-                <select multiple id="cocktail_type" name="cocktail_type" required>
-                    <option value="" disabled selected>Choose Cocktail Type or Types (Required)</option>
+                <select id="cocktail_type" name="cocktail_type" required>
+                    <option value="" disabled selected>Choose Cocktail Type (*)</option>
                     {% for type in cocktail_type %}
                     <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
                     {% endfor %}

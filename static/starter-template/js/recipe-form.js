@@ -83,18 +83,40 @@ $(document).ready(function(){
         console.log("Recipe name is: ", recipeName);
         // Getting the description
         var recipeDescription = $('#recipe_description').val();
-        console.log("Recipe descruption is: ", recipeDescription);
-
+        console.log("Recipe description is: ", recipeDescription);
+        // Getting the vegan boolean
+        var veganBoolean = $('#is_vegan').val();
+        console.log("Is recipe vegan: ", veganBoolean);
+        // Getting the recipe ingredients
+        var ingredientsList = []
+        var inputTagIngredient = ($('#ingredient-adder').find('input'));
+        inputTagIngredient.each(function() {
+            var jqthis = $(this);
+            if ( jqthis.val != "" ) {
+                ingredientsList.push(jqthis.val());
+            }
+        });
+        console.log("ingredeint list is: ", ingredientsList);
         // Getting the recipe steps
         var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
-        inputTagStep.each(function(){
+        inputTagStep.each(function() {
             var jqthis = $(this);
             if ( jqthis.val() != "" ) {
                 stepsList.push(jqthis.val());
             }
         });
         console.log("steps list is: ", stepsList);
+        // Getting the base spirit selector
+        var baseSpiritSelector = $('#base_spirit').val();
+        console.log("Base spirit is: ", baseSpiritSelector);
+        // Getting the cocktail type
+        var cocktailTypeSelector = $('#cocktail_type').val();
+        console.log("cocktail type is: ", cocktailTypeSelector);
+        // Getting the flavour profile
+        var flavourProfileSelector = $('#flavour_profile').val();
+        console.log("flavour profile is: ", flavourProfileSelector);
+        
         // This will take care of the POST
         // $.ajax({
         //     url: formUrl,
