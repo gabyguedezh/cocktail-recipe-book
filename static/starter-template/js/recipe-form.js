@@ -70,41 +70,36 @@ $(document).ready(function(){
     // COLLECTING THE ADDED STEPS
     
     // PENDING - edit from on.change to when submiting, to avoid duplicating data from a field
-    var stepsList = [];
-    $('#step-adder').on('change', function() {
+    // SEND MY DYNAMIC FIELDS TO BACKEND
+    // This function takes the array stored in stepsList and adds it to the data
+    // that will be posted when clicking the submit button
+    
+    $("#submit-form-button").on('click', function(event) {
+        event.preventDefault();
+        var formUrl = $('#submit-form-button').data('url')
+        // Getting the recipe steps
+        var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
-        console.log('you changed an input');
         inputTagStep.each(function(){
             var jqthis = $(this);
             if ( jqthis.val() != "" ) {
                 stepsList.push(jqthis.val());
-                console.log(stepsList); 
             }
         });
-    });
-    // SEND MY DYNAMIC FIELDS TO BACKEND
-    // This function takes the array stored in stepsList and adds it to the data
-    // that will be posted when clicking the submit button
-    $("#submit-form-button").on('click', function(event) {
-        event.preventDefault();
-        var formUrl = $('#submit-form-button').data('url')
-        // $.post( formUrl, stepsList, function( stepsList ) {
-        //     // $( ".result" ).html( stepsList );
-        //     console.log(stepsList);
-        // }, "json");
         console.log("steps list is: ", stepsList);
-        $.ajax({
-            url: formUrl,
-            // data: {'data': stepsList},
-            data: JSON.stringify(stepsList, null, '\t'),
-            type: 'POST',
-            contentType: 'application/json;charset=UTF-8',
-            success: function(response) {
-                console.log('success', response);
-            },
-            error: function(error) {
-                console.log('error', error);
-            }
-        });
+        // This will take care of the POST
+        // $.ajax({
+        //     url: formUrl,
+        //     // data: {'data': stepsList},
+        //     data: JSON.stringify(stepsList, null, '\t'),
+        //     type: 'POST',
+        //     contentType: 'application/json;charset=UTF-8',
+        //     success: function(response) {
+        //         console.log('success', response);
+        //     },
+        //     error: function(error) {
+        //         console.log('error', error);
+        //     }
+        // });
     });
 });
