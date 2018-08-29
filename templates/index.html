@@ -2,9 +2,10 @@
 {% extends 'base.html'%} {% block content %}
     <div class="row">
         <div class="carousel carousel-slider">
-            <a class="carousel-item fix-image-size" href="#one!"><img src="{{url_for('static', filename='images/header-image.jpg')}}"></a>
-            <a class="carousel-item fix-image-size" href="#two!"><img src="{{url_for('static', filename='images/mojito.jpg')}}"></a>
-            <a class="carousel-item fix-image-size" href="#three!"><img src="{{url_for('static', filename='images/cocktail-margarita-glass.jpg')}}"></a>
+            <a class="carousel-item"><div class="carousel-image-1 fix-image-size" href="#!">Hi there</div></a>
+            <a class="carousel-item"><div class="carousel-image-2 fix-image-size" href="#!">Hi there</div></a>
+            <a class="carousel-item"><div class="carousel-image-3 fix-image-size" href="#!">Hi there</div></a>
+
         </div>
         <h2 class="art-deco-font">Featured Cocktails</h2>
     </div>
@@ -29,6 +30,15 @@
                 </div>
             {% endif %} 
         {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col s12">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="fas fa-cocktail mobile-hide"></i></h2>
+            <h4 class="center art-deco-font">Welcome to Mix and Shake!</h4>
+            <p class="light">Where cocktail enthusiasts discover new favourites, delight on the classics and enjoy sharing their favourite tipples.</p>
+          </div>
+        </div>
     </div>
     {% endblock %}
 
