@@ -80,12 +80,23 @@ $(document).ready(function(){
     
     // COLLECTING THE ADDED STEPS - ATTEMPT 2
     $('#add-step-btn').on('click', function() {
-        console.log('finding our individual steps...');
         var inputTagStep = ($('#step-adder').find('input'));
         console.log(inputTagStep);
     });
     $('#remove-step-btn').on('click', function() {
-        console.log('finding our individual steps...');
-        console.log($('#step-adder').children().last().remove());
+        // PENDING - Get the remove button to get rid of deleted inputs
+        // if ($('.step-field').length > 1) {
+        //     var inputTagStep = ($('#step-adder').find('inputstep-field').last().remove());
+        //     console.log(inputTagStep);
+        // }
+    });
+    
+    // COLLECTING THE ADDED STEPS - ATTEMPT 3
+    // var inputTagStep = ($('#step-adder').find('input'));
+    // $(inputTagStep).on('change', function(){
+    //     console.log('you changed the input');
+    // });
+    $('#step-adder').on('change', function() {
+        console.log('you changed the input');
     });
 });
