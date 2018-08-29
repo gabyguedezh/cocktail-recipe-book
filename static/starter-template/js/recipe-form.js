@@ -77,6 +77,14 @@ $(document).ready(function(){
     $("#submit-form-button").on('click', function(event) {
         event.preventDefault();
         var formUrl = $('#submit-form-button').data('url')
+        
+        // Getting the recipe name
+        var recipeName = $('#recipe_name').val();
+        console.log("Recipe name is: ", recipeName);
+        // Getting the description
+        var recipeDescription = $('#recipe_description').val();
+        console.log("Recipe descruption is: ", recipeDescription);
+
         // Getting the recipe steps
         var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
