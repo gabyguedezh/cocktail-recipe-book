@@ -81,7 +81,8 @@ $(document).ready(function(){
     // COLLECTING THE ADDED STEPS - ATTEMPT 2
     $('#add-step-btn').on('click', function() {
         console.log('finding our individual steps...');
-        console.log($('#step-adder').children());
+        var inputTagStep = ($('#step-adder').find('input'));
+        console.log(inputTagStep);
     });
     $('#remove-step-btn').on('click', function() {
         console.log('finding our individual steps...');
