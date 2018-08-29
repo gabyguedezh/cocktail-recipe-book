@@ -52,14 +52,15 @@ $(document).ready(function(){
             </div>\
         </div>');
         stepCount ++;
-        console.log(stepCount)
+        console.log(stepCount);
     });
     
     // Remove step button
     $('#remove-step-btn').click(function(){
         if ($('.step-field').length > 1) {
             $('.step-field').last().remove();
-            stepCount --; 
+            stepCount --;
+            console.log(stepCount);
         }
     });
     
@@ -78,9 +79,12 @@ $(document).ready(function(){
     // }
     
     // COLLECTING THE ADDED STEPS - ATTEMPT 2
-    $('#submit-form-button').on('mouseenter', function() {
+    $('#add-step-btn').on('click', function() {
         console.log('finding our individual steps...');
         console.log($('#step-adder').children());
     });
-    
+    $('#remove-step-btn').on('click', function() {
+        console.log('finding our individual steps...');
+        console.log($('#step-adder').children().last().remove());
+    });
 });
