@@ -113,9 +113,10 @@ def write_to_cocktail_database():
     """
     if request.method == "POST":
         print("-----------------------------------------------------------------")
-        # print(request.get_json())
         print(request.json)
         print("-----------------------------------------------------------------")
+    # PENDING - Make all input fields arrays and pass them back as done with 
+    # the steps
     
     # recipes = mongo.db.recipes
     

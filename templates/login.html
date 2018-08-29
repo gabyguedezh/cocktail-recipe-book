@@ -1,6 +1,6 @@
 {% extends 'base.html'%} {% block content %}
-<p>enter your username and start mixing and shaking</p>
 {% if not logged_in %}
+<p>enter your username and start mixing and shaking</p>
 <div class="row white">
     <form class="col s12" method="POST">
         <div class="row">
@@ -19,6 +19,7 @@
 <p>Your dashboard</p>
 <p>Author Name</p>
 <div>
+    <a href="{{url_for('get_my_recipes')}}" class="waves-effect waves-light btn-small pink darken-4"><i class="fas fa-cocktail"></i>See your Recipes</a>
     <a href="/get_logout" class="waves-effect waves-light btn-small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
 </div>
 {% endif %} {% endblock %}

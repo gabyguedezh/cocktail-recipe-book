@@ -68,6 +68,8 @@ $(document).ready(function(){
     $('.modal').modal();
     
     // COLLECTING THE ADDED STEPS
+    
+    // PENDING - edit from on.change to when submiting, to avoid duplicating data from a field
     var stepsList = [];
     $('#step-adder').on('change', function() {
         var inputTagStep = ($('#step-adder').find('input'));

@@ -74,6 +74,18 @@ don't overflow their boxes*/
 /*    display:none;*/
 /*}*/
 
+.card-title-spice {
+    background-color: rgba(136, 14, 79, 0.5);
+    width: 100%;
+    height: 2em;
+}
+
+/* PENDING - Prepare in case of a very long cocktail name */
+
+.card-title-spice > #recipe_name {
+    font-size: 1em!important;
+    padding-bottom: 0px;
+}
 
 /* MY RECIPES */
 /* Rating Star Widgets Style */

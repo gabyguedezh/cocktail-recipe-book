@@ -1,6 +1,5 @@
 {% extends 'base.html'%} {% block content %}
-<p>A specific cocktail recipe you want to see</p>
-
+<!--<p>A specific cocktail recipe you want to see</p>-->
 <div class="col s12">
     <div class="icon-block">
         <h2 class="brown-text">{{recipe.recipe_name}}</h2>
@@ -10,11 +9,11 @@
     <div class="col s12 m4">
         <img src="{{recipe.recipe_image}}">
     </div>
-    <div class="col s12 m4">
+    <div class="col s12 m6">
         <h5>{{recipe.recipe_description}}</h5>
-        <p>Base Spirit: {{recipe.base_spirit}}</p>
-        <p>Cocktail Type: {{recipe.cocktail_type}}</p>
-        <p>Flavour Profile: {{recipe.flavour_profile}}</p>
+        <p><strong>Base Spirit:</strong> {{recipe.base_spirit}}</p>
+        <p><strong>Cocktail Type:</strong> {{recipe.cocktail_type}}</p>
+        <p><strong>Flavour Profile:</strong> {{recipe.flavour_profile}}</p>
     <!--Rating Stars with simple jQuery A PEN BY Deepak Kamat - START -->
         <section class='rating-widget'>
             <!-- Rating Stars Box -->
@@ -52,16 +51,20 @@
         <ul>
             {% for ingredient in recipe.ingredients %}
                 <li>
-                    <span>{{recipe.ingredients.ingredient.0.quantity}}</span>
-                    <span>{{recipe.ingredients.ingredient.0.measure_unit}}<span>
-                    <span>{{recipe.ingredients.ingredient.0.ingredient_name}}<span>
+                    <p>{{recipe.ingredients.ingredient}}</p>
                 </li>
             {% endfor %}
         </ul>
         
         
     <h5>Steps:</h5>
-    <p>Steps should go here</p>
+        <ul>
+            {% for step in recipe.steps %}
+                <li>
+                    <p>{{recipe.steps.step}}</p>
+                </li>
+            {% endfor %}
+        </ul>
     <p>Recipe by <em>{{recipe.author_name}}</em></p>
 </div>
 {% endblock %}
