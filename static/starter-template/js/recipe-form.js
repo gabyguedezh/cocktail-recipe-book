@@ -67,40 +67,41 @@ $(document).ready(function(){
     // Activates delete confirmation modal
     $('.modal').modal();
     
-    // COLLECTING THE ADDED STEPS - ATTEMPT 1
-    // function getNewSteps() {
-    //     // I'll collect all the steps that start with 'new' as these
-    //     // are created when the user clicks on the add new step button
-    //     var stepsArray = [];
-    //     $('input'[id^='new-step']).each(function(i) {
-    //         stepsArray.push($(this).val());
-    //     });
-    //     console.log(stepsArray);
-    // }
-    
-    // COLLECTING THE ADDED STEPS - ATTEMPT 2
-    // $('#add-step-btn').on('click', function() {
-    //     var inputTagStep = ($('#step-adder').find('input'));
-    //     console.log(inputTagStep);
-    // });
-    // $('#remove-step-btn').on('click', function() {
-    //     PENDING - Get the remove button to get rid of deleted inputs
-    //     if ($('.step-field').length > 1) {
-    //         var inputTagStep = ($('#step-adder').find('inputstep-field').last().remove());
-    //         console.log(inputTagStep);
-    //     }
-    // });
-    
-    // COLLECTING THE ADDED STEPS - ATTEMPT 3
+    // COLLECTING THE ADDED STEPS
+    var stepsList = [];
     $('#step-adder').on('change', function() {
         var inputTagStep = ($('#step-adder').find('input'));
-        var stepsList = [];
         console.log('you changed an input');
-        // console.log(inputTagStep);
         inputTagStep.each(function(){
-            if ( $(this).val() != "" ) {
-                stepsList.push($(this).val());
+            var jqthis = $(this);
+            if ( jqthis.val() != "" ) {
+                stepsList.push(jqthis.val());
                 console.log(stepsList); 
+            }
+        });
+    });
+    // SEND MY DYNAMIC FIELDS TO BACKEND
+    // This function takes the array stored in stepsList and adds it to the data
+    // that will be posted when clicking the submit button
+    $("#submit-form-button").on('click', function(event) {
+        event.preventDefault();
+        var formUrl = $('#submit-form-button').data('url')
+        // $.post( formUrl, stepsList, function( stepsList ) {
+        //     // $( ".result" ).html( stepsList );
+        //     console.log(stepsList);
+        // }, "json");
+        console.log("steps list is: ", stepsList);
+        $.ajax({
+            url: formUrl,
+            // data: {'data': stepsList},
+            data: JSON.stringify(stepsList, null, '\t'),
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            success: function(response) {
+                console.log('success', response);
+            },
+            error: function(error) {
+                console.log('error', error);
             }
         });
     });

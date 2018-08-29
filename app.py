@@ -104,47 +104,55 @@ def get_add_cocktail_form():
                            autor=mongo.db.author.find())
 
 
-@app.route('/write_to_cocktail_database', methods=['POST'])
+@app.route('/write_to_cocktail_database', methods=['GET', 'POST'])
 def write_to_cocktail_database():
     """ 
     This function takes the input from get_add_cocktail_form and writes it into
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
     """
-    recipes = mongo.db.recipes
+    if request.method == "POST":
+        print("-----------------------------------------------------------------")
+        # print(request.get_json())
+        print(request.json)
+        print("-----------------------------------------------------------------")
+    
+    # recipes = mongo.db.recipes
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
     # PENDING - Get the dictionary to pass to the data base orderly and 
     # get the ingredients and steps to take id dynamically to allow more than 1
-    new_cocktail = { 'recipe_name': request.form['recipe_name'], 
-    'recipe_description': request.form['recipe_description'],
-    'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
-    'recipe_image': '../static/images/default-cocktail-image.png',
-    'is_vegan': request.form['is_vegan'],
-    'ingredients': {
-        'ingredient': [
-            {
-                "quantity": request.form['quantity-0'],
-                "measure_unit": request.form['measure_unit-0'],
-                "ingredient_name": request.form['ingredient_name-0']
-            }
-        ]
-    },
-    'steps': {
-      'step': [
-          {
-           "step_description": request.form.getlist('step-field')
-          }
-          ]  
-    },
-    'base_spirit': request.form['base_spirit'],
-    'cocktail_type': request.form['cocktail_type'],
-    'flavour_profile': request.form['flavour_profile'],
-    'author_name': session['username']
-    }
-    recipes.insert_one(new_cocktail)
-    print(new_cocktail)
+    
+    
+    # new_cocktail = { 'recipe_name': request.form['recipe_name'], 
+    # 'recipe_description': request.form['recipe_description'],
+    # 'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
+    # 'recipe_image': '../static/images/default-cocktail-image.png',
+    # 'is_vegan': request.form['is_vegan'],
+    # 'ingredients': {
+    #     'ingredient': [
+    #         {
+    #             "quantity": request.form['quantity-0'],
+    #             "measure_unit": request.form['measure_unit-0'],
+    #             "ingredient_name": request.form['ingredient_name-0']
+    #         }
+    #     ]
+    # },
+    # 'steps': {
+    #   'step': [
+    #       {
+    #       "step_description": request.form.getlist('step-field')
+    #       }
+    #       ]  
+    # },
+    # 'base_spirit': request.form['base_spirit'],
+    # 'cocktail_type': request.form['cocktail_type'],
+    # 'flavour_profile': request.form['flavour_profile'],
+    # 'author_name': session['username']
+    # }
+    # recipes.insert_one(new_cocktail)
+    # print(new_cocktail)
     return redirect(url_for('get_my_recipes'))
 
 @app.route('/delete_cocktail/<recipe_id>')

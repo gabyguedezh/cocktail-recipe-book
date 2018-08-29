@@ -1,7 +1,7 @@
 {% extends 'base.html'%} {% block content %}
 <h3 class="art-deco-font mb-3">Add your Recipe</h3>
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
+    <form class="col s12" action="{{ url_for('write_to_cocktail_database') }}">
         <div class="row white">
             <div class="input-field col s12">
                 <input placeholder="Placeholder" id="recipe_name" name="recipe_name" type="text" class="validate" required>
@@ -101,9 +101,9 @@
                 <label for="author_name">Author Name</label>
             </div>
         </div>
-        <button id="submit-form-button" class="btn waves-effect waves-light" type="submit" name="action">
-            Submit <i class="fas fa-glass-martini-alt fa-xs"></i>
-        </button>
     </form>
+    <button id="submit-form-button" class="btn waves-effect waves-light" name="action" data-url="{{ url_for('write_to_cocktail_database') }}">
+        Submit <i class="fas fa-glass-martini-alt fa-xs"></i>
+    </button>
 </div>
 {% endblock %}
