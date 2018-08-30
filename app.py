@@ -100,48 +100,43 @@ def get_add_cocktail_form():
                            autor=mongo.db.author.find())
 
 
-@app.route('/write_to_cocktail_database', methods=['GET', 'POST'])
+@app.route('/write_to_cocktail_database', methods=['POST'])
 def write_to_cocktail_database():
     """ 
     This function takes the input from get_add_cocktail_form and writes it into
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
     """
-    if request.method == "POST":
-        print("-----------------------------------------------------------------")
-        # print(request.json)
-        print('recipe name is: ', request.json['recipeName'])
-        print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
-        print('recipe description is: ', request.json['recipeDescription'])
-        print('recipe image is: ', request.json['recipeImage'])
-        print('recipe ingredients are: ', request.json['ingredientsList'])
-        print('recipe steps are: ', request.json['stepsList'])
-        print('recipe is vegan: ', request.json['veganBoolean'])
-        print('recipe base spirit: ', request.json['baseSpiritSelector'])
-        print('recipe cocktail type: ', request.json['cocktailTypeSelector'])
-        print('recipe flavour profile: ', request.json['flavourProfileSelector'])
-        print('recipe author name is: ', session['username'])
-        print("-----------------------------------------------------------------")
+    
+    recipes = mongo.db.recipes
     
     # Slicing the ingredients - START
     ingredients_list = request.json['ingredientsList']
-    
     ingredient_list_sliced = []
-    
     for i in range(len(ingredients_list)):
         if i % 3 == 0:
             ingredient = ingredients_list[i:i+3]
             ingredient_list_sliced.append(ingredient)
-    print(ingredient_list_sliced)
     # Slicing the ingredients - END
     
-    # recipes = mongo.db.recipes
+    print("-----------------------------------------------------------------")
+    # print(request.json)
+    print('recipe name is: ', request.json['recipeName'])
+    print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
+    print('recipe description is: ', request.json['recipeDescription'])
+    print('recipe image is: ', request.json['recipeImage'])
+    print('recipe ingredients are: ', ingredient_list_sliced)
+    print('recipe steps are: ', request.json['stepsList'])
+    print('recipe is vegan: ', request.json['veganBoolean'])
+    print('recipe base spirit: ', request.json['baseSpiritSelector'])
+    print('recipe cocktail type: ', request.json['cocktailTypeSelector'])
+    print('recipe flavour profile: ', request.json['flavourProfileSelector'])
+    print('recipe author name is: ', session['username'])
+    print("-----------------------------------------------------------------")
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
     # PENDING - Get the dictionary to pass to the data base orderly and 
-    # get the ingredients and steps to take id dynamically to allow more than 1
-    
     
     # new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     # 'recipe_description': request.form['recipe_description'],
