@@ -156,7 +156,7 @@ $(document).ready(function(){
                         ingredients, steps, base_spirit, cocktail_type,
                         flavour_profile, author_name];
         console.log(formData);
-        // This will take care of the POST
+        // This will take care of the POST for the add cocktail form
         $.ajax({
             url: formUrl,
             // data: {'data': steps},

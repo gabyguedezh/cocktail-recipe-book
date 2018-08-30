@@ -111,7 +111,7 @@ def write_to_cocktail_database():
     recipes.insert_one(request.json)
     
     print("-----------------------------------------------------------------")
-    print(request.json)
+    # print(request.json)
     print("-----------------------------------------------------------------")
     
     # The var below stores a dictionary that corresponds with the structure
@@ -132,7 +132,6 @@ def get_edit_cocktail_form(recipe_id):
     """
     This function reopens de form and lets you rewrite on a recipe
     """
-    # recipes = mongo.db.recipes
     this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     is_vegan = this_recipe['is_vegan']
     all_base_spirit = mongo.db.base_spirit.find()
@@ -155,8 +154,7 @@ def update_edited_cocktail(recipe_id):
     """
     recipes = mongo.db.recipes
     
-    print('i am going to rewrite the recipe for the following: ', request.json)
-    recipes.update(request.json)
+    recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
     return redirect(url_for('get_my_recipes'))
 
