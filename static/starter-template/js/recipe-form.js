@@ -115,14 +115,27 @@ $(document).ready(function(){
         
         // Getting the recipe steps
         var steps = [];
-        var step_description = ($('#step-adder').find('input'));
-        console.log(step_description);
+        var stepInput = ($('#step-adder').find('input'));
+        // console.log('stepInput: ', stepInput);
         // Getting key values - START
-        
-        // PENDING
-        
+        var inputsByOne = [], sizeStep = 1;
+        while (stepInput.length > 0)
+            inputsByOne.push(stepInput.splice(0, sizeStep));
+        // Creating a nested list with groups of one per sublist
+        for(var k=0; k<inputsByOne.length; k++) {
+            var inputStepBoxes = inputsByOne[k];
+            var step = {};
+            for(var l=0; l<inputStepBoxes.length; l++) {
+                var inputStepBox = inputStepBoxes[l];
+                var valueStep = $(inputStepBox).val();
+                var keyStep = $(inputStepBox).attr('id').split('-')[0]
+                step[keyStep] = valueStep;
+                // console.log(keyStep, valueStep);
+            }
+            steps.push(step);
+        }
         // Getting the key values -END
-        // console.log('steps: ', steps);
+        console.log('steps: ', steps);
         
         // Getting the base spirit selector
         var base_spirit = $('#base_spirit').val();
