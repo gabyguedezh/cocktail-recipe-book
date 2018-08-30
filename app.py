@@ -120,7 +120,7 @@ def write_to_cocktail_database():
     # Slicing the ingredients - END
     
     print("-----------------------------------------------------------------")
-    # print(request.json)
+    print(request.json)
     print('recipe name is: ', request.json['recipeName'])
     print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
     print('recipe description is: ', request.json['recipeDescription'])
@@ -136,7 +136,11 @@ def write_to_cocktail_database():
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
-    # PENDING - Get the dictionary to pass to the data base orderly and 
+    
+    # new_cocktail = {
+    #     'recipe_name': request.json['recipeName'],
+    # }
+    
     
     # new_cocktail = { 'recipe_name': request.form['recipe_name'], 
     # 'recipe_description': request.form['recipe_description'],

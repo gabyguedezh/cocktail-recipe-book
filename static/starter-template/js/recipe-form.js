@@ -79,29 +79,39 @@ $(document).ready(function(){
         var formUrl = $('#submit-form-button').data('url')
         
         // Getting the recipe name
-        var recipeName = $('#recipe_name').val();
-        // console.log("Recipe name is: ", recipeName);
+        var recipe_name = $('#recipe_name').val();
         // Getting the description
-        var recipeDescription = $('#recipe_description').val();
-        // console.log("Recipe description is: ", recipeDescription);
+        var recipe_description = $('#recipe_description').val();
         // Getting the image - PENDING REAL IMAGE 
-        var recipeImage = '../static/images/default-cocktail-image.png';
-        // console.log('recipeImage', recipeImage);
+        var recipe_image = '../static/images/default-cocktail-image.png';
         // Getting the vegan boolean
-        var veganBoolean = $('#is_vegan').val();
-        // console.log("Is recipe vegan: ", veganBoolean);
-        // Getting the recipe ingredients
-        var ingredientsList = [];
-        var inputTagIngredient = ($('#ingredient-adder').find('input'));
-        inputTagIngredient.each(function() {
-            var jqthis = $(this);
-            if ( jqthis.val != "" ) {
-                ingredientsList.push(jqthis.val());
-            }
-        });
-        // console.log("length is: ", ingredientsList.length);
+        var is_vegan = $('#is_vegan').val();
         
-        // console.log("ingredient list is: ", ingredientsList);
+        // Getting the recipe ingredients
+        var ingredients = [];
+        var inputTagIngredient = ($('#ingredient-adder').find('input'));
+        console.log('inputTagIngredient', inputTagIngredient);
+        // Getting key values - START
+        var inputsByThree = [], size = 3;
+        while (inputTagIngredient.length > 0)
+            inputsByThree.push(inputTagIngredient.splice(0, size));
+        console.log('inputsByThree: ', inputsByThree);
+        // Creating a nested list with groups of three per sublist
+        for(var i=0; i<inputsByThree.length; i++) {
+            var inputBoxes = inputsByThree[i];
+            var ingredient = {};
+            for(var j=0; j<inputBoxes.length; j++) {
+                var inputBox = inputBoxes[j];
+                var value = $(inputBox).val();
+                var key = $(inputBox).attr('id').split('-')[0]
+                ingredient[key] = value;
+                console.log(key, value);
+            }
+            console.log(ingredient);
+            ingredients.push(ingredient);
+        }
+        console.log(ingredients);
+        
         // Getting the recipe steps
         var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
