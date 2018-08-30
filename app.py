@@ -110,66 +110,15 @@ def write_to_cocktail_database():
     
     recipes = mongo.db.recipes
     
-    # Slicing the ingredients - START
-    ingredients_list = request.json['ingredientsList']
-    ingredient_list_sliced = []
-    for i in range(len(ingredients_list)):
-        if i % 3 == 0:
-            ingredient = ingredients_list[i:i+3]
-            ingredient_list_sliced.append(ingredient)
-    # Slicing the ingredients - END
-    
     print("-----------------------------------------------------------------")
     print(request.json)
-    print('recipe name is: ', request.json['recipeName'])
-    print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
-    print('recipe description is: ', request.json['recipeDescription'])
-    print('recipe image is: ', request.json['recipeImage'])
-    print('recipe ingredients are: ', ingredient_list_sliced)
-    print('recipe steps are: ', request.json['stepsList'])
-    print('recipe is vegan: ', request.json['veganBoolean'])
-    print('recipe base spirit: ', request.json['baseSpiritSelector'])
-    print('recipe cocktail type: ', request.json['cocktailTypeSelector'])
-    print('recipe flavour profile: ', request.json['flavourProfileSelector'])
-    print('recipe author name is: ', session['username'])
     print("-----------------------------------------------------------------")
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
     
-    # new_cocktail = {
-    #     'recipe_name': request.json['recipeName'],
-    # }
-    
-    
-    # new_cocktail = { 'recipe_name': request.form['recipe_name'], 
-    # 'recipe_description': request.form['recipe_description'],
-    # 'recipe_url': request.form['recipe_name'].lower().replace(" ", "-"),
-    # 'recipe_image': '../static/images/default-cocktail-image.png',
-    # 'is_vegan': request.form['is_vegan'],
-    # 'ingredients': {
-    #     'ingredient': [
-    #         {
-    #             "quantity": request.form['quantity-0'],
-    #             "measure_unit": request.form['measure_unit-0'],
-    #             "ingredient_name": request.form['ingredient_name-0']
-    #         }
-    #     ]
-    # },
-    # 'steps': {
-    #   'step': [
-    #       {
-    #       "step_description": request.form.getlist('step-field')
-    #       }
-    #       ]  
-    # },
-    # 'base_spirit': request.form['base_spirit'],
-    # 'cocktail_type': request.form['cocktail_type'],
-    # 'flavour_profile': request.form['flavour_profile'],
-    # 'author_name': session['username']
-    # }
-    # recipes.insert_one(new_cocktail)
-    # print(new_cocktail)
+
+
     return redirect(url_for('get_my_recipes'))
 
 @app.route('/delete_cocktail/<recipe_id>')

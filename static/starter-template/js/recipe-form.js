@@ -81,10 +81,9 @@ $(document).ready(function(){
         // Getting the recipe name
         var recipe_name = $('#recipe_name').val();
         // Getting the recipe url
-        var str = $('#recipe_name').val()
-        str = str.replace(/\s+/g, '-').toLowerCase();
-        var recipe_url = str;
-        console.log('recipe url is: ', recipe_url);
+        var recipe_url = $('#recipe_name').val()
+        recipe_url = recipe_url.replace(/\s+/g, '-').toLowerCase();
+        // console.log('recipe url is: ', recipe_url);
         // Getting the description
         var recipe_description = $('#recipe_description').val();
         // Getting the image - PENDING REAL IMAGE 
@@ -140,7 +139,7 @@ $(document).ready(function(){
             steps.push(step);
         }
         // Getting the key values -END
-        console.log('steps: ', steps);
+        // console.log('steps: ', steps);
         
         // Getting the base spirit selector
         var base_spirit = $('#base_spirit').val();
@@ -153,21 +152,21 @@ $(document).ready(function(){
         // console.log("flavour profile is: ", flavourProfileSelector);
         // Getting the author name
         var author_name = $('#author_name').val();
-        console.log("author_name: ", author_name);
+        // console.log("author_name: ", author_name);
         
-        var formData = ['form data includes: ', recipe_name, recipe_description, recipe_image, 
-                                is_vegan, ingredients, steps,
-                                base_spirit, cocktail_type,
-                                flavour_profile];
+        var formData = ['form data includes: ', recipe_name, recipe_url, 
+                        recipe_description, recipe_image, is_vegan, 
+                        ingredients, steps, base_spirit, cocktail_type,
+                        flavour_profile, author_name];
         console.log(formData);
         // This will take care of the POST
         $.ajax({
             url: formUrl,
             // data: {'data': steps},
-            data: JSON.stringify({recipe_name, recipe_description, recipe_image,  
-                                is_vegan, ingredients, steps,
-                                base_spirit, cocktail_type,
-                                flavour_profile}, null, '\t'),
+            data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
+                                recipe_image, is_vegan, ingredients, steps,
+                                base_spirit, cocktail_type, flavour_profile,
+                                author_name}, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
