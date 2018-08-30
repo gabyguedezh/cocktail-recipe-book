@@ -80,6 +80,11 @@ $(document).ready(function(){
         
         // Getting the recipe name
         var recipe_name = $('#recipe_name').val();
+        // Getting the recipe url
+        var str = $('#recipe_name').val()
+        str = str.replace(/\s+/g, '-').toLowerCase();
+        var recipe_url = str;
+        console.log('recipe url is: ', recipe_url);
         // Getting the description
         var recipe_description = $('#recipe_description').val();
         // Getting the image - PENDING REAL IMAGE 
@@ -146,6 +151,9 @@ $(document).ready(function(){
         // Getting the flavour profile
         var flavour_profile = $('#flavour_profile').val();
         // console.log("flavour profile is: ", flavourProfileSelector);
+        // Getting the author name
+        var author_name = $('#author_name').val();
+        console.log("author_name: ", author_name);
         
         var formData = ['form data includes: ', recipe_name, recipe_description, recipe_image, 
                                 is_vegan, ingredients, steps,
