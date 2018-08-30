@@ -107,8 +107,9 @@ def write_to_cocktail_database():
     our database. The it redirects to get_my_recipes, where you'll see your 
     recipe as the most recently added
     """
-    
     recipes = mongo.db.recipes
+    
+    recipes.insert_one(request.json)
     
     print("-----------------------------------------------------------------")
     print(request.json)
@@ -116,8 +117,6 @@ def write_to_cocktail_database():
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
-    
-
 
     return redirect(url_for('get_my_recipes'))
 
