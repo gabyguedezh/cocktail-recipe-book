@@ -80,16 +80,16 @@ $(document).ready(function(){
         
         // Getting the recipe name
         var recipeName = $('#recipe_name').val();
-        console.log("Recipe name is: ", recipeName);
+        // console.log("Recipe name is: ", recipeName);
         // Getting the description
         var recipeDescription = $('#recipe_description').val();
-        console.log("Recipe description is: ", recipeDescription);
+        // console.log("Recipe description is: ", recipeDescription);
         // Getting the image - PENDING REAL IMAGE 
         var recipeImage = '../static/images/default-cocktail-image.png';
-        console.log('recipeImage', recipeImage);
+        // console.log('recipeImage', recipeImage);
         // Getting the vegan boolean
         var veganBoolean = $('#is_vegan').val();
-        console.log("Is recipe vegan: ", veganBoolean);
+        // console.log("Is recipe vegan: ", veganBoolean);
         // Getting the recipe ingredients
         var ingredientsList = [];
         var inputTagIngredient = ($('#ingredient-adder').find('input'));
@@ -99,9 +99,9 @@ $(document).ready(function(){
                 ingredientsList.push(jqthis.val());
             }
         });
-        console.log("length is: ", ingredientsList.length);
+        // console.log("length is: ", ingredientsList.length);
         
-        console.log("ingredient list is: ", ingredientsList);
+        // console.log("ingredient list is: ", ingredientsList);
         // Getting the recipe steps
         var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
@@ -111,25 +111,30 @@ $(document).ready(function(){
                 stepsList.push(jqthis.val());
             }
         });
-        console.log("steps list is: ", stepsList);
+        // console.log("steps list is: ", stepsList);
         // Getting the base spirit selector
         var baseSpiritSelector = $('#base_spirit').val();
-        console.log("Base spirit is: ", baseSpiritSelector);
+        // console.log("Base spirit is: ", baseSpiritSelector);
         // Getting the cocktail type
         var cocktailTypeSelector = $('#cocktail_type').val();
-        console.log("cocktail type is: ", cocktailTypeSelector);
+        // console.log("cocktail type is: ", cocktailTypeSelector);
         // Getting the flavour profile
         var flavourProfileSelector = $('#flavour_profile').val();
-        console.log("flavour profile is: ", flavourProfileSelector);
+        // console.log("flavour profile is: ", flavourProfileSelector);
         
+        var formData = ['form data includes: ', recipeName, recipeDescription, recipeImage, 
+                                veganBoolean, ingredientsList, stepsList,
+                                baseSpiritSelector, cocktailTypeSelector,
+                                flavourProfileSelector];
+        console.log(formData);
         // This will take care of the POST
         $.ajax({
             url: formUrl,
             // data: {'data': stepsList},
-            data: JSON.stringify(recipeName, recipeDescription, recipeImage, 
+            data: JSON.stringify({recipeName, recipeDescription, recipeImage, 
                                 veganBoolean, ingredientsList, stepsList,
                                 baseSpiritSelector, cocktailTypeSelector,
-                                flavourProfileSelector, null, '\t'),
+                                flavourProfileSelector}, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {

@@ -115,7 +115,7 @@ def write_to_cocktail_database():
     # PENDING - Make all input fields arrays and pass them back as done with 
     # the steps
     
-    recipes = mongo.db.recipes
+    # recipes = mongo.db.recipes
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
