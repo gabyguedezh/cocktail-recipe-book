@@ -8,10 +8,7 @@ $(document).ready(function(){
     // Activates the selector on the forms
     $('select').formSelect();
     var ingredientCount = 1;
-    var stepCount = 1
-    if ($('.ingredient-field').length > 1) {
-        $('#remove-ingredient-btn').attr('disabled', 'false');
-    }
+    var stepCount = 1;
     
     // Add ingredient button
     $('#add-ingredient-btn').click(function(){
@@ -35,7 +32,7 @@ $(document).ready(function(){
         ingredientCount ++;
     });
     
-    // Remove ingredeint button
+    // Remove ingredient button
     $('#remove-ingredient-btn').click(function(){
         if ($('.ingredient-field').length > 1) {
             $('.ingredient-field').last().remove();
