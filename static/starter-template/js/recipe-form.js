@@ -84,11 +84,14 @@ $(document).ready(function(){
         // Getting the description
         var recipeDescription = $('#recipe_description').val();
         console.log("Recipe description is: ", recipeDescription);
+        // Getting the image - PENDING REAL IMAGE 
+        var recipeImage = '../static/images/default-cocktail-image.png';
+        console.log('recipeImage', recipeImage);
         // Getting the vegan boolean
         var veganBoolean = $('#is_vegan').val();
         console.log("Is recipe vegan: ", veganBoolean);
         // Getting the recipe ingredients
-        var ingredientsList = []
+        var ingredientsList = [];
         var inputTagIngredient = ($('#ingredient-adder').find('input'));
         inputTagIngredient.each(function() {
             var jqthis = $(this);
@@ -96,7 +99,9 @@ $(document).ready(function(){
                 ingredientsList.push(jqthis.val());
             }
         });
-        console.log("ingredeint list is: ", ingredientsList);
+        console.log("length is: ", ingredientsList.length);
+        
+        console.log("ingredient list is: ", ingredientsList);
         // Getting the recipe steps
         var stepsList = [];
         var inputTagStep = ($('#step-adder').find('input'));
@@ -118,18 +123,21 @@ $(document).ready(function(){
         console.log("flavour profile is: ", flavourProfileSelector);
         
         // This will take care of the POST
-        // $.ajax({
-        //     url: formUrl,
-        //     // data: {'data': stepsList},
-        //     data: JSON.stringify(stepsList, null, '\t'),
-        //     type: 'POST',
-        //     contentType: 'application/json;charset=UTF-8',
-        //     success: function(response) {
-        //         console.log('success', response);
-        //     },
-        //     error: function(error) {
-        //         console.log('error', error);
-        //     }
-        // });
+        $.ajax({
+            url: formUrl,
+            // data: {'data': stepsList},
+            data: JSON.stringify(recipeName, recipeDescription, recipeImage, 
+                                veganBoolean, ingredientsList, stepsList,
+                                baseSpiritSelector, cocktailTypeSelector,
+                                flavourProfileSelector, null, '\t'),
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            success: function(response) {
+                console.log('success', response);
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
     });
 });
