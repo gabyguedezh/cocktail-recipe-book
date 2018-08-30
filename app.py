@@ -90,13 +90,9 @@ def get_my_recipes():
 def get_add_cocktail_form():
     """
     This function renders the form that we'll use to fill the fields to 
-    create a cocktail recipe
+    create a cocktail recipe, and pass to the front end the options for the
+    selectors
     """
-    # measure_unit_list = []
-    # measure_units = mongo.db.measure_units.find()
-    # for unit in measure_units:
-    #     if unit['measure_unit_name']:
-    #         measure_unit_list.append(unit['measure_unit_name'])
     return render_template('add_cocktail.html',
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
@@ -115,10 +111,11 @@ def write_to_cocktail_database():
         print("-----------------------------------------------------------------")
         print(request.json)
         print("-----------------------------------------------------------------")
+    
     # PENDING - Make all input fields arrays and pass them back as done with 
     # the steps
     
-    # recipes = mongo.db.recipes
+    recipes = mongo.db.recipes
     
     # The var below stores a dictionary that corresponds with the structure
     # of my bson file in mongodb
