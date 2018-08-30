@@ -51,20 +51,22 @@
         <ul>
             {% for ingredient in recipe.ingredients %}
                 <li>
-                    <p>{{recipe.ingredients.ingredient}}</p>
+                    <span><strong>- </strong> {{ingredient.quantity}}</span>
+                    <span>{{ingredient.measure_unit}}</span>
+                    <span>{{ingredient.ingredient_name}}</span>
                 </li>
             {% endfor %}
         </ul>
         
         
     <h5>Steps:</h5>
-        <ul>
+        <ol>
             {% for step in recipe.steps %}
                 <li>
-                    <p>{{recipe.steps.step}}</p>
+                    <p>{{step.step}}</p>
                 </li>
             {% endfor %}
-        </ul>
+        </ol>
     <p>Recipe by <em>{{recipe.author_name}}</em></p>
 </div>
 {% endblock %}

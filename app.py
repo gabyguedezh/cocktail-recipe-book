@@ -147,14 +147,17 @@ def get_edit_cocktail_form(recipe_id):
                            recipe=this_recipe)
 
 
-@app.route('/update_edited_cocktail/<recipe_id>', methods=['GET', 'POST'])
+@app.route('/update_edited_cocktail/<recipe_id>', methods=['POST'])
 def update_edited_cocktail(recipe_id):
     """
     This recipe will rewrite the contents of a document according to the changes
     added when editing a cocktail
     """
-    # recipes = mongo.db.recipes
-   
+    recipes = mongo.db.recipes
+    
+    print('i am going to rewrite the recipe for the following: ', request.json)
+    recipes.update(request.json)
+    
     return redirect(url_for('get_my_recipes'))
 
 if __name__ == '__main__':
