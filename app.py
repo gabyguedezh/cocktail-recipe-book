@@ -99,7 +99,6 @@ def get_add_cocktail_form():
                            flavour_profile=mongo.db.flavour_profile.find(),
                            autor=mongo.db.author.find())
 
-
 @app.route('/write_to_cocktail_database', methods=['POST'])
 def write_to_cocktail_database():
     """ 
