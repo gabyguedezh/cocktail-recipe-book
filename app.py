@@ -110,6 +110,17 @@ def write_to_cocktail_database():
     if request.method == "POST":
         print("-----------------------------------------------------------------")
         print(request.json)
+        print('recipe name is: ', request.json['recipeName'])
+        print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
+        print('recipe description is: ', request.json['recipeDescription'])
+        print('recipe image is: ', request.json['recipeImage'])
+        print('recipe ingredients are: ', request.json['ingredientsList'])
+        print('recipe steps are: ', request.json['stepsList'])
+        print('recipe is vegan: ', request.json['veganBoolean'])
+        print('recipe base spirit: ', request.json['baseSpiritSelector'])
+        print('recipe cocktail type: ', request.json['cocktailTypeSelector'])
+        print('recipe flavour profile: ', request.json['flavourProfileSelector'])
+        print('recipe author name is: ', session['username'])
         print("-----------------------------------------------------------------")
     
     # PENDING - Make all input fields arrays and pass them back as done with 
