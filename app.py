@@ -138,6 +138,7 @@ def get_edit_cocktail_form(recipe_id):
     all_base_spirit = mongo.db.base_spirit.find()
     all_cocktail_type = mongo.db.cocktail_type.find()
     all_flavour_profile = mongo.db.flavour_profile.find()
+    
     return render_template('edit_cocktail.html',
                            is_vegan=is_vegan,
                            base_spirit=all_base_spirit,
