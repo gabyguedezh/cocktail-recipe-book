@@ -124,19 +124,15 @@ def write_to_cocktail_database():
         print("-----------------------------------------------------------------")
     
     # Slicing the ingredients - START
-    # for i in range()
-    
     ingredients_list = request.json['ingredientsList']
-    # print('ingredients_list: ', ingredients_list)
-    # print(len(ingredients_list))
+    
+    ingredient_list_sliced = []
     
     for i in range(len(ingredients_list)):
         if i % 3 == 0:
             ingredient = ingredients_list[i:i+3]
-            print(ingredient)
-    
-    # print('first ingredient: ', ingredients_list[0:3])
-    # print('second ingredient: ', ingredients_list[3:7])
+            ingredient_list_sliced.append(ingredient)
+    print(ingredient_list_sliced)
     # Slicing the ingredients - END
     
     # recipes = mongo.db.recipes
