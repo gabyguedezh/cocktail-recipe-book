@@ -109,7 +109,7 @@ def write_to_cocktail_database():
     """
     if request.method == "POST":
         print("-----------------------------------------------------------------")
-        print(request.json)
+        # print(request.json)
         print('recipe name is: ', request.json['recipeName'])
         print('recipe url is: ', request.json['recipeName'].lower().replace(" ", "-"))
         print('recipe description is: ', request.json['recipeDescription'])
@@ -123,8 +123,21 @@ def write_to_cocktail_database():
         print('recipe author name is: ', session['username'])
         print("-----------------------------------------------------------------")
     
-    # PENDING - Make all input fields arrays and pass them back as done with 
-    # the steps
+    # Slicing the ingredients - START
+    # for i in range()
+    
+    ingredients_list = request.json['ingredientsList']
+    # print('ingredients_list: ', ingredients_list)
+    # print(len(ingredients_list))
+    
+    for i in range(len(ingredients_list)):
+        if i % 3 == 0:
+            ingredient = ingredients_list[i:i+3]
+            print(ingredient)
+    
+    # print('first ingredient: ', ingredients_list[0:3])
+    # print('second ingredient: ', ingredients_list[3:7])
+    # Slicing the ingredients - END
     
     # recipes = mongo.db.recipes
     
