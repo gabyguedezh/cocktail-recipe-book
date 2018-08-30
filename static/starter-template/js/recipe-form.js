@@ -47,7 +47,7 @@ $(document).ready(function(){
     $('#add-step-btn').click(function(){
         $('#step-adder').append('<div class="input-field col s12">\
             <div class="step-field">\
-                <input value="" id="new-step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate step-class" required>\
+                <input value="" id="step-' + stepCount + '" name="step-' + stepCount + '" type="text" class="validate step-class" required>\
                 <label for="step-' + stepCount + '">Step</label\
             </div>\
         </div>');
@@ -71,7 +71,7 @@ $(document).ready(function(){
     
     // PENDING - edit from on.change to when submiting, to avoid duplicating data from a field
     // SEND MY DYNAMIC FIELDS TO BACKEND
-    // This function takes the array stored in stepsList and adds it to the data
+    // This function takes the array stored in steps and adds it to the data
     // that will be posted when clicking the submit button
     
     $("#submit-form-button").on('click', function(event) {
@@ -90,12 +90,12 @@ $(document).ready(function(){
         // Getting the recipe ingredients
         var ingredients = [];
         var inputTagIngredient = ($('#ingredient-adder').find('input'));
-        console.log('inputTagIngredient', inputTagIngredient);
+        // console.log('inputTagIngredient', inputTagIngredient);
         // Getting key values - START
         var inputsByThree = [], size = 3;
         while (inputTagIngredient.length > 0)
             inputsByThree.push(inputTagIngredient.splice(0, size));
-        console.log('inputsByThree: ', inputsByThree);
+        // console.log('inputsByThree: ', inputsByThree);
         // Creating a nested list with groups of three per sublist
         for(var i=0; i<inputsByThree.length; i++) {
             var inputBoxes = inputsByThree[i];
@@ -105,46 +105,48 @@ $(document).ready(function(){
                 var value = $(inputBox).val();
                 var key = $(inputBox).attr('id').split('-')[0]
                 ingredient[key] = value;
-                console.log(key, value);
+                // console.log(key, value);
             }
-            console.log(ingredient);
+            // console.log(ingredient);
             ingredients.push(ingredient);
         }
-        console.log(ingredients);
+        // Getting the key values -END
+        // console.log(ingredients);
         
         // Getting the recipe steps
-        var stepsList = [];
-        var inputTagStep = ($('#step-adder').find('input'));
-        inputTagStep.each(function() {
-            var jqthis = $(this);
-            if ( jqthis.val() != "" ) {
-                stepsList.push(jqthis.val());
-            }
-        });
-        // console.log("steps list is: ", stepsList);
+        var steps = [];
+        var step_description = ($('#step-adder').find('input'));
+        console.log(step_description);
+        // Getting key values - START
+        
+        // PENDING
+        
+        // Getting the key values -END
+        // console.log('steps: ', steps);
+        
         // Getting the base spirit selector
-        var baseSpiritSelector = $('#base_spirit').val();
+        var base_spirit = $('#base_spirit').val();
         // console.log("Base spirit is: ", baseSpiritSelector);
         // Getting the cocktail type
-        var cocktailTypeSelector = $('#cocktail_type').val();
+        var cocktail_type = $('#cocktail_type').val();
         // console.log("cocktail type is: ", cocktailTypeSelector);
         // Getting the flavour profile
-        var flavourProfileSelector = $('#flavour_profile').val();
+        var flavour_profile = $('#flavour_profile').val();
         // console.log("flavour profile is: ", flavourProfileSelector);
         
-        var formData = ['form data includes: ', recipeName, recipeDescription, recipeImage, 
-                                veganBoolean, ingredientsList, stepsList,
-                                baseSpiritSelector, cocktailTypeSelector,
-                                flavourProfileSelector];
+        var formData = ['form data includes: ', recipe_name, recipe_description, recipe_image, 
+                                is_vegan, ingredients, steps,
+                                base_spirit, cocktail_type,
+                                flavour_profile];
         console.log(formData);
         // This will take care of the POST
         $.ajax({
             url: formUrl,
-            // data: {'data': stepsList},
-            data: JSON.stringify({recipeName, recipeDescription, recipeImage, 
-                                veganBoolean, ingredientsList, stepsList,
-                                baseSpiritSelector, cocktailTypeSelector,
-                                flavourProfileSelector}, null, '\t'),
+            // data: {'data': steps},
+            data: JSON.stringify({recipe_name, recipe_description, recipe_image,  
+                                is_vegan, ingredients, steps,
+                                base_spirit, cocktail_type,
+                                flavour_profile}, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
