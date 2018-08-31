@@ -150,11 +150,13 @@ $(document).ready(function(){
         // Getting the author name
         var author_name = $('#author_name').val();
         // console.log("author_name: ", author_name);
+        // Getting the initial my_rating
+        var my_rating = 0;
         
         var formData = ['form data includes: ', recipe_name, recipe_url, 
                         recipe_description, recipe_image, is_vegan, 
                         ingredients, steps, base_spirit, cocktail_type,
-                        flavour_profile, author_name];
+                        flavour_profile, author_name, my_rating];
         console.log(formData);
         // This will take care of the POST for the add cocktail form
         $.ajax({
@@ -163,7 +165,7 @@ $(document).ready(function(){
             data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
                                 recipe_image, is_vegan, ingredients, steps,
                                 base_spirit, cocktail_type, flavour_profile,
-                                author_name}, null, '\t'),
+                                author_name, my_rating}, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {

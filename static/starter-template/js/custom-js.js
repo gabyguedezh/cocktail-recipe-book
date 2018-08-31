@@ -6,17 +6,6 @@ $(document).ready(function() {
   // http://jsfiddle.net/brynner/QDttv/
   // https://stackoverflow.com/questions/14035180/jquery-load-more-data-on-scroll
   // https://www.w3schools.com/xml/ajax_intro.asp
-
-  // Rendering existing score for starts when loading the page
-  var my_rating = 3;
-  var stars = $('li.star');
-  
-  console.log('my_rating: ', my_rating);
-  
-  for (i = 0; i < my_rating; i++) {
-    $(stars[i]).addClass('selected');
-    }
-  
   
   // Rating Stars Functionality and POST
   /* 1. Visualizing things on Hover - See next part for action on click */
