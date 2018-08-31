@@ -44,23 +44,28 @@ def show_cocktail(recipe_url):
     """
     cocktail = {}
     recipes = mongo.db.recipes.find()
+    all_recipes = mongo.db.recipes
+    print(recipes)
+    print('*************************')
+    print(all_recipes)
     
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
             
             my_rating = recipe['my_rating']
-            print('my_rating when method is GET: ', my_rating)
+            # print('my_rating when method is GET: ', my_rating)
     
-    if request.method == 'POST':
-        my_rating = request.json
+            if request.method == 'POST':
+                
+                my_rating = request.json.get('my_rating')
+                
+                recipe_id = {'_id': recipe['_id']}
+                print('my_rating when method is POST: ', my_rating)
+                print('recipe_id', recipe_id)
         
-        print('finding the recipe id: ', recipe['_id'])
-        # recipes.update(request.json)
+                all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
         
-        print('hi there in the POST')
-        print('my_rating:', my_rating)
-    
     return render_template('show_cocktail.html',
                            my_rating=my_rating,
                            recipe = cocktail)
