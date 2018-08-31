@@ -73,9 +73,9 @@ don't overflow their boxes*/
     text-overflow: ellipsis;
 }
 
-/*#cocktail-card {*/
-/*    display:none;*/
-/*}*/
+.cocktail-card {
+    display:none;
+}
 
 .card-title-spice {
     background-color: rgba(136, 14, 79, 0.7);

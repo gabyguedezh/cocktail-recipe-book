@@ -1,10 +1,12 @@
 $(document).ready(function() {
     console.log('dashboard ready');
     // console.log('username: ', username);
-    queue()
+    // queue()
     //     .defer(d3.csv, "assets/data/whiskey-insight.csv")
     //     .await(makeDashboard);
     
+    var username = $('#author_name').val()
+    console.log('username: ', username);
     // function makeDashboard(error, myRecipesData) {
     //     var ndx = crossfilter(myRecipesData);
     
