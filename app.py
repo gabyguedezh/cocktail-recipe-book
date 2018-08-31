@@ -36,7 +36,7 @@ def get_cocktails():
                            recipes=mongo.db.recipes.find())
 
 
-@app.route('/show_cocktail/<recipe_url>')
+@app.route('/show_cocktail/<recipe_url>', methods=['GET', 'POST'])
 def show_cocktail(recipe_url):
     """
     This function takes you to the recipe page of a specific cocktail
@@ -47,6 +47,12 @@ def show_cocktail(recipe_url):
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
+    
+    if request.method == 'POST':
+        my_rating = request.json
+        print('hi there in the POST')
+        print('my_rating:', my_rating)
+    
     return render_template('show_cocktail.html',
                            recipe = cocktail)
 
@@ -153,6 +159,7 @@ def update_edited_cocktail(recipe_id):
     recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
     return redirect(url_for('get_my_recipes'))
+
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
