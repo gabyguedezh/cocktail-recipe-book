@@ -65,6 +65,8 @@ def update_recipe_rating(recipe_id):
     This function takes the new recipe_rating after clicking on the stars and
     updates the recipe_rating field in the open document
     """
+    recipes = mongo.db.recipes
+    
     this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     
     number_of_votes = int(this_recipe['number_of_votes'])
@@ -78,20 +80,17 @@ def update_recipe_rating(recipe_id):
     
     # Calculating average
     
-    average_rating = ((initial_recipe_rating*number_of_votes)+latest_recipe_rating)/(number_of_votes+1)
+    average_rating = ((initial_recipe_rating * number_of_votes) + latest_recipe_rating) / (number_of_votes + 1)
     print('average_rating is: ', average_rating)
     
+    this_recipe['number_of_votes'] = str(number_of_votes + 1)
     
+    this_recipe['recipe_rating'] = average_rating
     
-    
-    
-    # print('recipe_rating when method is POST: ', recipe_rating)
-
-    # recipes.update({'_id': ObjectId(recipe_id)}, request.json)
-    
-    # this_recipe['recipe_rating'] = 
+    recipes.update({'_id': ObjectId(recipe_id)}, this_recipe)
     
     return ('', 204)
+    
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
