@@ -151,7 +151,7 @@ $(document).ready(function(){
         var author_name = $('#author_name').val();
         // console.log("author_name: ", author_name);
         // Getting the initial my_rating
-        var my_rating = 0;
+        var my_rating = "0";
         
         var formData = ['form data includes: ', recipe_name, recipe_url, 
                         recipe_description, recipe_image, is_vegan, 

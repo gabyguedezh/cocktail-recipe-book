@@ -36,7 +36,7 @@ def get_cocktails():
                            recipes=mongo.db.recipes.find())
 
 
-@app.route('/show_cocktail/<recipe_url>', methods=['GET', 'POST'])
+@app.route('/show_cocktail/<recipe_url>')
 def show_cocktail(recipe_url):
     """
     This function takes you to the recipe page of a specific cocktail
@@ -44,32 +44,37 @@ def show_cocktail(recipe_url):
     """
     cocktail = {}
     recipes = mongo.db.recipes.find()
-    all_recipes = mongo.db.recipes
+    
     print(recipes)
     print('*************************')
-    print(all_recipes)
     
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
-            
             my_rating = recipe['my_rating']
-            # print('my_rating when method is GET: ', my_rating)
-    
-            if request.method == 'POST':
-                
-                my_rating = request.json.get('my_rating')
-                
-                recipe_id = {'_id': recipe['_id']}
-                print('my_rating when method is POST: ', my_rating)
-                print('recipe_id', recipe_id)
-        
-                all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
+            print('my_rating when method is GET: ', my_rating)
         
     return render_template('show_cocktail.html',
                            my_rating=my_rating,
                            recipe = cocktail)
 
+
+# @app.route('/update_my_rating/<recipe_id>', methods=['POST'])
+# def update_edited_cocktail(recipe_id):
+#     """
+#     This function takes the new my_rating after clicking on the stars and
+#     updates the my_rating field in the open document
+#     """
+#     recipes = mongo.db.recipes        
+#     my_rating = request.json.get('my_rating')
+
+#     # recipe_id = {'_id': recipe['_id']}
+#     print('my_rating when method is POST: ', my_rating)
+#     print('recipe_id', recipe_id)
+
+#     # all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
+    
+#     return redirect(url_for('show_cocktail(recipe_url)'))
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
@@ -146,7 +151,7 @@ def delete_cocktail(recipe_id):
 @app.route('/get_edit_cocktail_form/<recipe_id>')
 def get_edit_cocktail_form(recipe_id):
     """
-    This function reopens de form and lets you rewrite on a recipe
+    This function reopens the form and lets you rewrite on a recipe
     """
     this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     is_vegan = this_recipe['is_vegan']

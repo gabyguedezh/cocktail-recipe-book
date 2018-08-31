@@ -25,7 +25,7 @@
             {% endif %}
             <div class='rating-stars text-center'>
                 <ul id='stars' data-url="{{ url_for('write_to_cocktail_database') }}">
-                    {% if recipe.my_rating >= 1 %}
+                    {% if recipe.my_rating | int >= 1 %}
                         <li class='star selected' title='Poor' data-value='1'>
                             <i class='fa fa-star fa-fw'></i>
                         </li>
@@ -34,7 +34,7 @@
                             <i class='fa fa-star fa-fw'></i>
                         </li>
                     {% endif %}
-                    {% if recipe.my_rating >= 2 %}
+                    {% if recipe.my_rating | int >= 2 %}
                         <li class='star selected' title='Fair' data-value='2'>
                             <i class='fa fa-star fa-fw'></i>
                         </li>
@@ -43,7 +43,7 @@
                             <i class='fa fa-star fa-fw'></i>
                         </li>
                     {% endif %}
-                    {% if recipe.my_rating >= 3 %}
+                    {% if recipe.my_rating | int >= 3 %}
                         <li class='star selected' title='Good' data-value='3'>
                             <i class='fa fa-star fa-fw'></i>
                         </li>
@@ -52,7 +52,7 @@
                             <i class='fa fa-star fa-fw'></i>
                         </li>
                     {% endif %}
-                    {% if recipe.my_rating >= 4 %}
+                    {% if recipe.my_rating | int >= 4 %}
                         <li class='star selected' title='Excellent' data-value='4'>
                             <i class='fa fa-star fa-fw'></i>
                         </li>
@@ -61,7 +61,7 @@
                             <i class='fa fa-star fa-fw'></i>
                         </li>
                     {% endif %}
-                    {% if recipe.my_rating >= 5 %}
+                    {% if recipe.my_rating | int >= 5 %}
                         <li class='star selected' title='WOW!!!' data-value='5'>
                             <i class='fa fa-star fa-fw'></i>
                         </li>
