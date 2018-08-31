@@ -18,15 +18,15 @@
         <section class='rating-widget'>
             <!-- Rating Stars Box -->
             {% if recipe.my_rating %}
-                <p>You've rated this recipe. Cbuttonck on the stars to change your rating.</p>
+                <p>You've rated this recipe. Click on the stars to add or change your rating.</p>
             {% else %}
-                <p class="hidden">You've rated this recipe. Cbuttonck on the stars to change your rating.</p>
+                <p class="hidden">You've rated this recipe. Click on the stars to add or change your rating.</p>
                 <p>Rate this recipe:</p>
             {% endif %}
             <div class='rating-stars text-center'>
-                <form id='stars' method="POST" action="{{ url_for('update_my_rating', recipe_id=recipe._id) }}" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                <div id='stars'>
                     {% if recipe.my_rating | int >= 1 %}
-                        <button class='star selected' title='Poor' data-value='1' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star selected' title='Poor' data-value='1' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% else %}
@@ -35,42 +35,42 @@
                         </button>
                     {% endif %}
                     {% if recipe.my_rating | int >= 2 %}
-                        <button class='star selected' title='Fair' data-value='2' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star selected' title='Fair' data-value='2' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% else %}
-                        <button class='star' title='Fair' data-value='2' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star' title='Fair' data-value='2' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% endif %}
                     {% if recipe.my_rating | int >= 3 %}
-                        <button class='star selected' title='Good' data-value='3' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star selected' title='Good' data-value='3' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% else %}    
-                        <button class='star' title='Good' data-value='3' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star' title='Good' data-value='3' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% endif %}
                     {% if recipe.my_rating | int >= 4 %}
-                        <button class='star selected' title='Excellent' data-value='4' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star selected' title='Excellent' data-value='4' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% else %} 
-                        <button class='star' title='Excellent' data-value='4' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star' title='Excellent' data-value='4' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% endif %}
                     {% if recipe.my_rating | int >= 5 %}
-                        <button class='star selected' title='WOW!!!' data-value='5' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star selected' title='WOW!!!' data-value='5' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% else %}     
-                        <button class='star' title='WOW!!!' data-value='5' type="submit" name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
+                        <button class='star' title='WOW!!!' data-value='5' name="action" data-url="{{ url_for('update_my_rating', recipe_id=recipe._id) }}">
                             <i class='fa fa-star fa-fw'></i>
                         </button>
                     {% endif %}
-                </form>
+                </div>
             </div>
             <div class='success-box'>
                 <div class='clearfix'></div>

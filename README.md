@@ -75,6 +75,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 - Inspiration for the colour palette [HERE](https://www.pinterest.ie/pin/263882859399545467/)
 - I used the [Rating Stars with Simple Jquery](https://codepen.io/depy/pen/vEWWdw) by Deepak Kamat to let users rate drinks
 - [Text Shadow Generator](https://css3gen.com/text-shadow/)
+- For load More cocktail cards, I used "Load more content with jQuery", a [PEN BY Mahmoud Elmahdi](https://codepen.io/elmahdim/pen/sGkvH)
 
 ### Media
 - The photos used in this site were obtained from ...

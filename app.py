@@ -68,9 +68,11 @@ def update_my_rating(recipe_id):
     recipes = mongo.db.recipes
     
     print(request.json)
-    print('my_rating when method is POST: ', request.json['my_rating'])
+    # my_rating = request.json['my_rating']
+    print('recipe_id: ', recipe_id)
+    # print('my_rating when method is POST: ', my_rating)
 
-    recipes.update({'_id': ObjectId(recipe_id)}, request.json)
+    # recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
     return ('', 204)
 

@@ -14,22 +14,6 @@ $(document).ready(function() {
             }, 1500);
         });
     });
-
-    $('a[href=#top]').click(function() {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 50) {
-            $('.totop a').fadeIn();
-        }
-        else {
-            $('.totop a').fadeOut();
-        }
-    });
     
     // Load more button - END
     
@@ -63,7 +47,7 @@ $(document).ready(function() {
     /* 2. Action to perform on click */
     $('#stars button').on('click', function() {
         // Getting rating - START
-        var formStarUrl = $('#stars').data('url');
+        var formStarUrl = $(this).data('url');
         console.log('formStarUrl: ', formStarUrl);
         // Getting rating - END
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -93,7 +77,7 @@ $(document).ready(function() {
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
-                console.log('success', response);
+                console.log('success. Return does nothing', response);
             },
             error: function(error) {
                 console.log('error', error);
