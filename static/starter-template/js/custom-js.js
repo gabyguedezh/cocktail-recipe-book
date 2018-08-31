@@ -33,6 +33,7 @@ $(document).ready(function() {
   $('#stars button').on('click', function() {
     // Getting rating - START
     var formStarUrl = $('#stars').data('url')
+    console.log('formStarUrl: ', formStarUrl);
     // Getting rating - END
     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
     var stars = $(this).parent().children('button.star');
