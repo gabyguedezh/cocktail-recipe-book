@@ -67,12 +67,24 @@ def update_recipe_rating(recipe_id):
     """
     this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     
-    initial_recipe_rating = this_recipe['recipe_rating']
+    number_of_votes = int(this_recipe['number_of_votes'])
+    print('number_of_votes is: ', number_of_votes)
+    
+    initial_recipe_rating = int(this_recipe['recipe_rating'])
     print('initial recipe rating is: ',  initial_recipe_rating)
     
-    latest_recipe_rating = request.json['recipe_rating']
+    latest_recipe_rating = int(request.json['recipe_rating'])
     print('latest recipe rating posted is: ', latest_recipe_rating)
-    # print('recipe_id: ', recipe_id)
+    
+    # Calculating average
+    
+    average_rating = ((initial_recipe_rating*number_of_votes)+latest_recipe_rating)/(number_of_votes+1)
+    print('average_rating is: ', average_rating)
+    
+    
+    
+    
+    
     # print('recipe_rating when method is POST: ', recipe_rating)
 
     # recipes.update({'_id': ObjectId(recipe_id)}, request.json)
