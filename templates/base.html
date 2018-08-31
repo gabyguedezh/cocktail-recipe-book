@@ -15,6 +15,16 @@
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300|Yanone+Kaffeesatz" rel="stylesheet">
     
+    <!--jQuery and Ajax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    
+    <!-- D3, Crossfilter and DC and dashboard -->
+    <script type="text/javascript" src="{{url_for('static', filename='assets/d3.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='assets/crossfilter.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='assets/dc.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/queue.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/dashboard.js')}}"></script>
 </head>
 
 <body class="#ffe0b2 orange lighten-4">
@@ -26,22 +36,15 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{url_for('get_cocktails')}}">All Cocktails</a></li>
                 <li><a href="{{url_for('get_my_recipes')}}">My Recipes</a></li>
-                {% if not logged_in %}
-                    <li><a href="{{url_for('get_login')}}">Login</a></li>
-                {% else %}
-                    <li><a href="{{url_for('get_login')}}">My Dashboard</a></li>
-                {% endif %}
+                <li><a href="{{url_for('get_login')}}">Login</a></li>
+
                 <li><a href="{{url_for('get_home')}}"><i class="fas fa-search fa-xs"></i> Search</a></li>
             </ul>
             <ul id="nav-mobile" class="sidenav">
                 <li><a href="#"><form action=""><input type="text" name="search" placeholder="Type and press enter to search"></form></a></li>
                 <li><a href="{{url_for('get_cocktails')}}">All Cocktails</a></li>
                 <li><a href="{{url_for('get_my_recipes')}}">My Recipes</a></li>
-                {% if not logged_in %}
-                    <li><a href="{{url_for('get_login')}}">Login</a></li>
-                {% else %}
-                    <li><a href="{{url_for('get_login')}}">My Dashboard</a></li>
-                {% endif %}
+                <li><a href="{{url_for('get_login')}}">Login</a></li>
             </ul>
             <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
         </div>
@@ -82,21 +85,17 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    
     
     <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/init.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/materialize.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/materialize.min.js')}}"></script>
     
-    <!-- D3, Crossfilter and DC -->
-    <script type="text/javascript" src="{{url_for('static', filename='assets/d3.min.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='assets/crossfilter.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='assets/dc.js')}}"></script>
     
     <!-- Custom JS -->
     <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/recipe-form.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='starter-template/js/custom-js.js')}}"></script>
+    
     {% block js %} {% endblock %}
 </body>
 

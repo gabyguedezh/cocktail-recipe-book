@@ -64,21 +64,13 @@ def update_my_rating(recipe_id):
     """
     This function takes the new my_rating after clicking on the stars and
     updates the my_rating field in the open document
-    EXAMPLE
-    recipes = mongo.db.recipes
-    
-    recipes.update({'_id': ObjectId(recipe_id)}, request.json)
-    
-    return redirect(url_for('get_my_recipes'))
     """
     recipes = mongo.db.recipes
     
-    print('request.json: ', request.json)
-    # recipe_id = {'_id': recipe['_id']}
-    print('my_rating when method is POST: ', )
-    print('recipe_id: ', recipe_id)
+    print(request.json)
+    print('my_rating when method is POST: ', request.json['my_rating'])
 
-    # all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
+    recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
     return ('', 204)
 
