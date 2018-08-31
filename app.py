@@ -59,22 +59,28 @@ def show_cocktail(recipe_url):
                            recipe = cocktail)
 
 
-# @app.route('/update_my_rating/<recipe_id>', methods=['POST'])
-# def update_edited_cocktail(recipe_id):
-#     """
-#     This function takes the new my_rating after clicking on the stars and
-#     updates the my_rating field in the open document
-#     """
-#     recipes = mongo.db.recipes        
-#     my_rating = request.json.get('my_rating')
-
-#     # recipe_id = {'_id': recipe['_id']}
-#     print('my_rating when method is POST: ', my_rating)
-#     print('recipe_id', recipe_id)
-
-#     # all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
+@app.route('/update_my_rating/<recipe_id>', methods=['POST'])
+def update_my_rating(recipe_id):
+    """
+    This function takes the new my_rating after clicking on the stars and
+    updates the my_rating field in the open document
+    EXAMPLE
+    recipes = mongo.db.recipes
     
-#     return redirect(url_for('show_cocktail(recipe_url)'))
+    recipes.update({'_id': ObjectId(recipe_id)}, request.json)
+    
+    return redirect(url_for('get_my_recipes'))
+    """
+    recipes = mongo.db.recipes
+    
+    print('request.json: ', request.json)
+    # recipe_id = {'_id': recipe['_id']}
+    print('my_rating when method is POST: ', )
+    print('recipe_id: ', recipe_id)
+
+    # all_recipes.update({'_id': ObjectId(recipe_id)}, my_rating)
+    
+    return ('', 204)
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
