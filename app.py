@@ -99,6 +99,7 @@ def get_add_cocktail_form():
                            flavour_profile=mongo.db.flavour_profile.find(),
                            autor=mongo.db.author.find())
 
+
 @app.route('/write_to_cocktail_database', methods=['POST'])
 def write_to_cocktail_database():
     """ 
@@ -109,15 +110,9 @@ def write_to_cocktail_database():
     recipes = mongo.db.recipes
     
     recipes.insert_one(request.json)
-    
-    print("-----------------------------------------------------------------")
-    # print(request.json)
-    print("-----------------------------------------------------------------")
-    
-    # The var below stores a dictionary that corresponds with the structure
-    # of my bson file in mongodb
 
     return redirect(url_for('get_my_recipes'))
+    
 
 @app.route('/delete_cocktail/<recipe_id>')
 def delete_cocktail(recipe_id):
@@ -126,6 +121,7 @@ def delete_cocktail(recipe_id):
     """
     mongo.db.recipes.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('get_my_recipes'))
+
 
 @app.route('/get_edit_cocktail_form/<recipe_id>')
 def get_edit_cocktail_form(recipe_id):
