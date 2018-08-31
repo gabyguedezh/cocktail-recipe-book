@@ -51,28 +51,33 @@ def show_cocktail(recipe_url):
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
-            my_rating = recipe['my_rating']
-            print('my_rating when method is GET: ', my_rating)
+            recipe_rating = recipe['recipe_rating']
+            print('recipe_rating when method is GET: ', recipe_rating)
         
     return render_template('show_cocktail.html',
-                           my_rating=my_rating,
+                           recipe_rating=recipe_rating,
                            recipe = cocktail)
 
 
-@app.route('/update_my_rating/<recipe_id>', methods=['POST'])
-def update_my_rating(recipe_id):
+@app.route('/update_recipe_rating/<recipe_id>', methods=['POST'])
+def update_recipe_rating(recipe_id):
     """
-    This function takes the new my_rating after clicking on the stars and
-    updates the my_rating field in the open document
+    This function takes the new recipe_rating after clicking on the stars and
+    updates the recipe_rating field in the open document
     """
-    recipes = mongo.db.recipes
+    this_recipe = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
     
-    print(request.json)
-    # my_rating = request.json['my_rating']
-    print('recipe_id: ', recipe_id)
-    # print('my_rating when method is POST: ', my_rating)
+    initial_recipe_rating = this_recipe['recipe_rating']
+    print('initial recipe rating is: ',  initial_recipe_rating)
+    
+    latest_recipe_rating = request.json['recipe_rating']
+    print('latest recipe rating posted is: ', latest_recipe_rating)
+    # print('recipe_id: ', recipe_id)
+    # print('recipe_rating when method is POST: ', recipe_rating)
 
     # recipes.update({'_id': ObjectId(recipe_id)}, request.json)
+    
+    # this_recipe['recipe_rating'] = 
     
     return ('', 204)
 

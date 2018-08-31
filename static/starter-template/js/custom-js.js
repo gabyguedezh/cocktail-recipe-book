@@ -62,18 +62,18 @@ $(document).ready(function() {
         }
         
         // JUST RESPONSE (Not needed)
-        var my_rating = parseInt($('#stars button.selected').last().data('value'), 10);
+        var recipe_rating = parseInt($('#stars button.selected').last().data('value'), 10);
         var msg = "";
-        msg = "Thanks! You rated this " + my_rating + " stars.";
+        msg = "Thanks! You rated this " + recipe_rating + " stars.";
         responseMessage(msg);
-        console.log('my_rating: ', my_rating);
+        console.log('recipe_rating: ', recipe_rating);
         
         // POST rating with AJAX
-        // This will take care of the POST for the add cocktail form
+        // This will take care of the POST for the rating stars
         $.ajax({
             url: formStarUrl,
             // data: {'data': steps},
-            data: JSON.stringify({ my_rating }, null, '\t'),
+            data: JSON.stringify({ recipe_rating }, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
