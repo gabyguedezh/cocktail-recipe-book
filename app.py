@@ -4,6 +4,7 @@ from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import json
 
 
 # MONGO_DBNAME = os.environ.get('MONGODB_NAME')
@@ -19,6 +20,7 @@ app.config['MONGO_DBNAME'] = 'cocktail_book'
 app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
 
 mongo = PyMongo(app)
+
 
 @app.route('/')
 @app.route('/get_home')
@@ -96,21 +98,43 @@ def update_recipe_rating(recipe_id):
 
 @app.route('/get_login', methods=['GET', 'POST'])
 def get_login():
+    """
+    This function shows you the login form if you're not logged in, and takes
+    you to your dashboard if you are logged in
+    """
     logged_in = False
     if request.method == 'GET' and not 'username' in session:
         return render_template('login.html',
                                logged_in=logged_in)
     elif request.method == 'GET' and 'username' in session:
         logged_in = True
+        recipes = mongo.db.recipes.find()
+        
+        recipes_dict = {}
+        
+        for i, recipe in enumerate(recipes):
+            recipe.pop('_id', None)
+            recipes_dict[i] = recipe
+        
+        recipes_dict = json.dumps(recipes_dict)
+
         return render_template('login.html',
                                username=session['username'],
-                               logged_in=logged_in)
+                               logged_in=logged_in,
+                               recipes=recipes_dict)
     if request.method == 'POST':
         session['username'] = request.form["username"]
         logged_in = True
+        recipes=mongo.db.recipes.find()
+        recipes_dict = {}
+        
+        for i, recipe in enumerate(recipes):
+            recipes_dict[i] = recipe
+            
         return render_template('login.html',
                               username=session['username'],
-                              logged_in=logged_in)
+                              logged_in=logged_in,
+                              recipes=recipes_dict)
 
 
 @app.route('/get_logout')
@@ -136,6 +160,9 @@ def get_add_cocktail_form():
     create a cocktail recipe, and pass to the front end the options for the
     selectors
     """
+    if request.url.startswith('http://'):
+        request.url = request.url.replace('http://', 'https://', 1)
+    print('url when get_cocktail_form: ', request.url)
     return render_template('add_cocktail.html',
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
@@ -153,6 +180,10 @@ def write_to_cocktail_database():
     recipes = mongo.db.recipes
     
     recipes.insert_one(request.json)
+    
+    if request.url.startswith('http://'):
+        request.url = request.url.replace('http://', 'https://', 1)
+    print('url when write_to_cocktail_database: ', request.url)
 
     return redirect(url_for('get_my_recipes'))
     

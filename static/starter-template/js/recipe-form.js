@@ -171,7 +171,7 @@ $(document).ready(function(){
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
-                console.log('success', response);
+                console.log('success');
             },
             error: function(error) {
                 console.log('error', error);
