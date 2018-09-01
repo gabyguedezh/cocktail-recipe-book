@@ -35,13 +35,20 @@
                 var username = '{{username}}';
                 console.log('username: ', username);
                 
-                var test = $('#hidden-recipes').text();
-                var jsonTest = JSON.parse(test);
-                console.log(jsonTest);
+                var recipesText = $('#hidden-recipes').text();
+                var recipesJson = JSON.parse(recipesText);
+                // console.log('recipesJson: ', recipesJson);
                 
                 // var recipes = JSON.parse('{{recipes|safe}}');
                 // console.log(recipes);
                 
+                makeDashboard(recipesJson);
+                // Setting up to make dashboard
+                function makeDashboard(recipesJson) {
+                    var ndx = crossfilter(recipesJson);
+                    // console.log('recipesJson: ', recipesJson);
+                    console.log('ndx: ', ndx);
+                }
  
             });
         </script>
