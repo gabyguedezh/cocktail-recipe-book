@@ -1,10 +1,12 @@
 import os
-from flask import Flask, render_template, flash, redirect, request, url_for, session
+from flask import Flask, render_template, flash, redirect, request, url_for, session, make_response, current_app
 from flask_pymongo import PyMongo
 import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import json
+from datetime import timedelta
+from functools import update_wrapper
 
 
 # MONGO_DBNAME = os.environ.get('MONGODB_NAME')
@@ -196,11 +198,12 @@ def write_to_cocktail_database():
     
     recipes.insert_one(request.json)
     
-    if request.url.startswith('http://'):
-        request.url = request.url.replace('http://', 'https://', 1)
-    print('url when write_to_cocktail_database: ', request.url)
+    # if request.url.startswith('http://'):
+    #     request.url = request.url.replace('http://', 'https://', 1)
+    # print('url when write_to_cocktail_database: ', request.url)
 
-    return redirect(url_for('get_my_recipes'))
+    # return redirect(url_for('get_my_recipes'))
+    return ('', 204)
     
 
 @app.route('/delete_cocktail/<recipe_id>')

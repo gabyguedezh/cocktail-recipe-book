@@ -17,13 +17,15 @@
     <h3 class="art-deco-font">Hi there, {{username}}. Welcome to your Mix and Shake dashboard!</h3>
     <p>Here, you'll find some insights about your recipes and inspiration to keep mixing!</p>
     <h5>
-        Inline Number Display. You have created <span class="number-display"></span> recipes.
+        Inline Number Display. You have created (<span class="counter-text-my-recipes"></span>) recipes.
     </h5>
         <div class="container">
 
-            <div id="number-box"></div>
+            <div id="counter-box-my-recipes" class="#880e4f pink darken-4">
+                <p class="art-deco-font">Number here</p>
+            </div>
         </div>
-        <div>
+        <div id="log-in-buttons">
             <a href="{{url_for('get_my_recipes')}}" class="waves-effect waves-light btn-small pink darken-4"><i class="fas fa-cocktail"></i>See your Recipes</a>
             <a href="/get_logout" class="waves-effect waves-light btn-small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
         </div>
@@ -46,10 +48,30 @@
                 // Setting up to make dashboard
                 function makeDashboard(recipesJson) {
                     var ndx = crossfilter(recipesJson);
-                    // console.log('recipesJson: ', recipesJson);
-                    console.log('ndx: ', ndx);
+                    console.log('recipesJson: ', recipesJson);
+                    // console.log('ndx: ', ndx);
+                    
+                    // Below, I call the functions used for the different 
+                    // graphs in the dashboard
+                    
+                    counterMyRecipes(ndx);
+                    dc.renderAll();
                 }
- 
+                
+                function counterMyRecipes(ndx) {
+                    var counterMyRecipes = 0
+                    for (i in recipesJson) {
+                        var author_name = recipesJson[i]['author_name']
+                        if (username == author_name) {
+                            counterMyRecipes ++;                        }
+                    }
+                    console.log('my recipes: ', counterMyRecipes);
+                    
+                    var counterTextMyRecipes = d.numberDisplay('#counter-text-my-recipes');
+                    var counterBoxMyRecipes = dc.numberDisplay('#counter-box-my-recipes');
+                    
+                    var ndx = crossfilter(recipesJson)
+                }
             });
         </script>
     {% endif %} {% endblock %}

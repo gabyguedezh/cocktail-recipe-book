@@ -92,12 +92,11 @@ don't overflow their boxes*/
     text-shadow: 3px 2px 3px rgba(50, 50, 50, 1);
 }
 
-/* PENDING - Prepare in case of a very long cocktail name */
-
 .card-title-spice > #recipe_name {
     font-size: 1em!important;
     padding-bottom: 0px;
 }
+
 
 /* MY RECIPES */
 /* Rating Star Widgets Style */
@@ -127,6 +126,20 @@ don't overflow their boxes*/
 /* Selected state of the stars */
 .rating-stars form > button.star.selected > i.fa {
   color:#800040;
+}
+
+
+/* My Dashboard */
+
+#log-in-buttons {
+    position: relative;
+    bottom: -12em;
+}
+
+#counter-box-my-recipes {
+    width: 8em;
+    height: 8em;
+    color: white;
 }
 
 /* FOOTER */
