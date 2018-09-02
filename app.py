@@ -198,11 +198,6 @@ def write_to_cocktail_database():
     
     recipes.insert_one(request.json)
     
-    # if request.url.startswith('http://'):
-    #     request.url = request.url.replace('http://', 'https://', 1)
-    # print('url when write_to_cocktail_database: ', request.url)
-
-    # return redirect(url_for('get_my_recipes'))
     return ('', 204)
     
 

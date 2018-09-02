@@ -33,23 +33,30 @@
         <!-- Below, the script containing the dashboard grapshs -->
         <script>
             $(document).ready(function() {
-                console.log('dashboard ready');
                 var username = '{{username}}';
-                console.log('username: ', username);
                 
                 var recipesText = $('#hidden-recipes').text();
                 var recipesJson = JSON.parse(recipesText);
-                // console.log('recipesJson: ', recipesJson);
+                var recipesList = [];
                 
-                // var recipes = JSON.parse('{{recipes|safe}}');
-                // console.log(recipes);
                 
-                makeDashboard(recipesJson);
+                
+                for (i in recipesJson) {
+                    // recipesList.push(recipesJson[i]);
+                    recipesList = recipesList.push(recipesJson[i])
+                    console.log('i need: ', recipesJson[i]);
+                }
+                
+                console.log(recipesList);
+            
+                // queue()
+                //     .defer(d3.json, recipesJson)
+                //     .await(makeDashboard);
+                
+                makeDashboard(recipesList);
                 // Setting up to make dashboard
-                function makeDashboard(recipesJson) {
-                    var ndx = crossfilter(recipesJson);
-                    console.log('recipesJson: ', recipesJson);
-                    // console.log('ndx: ', ndx);
+                function makeDashboard(recipesList) {
+                    var ndx = crossfilter(recipesList);
                     
                     // Below, I call the functions used for the different 
                     // graphs in the dashboard
@@ -59,18 +66,46 @@
                 }
                 
                 function counterMyRecipes(ndx) {
-                    var counterMyRecipes = 0
-                    for (i in recipesJson) {
-                        var author_name = recipesJson[i]['author_name']
-                        if (username == author_name) {
-                            counterMyRecipes ++;                        }
-                    }
-                    console.log('my recipes: ', counterMyRecipes);
+                    // Define our vars for dimension and group
+                    var myRecipeCountDim = ndx.dimension(function(d) {
+                        // console.log(recipesList)
+                        // for (i in recipesList) {
+                        //     // console.log(i);
+                        // }
+                        
+                        countMyRecipes = 0
+                        if (d['author_name'] == username) {
+                            countMyRecipes++;
+                        
+                            console.log('countMyRecipes: ', countMyRecipes);  
+                        }
+                          
+
+                        
+                        return countMyRecipes;
+                    });
                     
-                    var counterTextMyRecipes = d.numberDisplay('#counter-text-my-recipes');
-                    var counterBoxMyRecipes = dc.numberDisplay('#counter-box-my-recipes');
+                    var myRecipeCountGroup = myRecipeCountDim.group();
+                  
+                    // Render our number display
+                    // Prep for the legend - END
                     
-                    var ndx = crossfilter(recipesJson)
+                    dc.numberDisplay("#counter-box-my-recipes")
+                        .width(300)
+                        .height(400)
+                        // .transitionDuration(500)
+                        .formatNumber(d3.format("d"))
+                        .valueAccessor(function (d) {
+                            for (i in d) {
+                                countMyRecipes = 0
+                                if (d['author_name'] == username) {
+                                   countMyRecipes++; 
+                                }
+                            }
+                            
+                            return countMyRecipes;
+                        })
+                        .group(myRecipeCountGroup);
                 }
             });
         </script>

@@ -172,6 +172,7 @@ $(document).ready(function(){
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
                 console.log('success');
+                // PENDING - The address is hardcoded, update before deployment
                 window.location.href = "http://cocktail-recipe-book-gabyguedezh.c9users.io/get_my_recipes";
             },
             error: function(error) {
