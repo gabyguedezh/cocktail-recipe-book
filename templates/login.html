@@ -17,7 +17,7 @@
     <h3 class="art-deco-font">Hi there, {{username}}. Welcome to your Mix and Shake dashboard!</h3>
     <p>Here, you'll find some insights about your recipes and inspiration to keep mixing!</p>
     <h5>
-        Inline Number Display. You have created (<span class="counter-text-my-recipes"></span>) recipes.
+        Inline Number Display. You have created <span id="counter-text-my-recipes"></span> recipes.
     </h5>
         <div class="container">
 
@@ -56,11 +56,12 @@
                     // Below, I call the functions used for the different 
                     // graphs in the dashboard
                     
-                    counterMyRecipes(ndx);
+                    counterMyRecipes(ndx, '#counter-text-my-recipes');
+                    counterMyRecipes(ndx, '#counter-box-my-recipes');
                     dc.renderAll();
                 }
                 
-                function counterMyRecipes(ndx) {
+                function counterMyRecipes(ndx, element) {
                     myRecipesList = [];
                     // console.log(username);
                     // console.log('author_name: ', recipesList[1]['author_name']);
@@ -70,56 +71,24 @@
                         
                         if ( username == authorName ) {
                             myRecipesList.push(recipesList[i]);
-                            
-                            // console.log('author_name: ', authorName);
                         }
-                        
                     }
                     console.log('this recipes are mine: ', myRecipesList);
-                    // console.log()
                     
-                    // console.log('myRecipesList: ', myRecipesList);
-                //     // Define our vars for dimension and group
-                //     var myRecipeCountDim = ndx.dimension(function(d) {
-                //         // console.log(recipesList)
-                //         // for (i in recipesList) {
-                //         //     // console.log(i);
-                //         // }
-                        
-                //         countMyRecipes = 0
-                //         if (d['author_name'] == username) {
-                //             countMyRecipes++;
-                        
-                //             console.log('countMyRecipes: ', countMyRecipes);  
-                        }
-                          
+                    console.log('I have this many recipes: ', myRecipesList.length);
 
-                        
-                //         return countMyRecipes;
-                //     });
+                    // Define our vars for dimension and group
+                    var myRecipesTotal = ndx.groupAll();
                     
-                //     var myRecipeCountGroup = myRecipeCountDim.group();
-                  
-                //     // Render our number display
-                //     // Prep for the legend - END
-                    
-                //     dc.numberDisplay("#counter-box-my-recipes")
-                //         .width(300)
-                //         .height(400)
-                //         // .transitionDuration(500)
-                //         .formatNumber(d3.format("d"))
-                //         .valueAccessor(function (d) {
-                //             for (i in d) {
-                //                 countMyRecipes = 0
-                //                 if (d['author_name'] == username) {
-                //                   countMyRecipes++; 
-                //                 }
-                //             }
-                            
-                //             return countMyRecipes;
-                //         })
-                //         .group(myRecipeCountGroup);
-                // }
+                    dc.numberDisplay(element)
+                        .formatNumber(d3.format("d"))
+                        .valueAccessor(function (d) {
+                            d = myRecipesList.length
+                            console.log('d: ', d);
+                            return (+d);
+                        })
+                        .group(myRecipesTotal);
+                }
             });
         </script>
     {% endif %} {% endblock %}
