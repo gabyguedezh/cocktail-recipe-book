@@ -40,14 +40,13 @@
                 var recipesList = [];
                 
                 
+                // console.log('i need: ', recipesJson);
                 
                 for (i in recipesJson) {
-                    // recipesList.push(recipesJson[i]);
-                    recipesList = recipesList.push(recipesJson[i])
-                    console.log('i need: ', recipesJson[i]);
+                    recipesList.push(recipesJson[i]);
                 }
                 
-                console.log(recipesList);
+                console.log(recipesList[0]);
             
                 // queue()
                 //     .defer(d3.json, recipesJson)
@@ -61,52 +60,52 @@
                     // Below, I call the functions used for the different 
                     // graphs in the dashboard
                     
-                    counterMyRecipes(ndx);
+                    // counterMyRecipes(ndx);
                     dc.renderAll();
                 }
                 
-                function counterMyRecipes(ndx) {
-                    // Define our vars for dimension and group
-                    var myRecipeCountDim = ndx.dimension(function(d) {
-                        // console.log(recipesList)
-                        // for (i in recipesList) {
-                        //     // console.log(i);
-                        // }
+                // function counterMyRecipes(ndx) {
+                //     // Define our vars for dimension and group
+                //     var myRecipeCountDim = ndx.dimension(function(d) {
+                //         // console.log(recipesList)
+                //         // for (i in recipesList) {
+                //         //     // console.log(i);
+                //         // }
                         
-                        countMyRecipes = 0
-                        if (d['author_name'] == username) {
-                            countMyRecipes++;
+                //         countMyRecipes = 0
+                //         if (d['author_name'] == username) {
+                //             countMyRecipes++;
                         
-                            console.log('countMyRecipes: ', countMyRecipes);  
-                        }
+                //             console.log('countMyRecipes: ', countMyRecipes);  
+                //         }
                           
 
                         
-                        return countMyRecipes;
-                    });
+                //         return countMyRecipes;
+                //     });
                     
-                    var myRecipeCountGroup = myRecipeCountDim.group();
+                //     var myRecipeCountGroup = myRecipeCountDim.group();
                   
-                    // Render our number display
-                    // Prep for the legend - END
+                //     // Render our number display
+                //     // Prep for the legend - END
                     
-                    dc.numberDisplay("#counter-box-my-recipes")
-                        .width(300)
-                        .height(400)
-                        // .transitionDuration(500)
-                        .formatNumber(d3.format("d"))
-                        .valueAccessor(function (d) {
-                            for (i in d) {
-                                countMyRecipes = 0
-                                if (d['author_name'] == username) {
-                                   countMyRecipes++; 
-                                }
-                            }
+                //     dc.numberDisplay("#counter-box-my-recipes")
+                //         .width(300)
+                //         .height(400)
+                //         // .transitionDuration(500)
+                //         .formatNumber(d3.format("d"))
+                //         .valueAccessor(function (d) {
+                //             for (i in d) {
+                //                 countMyRecipes = 0
+                //                 if (d['author_name'] == username) {
+                //                   countMyRecipes++; 
+                //                 }
+                //             }
                             
-                            return countMyRecipes;
-                        })
-                        .group(myRecipeCountGroup);
-                }
+                //             return countMyRecipes;
+                //         })
+                //         .group(myRecipeCountGroup);
+                // }
             });
         </script>
     {% endif %} {% endblock %}
