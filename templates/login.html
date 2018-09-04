@@ -17,12 +17,16 @@
     <h3 class="art-deco-font">Hi there, {{username}}. Welcome to your Mix and Shake dashboard!</h3>
     <p>Here, you'll find some insights about your recipes and inspiration to keep mixing!</p>
     <h5>
-        Inline Number Display. You have created <span id="counter-text-my-recipes"></span> recipes.
+        You have created <span id="counter-text-my-recipes"></span> recipes!
     </h5>
         <div class="container">
 
-            <div id="counter-box-my-recipes" class="#880e4f pink darken-4">
-                <p class="art-deco-font">Number here</p>
+            <div id="counter-box-my-recipes" class="art-deco-font center-align #880e4f pink darken-4">
+                <p class="art-deco-font">Cocktails Shared</p>
+            </div>
+            <h5>This is how you mix it</h5>
+            <div id='spirit-pie-chart'>
+                
             </div>
         </div>
         <div id="log-in-buttons">
@@ -42,7 +46,7 @@
                 for (i in recipesJson) {
                     recipesList.push(recipesJson[i]);
                 }
-                console.log('recipesList: ', recipesList);
+                // console.log('recipesList: ', recipesList);
             
                 // queue()
                 //     .defer(d3.json, recipesJson)
@@ -53,18 +57,8 @@
                 function makeDashboard(recipesList) {
                     var ndx = crossfilter(recipesList);
                     
-                    // Below, I call the functions used for the different 
-                    // graphs in the dashboard
-                    
-                    counterMyRecipes(ndx, '#counter-text-my-recipes');
-                    counterMyRecipes(ndx, '#counter-box-my-recipes');
-                    dc.renderAll();
-                }
-                
-                function counterMyRecipes(ndx, element) {
+                    // Separating only recipes created by current user
                     myRecipesList = [];
-                    // console.log(username);
-                    // console.log('author_name: ', recipesList[1]['author_name']);
                     
                     for ( var i = 0; i < recipesList.length; i++ ) {
                         let authorName = recipesList[i]['author_name'];
@@ -73,21 +67,63 @@
                             myRecipesList.push(recipesList[i]);
                         }
                     }
-                    console.log('this recipes are mine: ', myRecipesList);
                     
-                    console.log('I have this many recipes: ', myRecipesList.length);
-
-                    // Define our vars for dimension and group
+                    // Below, I call the functions used for the different 
+                    // graphs in the dashboard
+                    
+                    counterMyRecipes(ndx, '#counter-text-my-recipes');
+                    counterMyRecipes(ndx, '#counter-box-my-recipes');
+                    spiritPieChart(ndx);
+                    
+                    dc.renderAll();
+                }
+                
+                function counterMyRecipes(ndx, element) {
+                    
                     var myRecipesTotal = ndx.groupAll();
                     
                     dc.numberDisplay(element)
                         .formatNumber(d3.format("d"))
                         .valueAccessor(function (d) {
                             d = myRecipesList.length
-                            console.log('d: ', d);
                             return (+d);
                         })
                         .group(myRecipesTotal);
+                }
+            
+                function spiritPieChart(ndx) {
+                console.log('myRecipesList: ', myRecipesList);
+                
+                mySpirits = []
+
+                for ( var i = 0; i < myRecipesList.length; i++) {
+                        let baseSpirit = myRecipesList[i]['base_spirit']
+                        // mySpirits.push(mySpirits[i]);
+                        console.log('baseSpirit: ', baseSpirit);
+                        mySpirits.push(baseSpirit)
+                    }
+                    console.log('mySpirits: ', mySpirits);
+
+                // var spiritDimension = ndx.dimension(function(d) {
+                //     for ( var i = 0; i < myRecipesList.length; i++) {
+                //         mySpirits = myRecipesList[i]['base_spirit']
+                //         mySpirits.push(mySpirits);
+                //         console.log('mySpirits: ', mySpirits);
+                //     }
+                    
+                // });
+                var spiritDimension = ndx.dimension(dc.pluck('spirit_name'));
+                
+                var spiritGroup = spiritDimension.group();
+                
+                dc.pieChart("#spirit-pie-chart")
+                    .width(300)
+                    .height(400)
+                    .radius(100)
+                    .transitionDuration(500)
+                    .minAngleForLabel(0.2)
+                    .dimension(spiritDimension)
+                    .group(spiritGroup);
                 }
             });
         </script>

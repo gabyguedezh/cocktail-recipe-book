@@ -142,6 +142,15 @@ don't overflow their boxes*/
     color: white;
 }
 
+#counter-box-my-recipes > .number-display {
+    font-size: 3em;
+}
+
+#counter-box-my-recipes > p {
+    font-size: 1.4em;
+    margin-bottom: 0;
+}
+
 /* FOOTER */
 
 #footer-custom {
