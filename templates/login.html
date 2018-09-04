@@ -25,8 +25,15 @@
                 <p class="art-deco-font">Cocktails Shared</p>
             </div>
             <h5>This is how you mix it</h5>
+            <div>
             <div id='spirit-pie-chart'>
-                
+                <p>Favourite Base Spirits</p>
+            </div>
+            <div id='cocktail-type-bar-chart'>
+                <p>Favourite Cocktail Type</p>
+            </div>
+            <div id='flavour-profile-chart'>
+                <p>Favourite Flavour Profile</p>
             </div>
         </div>
         <div id="log-in-buttons">
@@ -46,11 +53,6 @@
                 for (i in recipesJson) {
                     recipesList.push(recipesJson[i]);
                 }
-                // console.log('recipesList: ', recipesList);
-            
-                // queue()
-                //     .defer(d3.json, recipesJson)
-                //     .await(makeDashboard);
                 
                 makeDashboard(recipesList);
                 // Setting up to make dashboard
@@ -76,6 +78,8 @@
                     counterMyRecipes(ndx, '#counter-text-my-recipes');
                     counterMyRecipes(ndx, '#counter-box-my-recipes');
                     spiritPieChart(ndx);
+                    cocktailTypeBar(ndx);
+                    flavourProfileChart(ndx);
                     
                     dc.renderAll();
                 }
@@ -94,7 +98,6 @@
                 }
             
                 function spiritPieChart(ndx) {
-                console.log('myRecipesList: ', myRecipesList);
                 
                 mySpirits = []
 
@@ -105,7 +108,6 @@
                 console.log('mySpirits: ', mySpirits);
 
                 var spiritDimension = ndx.dimension(function(d) {
-                    console.log('d: ', d['base_spirit']);
                     return d['base_spirit'];
                 });
                 
@@ -115,11 +117,67 @@
                     .width(300)
                     .height(400)
                     .radius(100)
+                    .innerRadius(30)
                     .transitionDuration(500)
                     .minAngleForLabel(0.2)
                     .dimension(spiritDimension)
                     .group(spiritGroup);
                 }
+
+                function cocktailTypeBar(ndx) {
+                    myCocktailTypes = []
+
+                    for ( var i = 0; i < myRecipesList.length; i++) {
+                            let cocktailType = myRecipesList[i]['cocktail_type']
+                            myCocktailTypes.push(cocktailType)
+                        }
+                    console.log('myCocktailTypes: ', myCocktailTypes);
+    
+                    var cocktailTypeDimension = ndx.dimension(function(d) {
+                        return d['cocktail_type'];
+                    });
+                    
+                    var cocktailTypeGroup = cocktailTypeDimension.group();
+                    
+                    dc.barChart('#cocktail-type-bar-chart')
+                        .width(350)
+                        .height(250)
+                        .margins({top: 10, right: 50, bottom: 30, left: 50})
+                        .dimension(cocktailTypeDimension)
+                        .group(cocktailTypeGroup)
+                        .transitionDuration(500)
+                        .x(d3.scale.ordinal())
+                        .xUnits(dc.units.ordinal)
+                        .elasticY(true)
+                        .xAxisLabel("Cocktail Type")
+                        .yAxis().ticks(10);
+                }
+                
+                function flavourProfileChart(ndx) {
+                    myFlavourProfiles = []
+
+                    for ( var i = 0; i < myRecipesList.length; i++) {
+                            let flavourProfile = myRecipesList[i]['flavour_profile']
+                            myFlavourProfiles.push(flavourProfile)
+                        }
+                    console.log('myFlavourProfiles: ', myFlavourProfiles);
+    
+                    var flavourProfileDimension = ndx.dimension(function(d) {
+                        return d['flavour_profile'];
+                    });
+                    
+                    var flavourProfileGroup = flavourProfileDimension.group();
+                    
+                    dc.rowChart("#flavour-profile-chart")
+                        .width(768)
+                        .height(480)
+                        .x(d3.scale.ordinal())
+                        .elasticX(true)
+                        .dimension(flavourProfileDimension)
+                        .group(flavourProfileGroup)
+                        .render();
+                }
+                
             });
         </script>
     {% endif %} {% endblock %}
