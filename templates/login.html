@@ -55,7 +55,7 @@
                 makeDashboard(recipesList);
                 // Setting up to make dashboard
                 function makeDashboard(recipesList) {
-                    var ndx = crossfilter(recipesList);
+                    
                     
                     // Separating only recipes created by current user
                     myRecipesList = [];
@@ -67,6 +67,8 @@
                             myRecipesList.push(recipesList[i]);
                         }
                     }
+                    
+                    var ndx = crossfilter(myRecipesList);
                     
                     // Below, I call the functions used for the different 
                     // graphs in the dashboard
@@ -98,21 +100,14 @@
 
                 for ( var i = 0; i < myRecipesList.length; i++) {
                         let baseSpirit = myRecipesList[i]['base_spirit']
-                        // mySpirits.push(mySpirits[i]);
-                        console.log('baseSpirit: ', baseSpirit);
                         mySpirits.push(baseSpirit)
                     }
-                    console.log('mySpirits: ', mySpirits);
+                console.log('mySpirits: ', mySpirits);
 
-                // var spiritDimension = ndx.dimension(function(d) {
-                //     for ( var i = 0; i < myRecipesList.length; i++) {
-                //         mySpirits = myRecipesList[i]['base_spirit']
-                //         mySpirits.push(mySpirits);
-                //         console.log('mySpirits: ', mySpirits);
-                //     }
-                    
-                // });
-                var spiritDimension = ndx.dimension(dc.pluck('spirit_name'));
+                var spiritDimension = ndx.dimension(function(d) {
+                    console.log('d: ', d['base_spirit']);
+                    return d['base_spirit'];
+                });
                 
                 var spiritGroup = spiritDimension.group();
                 
