@@ -26,6 +26,7 @@
             </div>
             <h5>This is how you mix it</h5>
             <div>
+            <input id="reset-button" class="btn" type="button" value="Reset all Selections" />
             <div id='spirit-pie-chart'>
                 <p>Favourite Base Spirits</p>
             </div>
@@ -80,9 +81,17 @@
                     spiritPieChart(ndx);
                     cocktailTypeBar(ndx);
                     flavourProfileChart(ndx);
+                    resetButton(ndx);
                     
                     dc.renderAll();
                 }
+                
+                function resetButton(ndx) {
+                    $("#reset-button").on("click", function() {
+                          dc.filterAll();
+                          dc.redrawAll();
+                    });
+                  }
                 
                 function counterMyRecipes(ndx, element) {
                     
