@@ -151,6 +151,24 @@ don't overflow their boxes*/
     margin-bottom: 0;
 }
 
+
+/* SEARCH */
+
+.dc-chart th {
+    text-align: left
+}
+.dc-chart th,.dc-chart td {
+  padding-left: 10px;
+}
+.dc-chart tr.dc-table-group td {
+  padding-top: 4px;
+  border-bottom: 1px solid black;
+}
+.dc-chart select {
+  width: 150px;
+}
+
+
 /* FOOTER */
 
 #footer-custom {

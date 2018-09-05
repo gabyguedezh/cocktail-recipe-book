@@ -1,34 +1,66 @@
 {% extends 'base.html'%} {% block content %}
 <h2 class="art-deco-font">Search for a cocktail</h2>
-<div class="container">
-    <div class="col s3">
-        <h5>Base Spirit</h5>
-        <div id="spirit-selector"></div>
-    </div>
-    <div class="col s3">
-        <h5>Cocktail Type</h5>
-        <div id="type-selector"></div>
-    </div>
-    <div class="col s3">
-        <h5>Flavour Profile</h5>
-        <div id="flavour-selector"></div>
-    </div>
-    <div class="col s3">
-        <h5>Vegan Search</h5>
-        <div id="vegan-selector"></div>
-    </div>
-</div>
+<!--<div class="container">-->
+<!--    <div class="col s3">-->
+<!--        <h5>Base Spirit</h5>-->
+<!--        <div id="spirit-selector"></div>-->
+<!--    </div>-->
+<!--    <div class="col s3">-->
+<!--        <h5>Cocktail Type</h5>-->
+<!--        <div id="type-selector"></div>-->
+<!--    </div>-->
+<!--    <div class="col s3">-->
+<!--        <h5>Flavour Profile</h5>-->
+<!--        <div id="flavour-selector"></div>-->
+<!--    </div>-->
+<!--    <div class="col s3">-->
+<!--        <h5>Vegan Search</h5>-->
+<!--        <div id="vegan-selector"></div>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- Getting a table of all the recipes filtered -->
 
-<div class="container">
-    <table id="test"></table>
-    <div id="paging">
-        Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
-    <input id="last" class="btn" type="Button" value="Last"/>
-    <input id="next" class="btn" type="button" value="Next"/>
-</div>
+<!--<div class="container">-->
+<!--    <table id="test"></table>-->
+<!--    <div id="paging">-->
+<!--        Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.-->
+<!--    <input id="last" class="btn" type="Button" value="Last"/>-->
+<!--    <input id="next" class="btn" type="button" value="Next"/>-->
+<!--</div>-->
 
 <!-- End of table -->
+
+<!-- Attempt with example - START -->
+<div class="container">
+    <p>A meaningless example of multiple selectMenus on some random data...</p>
+    <div id="select1">
+        <div>
+            <a class='reset' href='javascript:select1.filterAll();dc.redrawAll();' style='visibility: hidden;'>
+            reset</a>
+        </div>
+    </div>
+    <div id="select2">
+        <div>
+            <a class='reset' href='javascript:select2.filterAll();dc.redrawAll();' style='visibility: hidden;'>
+            reset</a>
+        </div>
+    </div>
+    <div id="select3">
+        <div>
+            <a class='reset' href='javascript:select3.filterAll();dc.redrawAll();' style='visibility: hidden;'>
+            reset</a>
+        </div>
+    </div>
+    <div id="select4">
+        <div>
+            <a class='reset' href='javascript:select4.filterAll();dc.redrawAll();' style='visibility: hidden;'>
+            reset</a>
+        </div>
+    </div>
+<div style="clear: both"></div>
+<div id="datatable"></div>
+
+<!-- Attempt with example - END -->
 
 <p id="hidden-recipes-search" hidden>{{recipes|safe}}</p>
 <script>
@@ -46,141 +78,273 @@
         for (i in recipesJson) {
             recipesList.push(recipesJson[i]);
         }
-        // console.log('recipesList: ', recipesList);
         
-        makeSearch(recipesList);
+        // // Attempt with example - START
+        // // Placing HTML id
+        // var select1 = dc.selectMenu('#select1');
+        // var select2 = dc.selectMenu('#select2');
+        // var select3 = dc.selectMenu('#select3');
+        // var datatable = dc.dataTable('#datatable');
+        
+        // // create a bunch of crosslinked categorical data
+        // var baseSpirit = []
+        // for (var i =0; i < recipesList.length; i++) {
+        //     baseSpirit.push(recipesList[i]['base_spirit'])
+        // }
+        
+        // var cocktailType = []
+        // for (var i =0; i < recipesList.length; i++) {
+        //     cocktailType.push(recipesList[i]['cocktail_type'])
+        // }
+        
+        // var flavourProfile = []
+        // for (var i =0; i < recipesList.length; i++) {
+        //     flavourProfile.push(recipesList[i]['flavour_profile'])
+        // }
+        
+        // // Creating the dimensions
+        // var ndx = crossfilter(recipesList),
+        // baseSpiritDimension = ndx.dimension(function(d) { return d.baseSpirit; }),
+        // cocktailTypeDimension = ndx.dimension(function(d) { return d.cocktailType; }),
+        // flavourProfileDimension = ndx.dimension(function(d) { return d.flavourProfile; });
+        // recipesDimension = ndx.dimension(function(d) { return d; });
+        
+        // // Creating the selectors
+        // select1
+        //     .dimension(baseSpiritDimension)
+        //     .group(baseSpiritDimension.group())
+        //     .controlsUseVisibility(true);
+        // select2
+        //     .dimension(cocktailTypeDimension)
+        //     .group(cocktailTypeDimension.group())
+        //     .multiple(true)
+        //     .numberVisible(10)
+        //     .controlsUseVisibility(true);
+        // select3.dimension(flavourProfileDimension)
+        //     .group(flavourProfileDimension.group())
+        //     .multiple(true)
+        //     .numberVisible(10)
+        //     .controlsUseVisibility(true);
+        
+        // // Creating the dataTable
+        // datatable
+        //     .dimension(baseSpiritDimension)
+        //     .group(function(d) { return d.baseSpirit; })
+        //     .columns(['Recipe', 'Rating'])
+        //     .size(recipesList.length);
+        
+        // dc.renderAll();
+        
+        // Attempt with example - END
+        
+        // Attempt to get search - START
+        // makeSearch(recipesList);
         
         // Functions to create and activate the search selectors
-        function makeSearch(recipesList) {
-            var ndx = crossfilter(recipesList);
+        // function makeSearch(recipesList) {
+        //     var ndx = crossfilter(recipesList);
             
-            // Calling selector functions
-            spiritSelector(ndx);
-            typeSelector(ndx);
-            flavourSelector(ndx);
-            veganSelector(ndx);
-            recipesTable(ndx);
+        //     // Calling selector functions
+        //     spiritSelector(ndx);
+        //     typeSelector(ndx);
+        //     flavourSelector(ndx);
+        //     veganSelector(ndx);
+        //     recipesTable(ndx);
             
-            dc.renderAll();
+        //     dc.renderAll();
+        // }
+        
+        // function spiritSelector(ndx) {
+        //     var spiritDimension = ndx.dimension(function(d) {
+        //             return d['base_spirit'];
+        //         });
+                
+        //     var spiritGroup = spiritDimension.group();
+            
+        //     dc.selectMenu("#spirit-selector")
+        //         .dimension(spiritDimension)
+        //         .group(spiritGroup);
+        // }
+        
+        // function typeSelector(ndx) {
+        //     var typeDimension = ndx.dimension(function(d) {
+        //             return d['cocktail_type'];
+        //         });
+                
+        //     var typeGroup = typeDimension.group();
+            
+        //     dc.selectMenu("#type-selector")
+        //         .dimension(typeDimension)
+        //         .group(typeGroup);
+        // }
+        
+        // function flavourSelector(ndx) {
+        //     var flavourDimension = ndx.dimension(function(d) {
+        //             return d['flavour_profile'];
+        //         });
+                
+        //     var flavourGroup = flavourDimension.group();
+            
+        //     dc.selectMenu("#flavour-selector")
+        //         .dimension(flavourDimension)
+        //         .group(flavourGroup);
+        // }
+        
+        // function veganSelector(ndx) {
+        //     var veganDimension = ndx.dimension(function(d) {
+        //             return d['is_vegan'];
+        //         });
+                
+        //     var veganGroup = veganDimension.group();
+            
+        //     dc.selectMenu("#vegan-selector")
+        //         .dimension(veganDimension)
+        //         .group(veganGroup);
+        // }
+        
+        // function recipesTable(ndx) {
+        //     var chart = dc.dataTable("#recipes-table");
+        //     // Define dimensions and groups for dataTable - START
+        //     // var recipeDimension = ndx.dimension(function(d) {
+        //     //         return d['recipe_rating'];
+        //     // });
+        //     var recipeDimension = ndx.dimension(dc.pluck("recipe_rating"));
+            
+        //     var recipeGroup = recipeDimension.group();
+            
+        //     // Define dimensions and groups for dataTable - END
+            
+        //     // Update and pagination functionality - START
+        //     // use odd page size to show the effect better
+        //     var ofs = 0, pag = 17;
+        //     function display() {
+        //         d3.select('#begin')
+        //             .text(ofs);
+        //         d3.select('#end')
+        //             .text(ofs+pag-1);
+        //         d3.select('#last')
+        //             .attr('disabled', ofs-pag<0 ? 'true' : null);
+        //         d3.select('#next')
+        //             .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+        //         d3.select('#size').text(ndx.size());
+        //     }
+        //     function update() {
+        //         chart.beginSlice(ofs);
+        //         chart.endSlice(ofs+pag);
+        //         display();
+        //     }
+            
+        //     $("#next").on("click", function() {
+        //         ofs += pag;
+        //         update();
+        //         chart.redraw();
+        //     });
+            
+        //     $("#last").on("click", function(){
+        //         ofs -= pag;
+        //         update();
+        //         chart.redraw();
+        //     });
+            
+            
+        //     // Update and pagination functionality - END
+            
+        //     // Rendering the table - START
+        //     chart
+        //         .width(768)
+        //         .height(480)
+        //         .dimension(recipeDimension)
+        //         .group(recipeGroup)
+        //         .size(Infinity)
+        //         // .columns(['Rating', 'Name'])
+        //         .columns([
+        //             function (d) { return d["recipe_rating"] },
+        //             function (d) { return d["recipe_name"] }
+        //         ])
+        //         .sortBy(function(d) {
+        //             return d["recipe_rating"];
+        //         })
+        //         .order(d3.descending);
+                
+        //     update();
+        //     chart.render();
+        //     // Rendering the table - END
+        // }
+        // Attempt to get search - END
+        
+        // EXPERIMENT - START
+        var select1 = dc.selectMenu('#select1'),
+            select2 = dc.selectMenu('#select2'),
+            select3 = dc.selectMenu('#select3'),
+            select4 = dc.selectMenu('#select4'),
+            datatable = dc.dataTable('#datatable');
+            
+        // create vars for selector
+        var baseSpirits = []
+        for (var i =0; i < recipesList.length; i++) {
+            baseSpirits.push(recipesList[i]['base_spirit'])
+        }
+        var cocktailType = []
+        for (var i =0; i < recipesList.length; i++) {
+            cocktailType.push(recipesList[i]['cocktail_type'])
+        }
+        var flavourProfile = []
+        for (var i =0; i < recipesList.length; i++) {
+            flavourProfile.push(recipesList[i]['flavour_profile'])
+        }
+        var isVegan = []
+        for (var i =0; i < recipesList.length; i++) {
+            isVegan.push(recipesList[i]['is_vegan'])
         }
         
-        function spiritSelector(ndx) {
-            var spiritDimension = ndx.dimension(function(d) {
-                    return d['base_spirit'];
-                });
-                
-            var spiritGroup = spiritDimension.group();
-            
-            dc.selectMenu("#spirit-selector")
-                .dimension(spiritDimension)
-                .group(spiritGroup);
+        // Create vars for table content
+        var recipeName = []
+        for (var i =0; i < recipesList.length; i++) {
+            recipeName.push(recipesList[i]['recipe_name'])
         }
         
-        function typeSelector(ndx) {
-            var typeDimension = ndx.dimension(function(d) {
-                    return d['cocktail_type'];
-                });
-                
-            var typeGroup = typeDimension.group();
-            
-            dc.selectMenu("#type-selector")
-                .dimension(typeDimension)
-                .group(typeGroup);
-        }
         
-        function flavourSelector(ndx) {
-            var flavourDimension = ndx.dimension(function(d) {
-                    return d['flavour_profile'];
-                });
-                
-            var flavourGroup = flavourDimension.group();
-            
-            dc.selectMenu("#flavour-selector")
-                .dimension(flavourDimension)
-                .group(flavourGroup);
-        }
+        // var data = [], SIZE = 500;
+        // function rnd(a) {
+        //   return a[Math.floor(Math.random()*a.length)];
+        // }
+        // for(i = 0; i < SIZE; ++i)
+        //   data.push({letter: rnd(baseSpirits), color: rnd(cocktailType), state: rnd(flavourProfile), isVegan: rnd(isVegan)});
+          
+          
+        var ndx = crossfilter(recipesList),
+            spiritDimension = ndx.dimension(function(d) { return d.base_spirit; }),
+            typeDimension = ndx.dimension(function(d) { return d.cocktail_type; }),
+            flavourDimension = ndx.dimension(function(d) { return d.flavour_profile; }),
+            veganDimension = ndx.dimension(function(d) { return d.is_vegan; }),
+            nameDimension = ndx.dimension(function(d) { return d.recipe_name; });
+        select1
+            .dimension(spiritDimension)
+            .group(spiritDimension.group())
+            .controlsUseVisibility(true);
+        select2
+            .dimension(typeDimension)
+            .group(typeDimension.group())
+            .multiple(true)
+            .numberVisible(10)
+            .controlsUseVisibility(true);
+        select3.dimension(flavourDimension)
+            .group(flavourDimension.group())
+            .multiple(true)
+            .numberVisible(10)
+            .controlsUseVisibility(true);
+        select4
+            .dimension(veganDimension)
+            .group(veganDimension.group())
+            .controlsUseVisibility(true);
+        datatable
+            .dimension(nameDimension)
+            .group(function(d) { return d.recipe_name; })
+            .columns(['Name', 'flavour'])
+            .size(recipesList.length);
+        dc.renderAll();
+        // EXPERIMENT - END
         
-        function veganSelector(ndx) {
-            var veganDimension = ndx.dimension(function(d) {
-                    return d['is_vegan'];
-                });
-                
-            var veganGroup = veganDimension.group();
-            
-            dc.selectMenu("#vegan-selector")
-                .dimension(veganDimension)
-                .group(veganGroup);
-        }
-        
-        function recipesTable(ndx) {
-            var chart = dc.dataTable("#recipes-table");
-            // Define dimensions and groups for dataTable - START
-            // var recipeDimension = ndx.dimension(function(d) {
-            //         return d['recipe_rating'];
-            // });
-            var recipeDimension = ndx.dimension(dc.pluck("recipe_rating"));
-            
-            var recipeGroup = recipeDimension.group();
-            
-            // Define dimensions and groups for dataTable - END
-            
-            // Update and pagination functionality - START
-            // use odd page size to show the effect better
-            var ofs = 0, pag = 17;
-            function display() {
-                d3.select('#begin')
-                    .text(ofs);
-                d3.select('#end')
-                    .text(ofs+pag-1);
-                d3.select('#last')
-                    .attr('disabled', ofs-pag<0 ? 'true' : null);
-                d3.select('#next')
-                    .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
-                d3.select('#size').text(ndx.size());
-            }
-            function update() {
-                chart.beginSlice(ofs);
-                chart.endSlice(ofs+pag);
-                display();
-            }
-            
-            $("#next").on("click", function() {
-                ofs += pag;
-                update();
-                chart.redraw();
-            });
-            
-            $("#last").on("click", function(){
-                ofs -= pag;
-                update();
-                chart.redraw();
-            });
-            
-            
-            // Update and pagination functionality - END
-            
-            // Rendering the table - START
-            chart
-                .width(768)
-                .height(480)
-                .dimension(recipeDimension)
-                .group(recipeGroup)
-                .size(Infinity)
-                // .columns(['Rating', 'Name'])
-                .columns([
-                    function (d) { return d["recipe_rating"] },
-                    function (d) { return d["recipe_name"] }
-                ])
-                .sortBy(function(d) {
-                    return d["recipe_rating"];
-                })
-                .order(d3.descending);
-                
-            update();
-            chart.render();
-            // Rendering the table - END
-        }
-            
     });
 </script>
 {% endblock %}
