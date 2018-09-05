@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row white">
-            <select id="is_vegan" name="is_vegan">
+            <select class="form-select" id="is_vegan" name="is_vegan">
                 <option value="" disabled selected>Is it vegan? (*)</option>
                 {% if recipe['is_vegan'] == 'true' %}
                 <option value="true" selected >Yes</option>
@@ -77,7 +77,7 @@
         </div>
         <div class="row white">
             <div class="input-field col s12">
-                <select id="base_spirit" name="base_spirit">
+                <select class="form-select" id="base_spirit" name="base_spirit">
                     {% for spirit in base_spirit %}
                         {% if spirit.spirit_name == recipe['base_spirit'] %}
                             <option value="{{spirit.spirit_name}}" selected>{{spirit.spirit_name}}</option>
@@ -89,7 +89,7 @@
                 <label>Base Spirit</label>
             </div>
             <div class="input-field col s12">
-                <select id="cocktail_type" name="cocktail_type">
+                <select class="form-select" id="cocktail_type" name="cocktail_type">
                     {% for type in cocktail_type %}
                         {% if type.cocktail_type_name == recipe['cocktail_type'] %}
                             <option value="{{type.cocktail_type_name}}" selected>{{type.cocktail_type_name}}</option>
@@ -101,7 +101,7 @@
                 <label>Cocktail Type</label>
             </div>
             <div class="input-field col s12">
-                <select id="flavour_profile" name="flavour_profile">
+                <select class="form-select" id="flavour_profile" name="flavour_profile">
                     <option value="" disabled selected>Choose Flavour Profile (*)</option>
                     {% for flavour in flavour_profile %}
                         {% if flavour.flavour_profile_name == recipe['flavour_profile'] %}

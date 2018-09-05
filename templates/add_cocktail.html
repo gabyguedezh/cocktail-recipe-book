@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row white">
-            <select id="is_vegan" name="is_vegan" required>
+            <select class="form-select" id="is_vegan" name="is_vegan" required>
                 <option value="" disabled selected>Is it vegan? (*)</option>
                 <option value="true">Yes</option>
                 <option value="false">No</option>
@@ -68,7 +68,7 @@
         </div>
         <div class="row white">
             <div class="input-field col s12">
-                <select id="base_spirit" name="base_spirit" required>
+                <select class="form-select" id="base_spirit" name="base_spirit" required>
                     <option value="" disabled selected>Choose Base Spirit (*)</option>
                     {% for spirit in base_spirit %}
                     <option value="{{spirit.spirit_name}}">{{spirit.spirit_name}}</option>
@@ -77,7 +77,7 @@
                 <label>Base Spirit</label>
             </div>
             <div class="input-field col s12">
-                <select id="cocktail_type" name="cocktail_type" required>
+                <select class="form-select" id="cocktail_type" name="cocktail_type" required>
                     <option value="" disabled selected>Choose Cocktail Type (*)</option>
                     {% for type in cocktail_type %}
                     <option value="{{type.cocktail_type_name}}">{{type.cocktail_type_name}}</option>
@@ -86,7 +86,7 @@
                 <label>Cocktail Type</label>
             </div>
             <div class="input-field col s12">
-                <select id="flavour_profile" name="flavour_profile" required>
+                <select class="form-select" id="flavour_profile" name="flavour_profile" required>
                     <option value="" disabled selected>Choose Flavour Profile (*)</option>
                     {% for flavour in flavour_profile %}
                     <option value="{{flavour.flavour_profile_name}}">{{flavour.flavour_profile_name}}</option>

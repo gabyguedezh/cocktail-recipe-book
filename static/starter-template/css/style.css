@@ -168,6 +168,10 @@ don't overflow their boxes*/
   width: 150px;
 }
 
+#selector-container > div > select {
+    display: block!important;
+}
+
 
 /* FOOTER */
 

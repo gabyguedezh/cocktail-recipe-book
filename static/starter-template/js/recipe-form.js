@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
     
     // Activates the selector on the forms
-    $('select').formSelect();
+    $('.form-select').formSelect();
     var ingredientCount = 1;
     var stepCount = 1;
     
