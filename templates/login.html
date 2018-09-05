@@ -56,6 +56,12 @@
                 }
                 
                 makeDashboard(recipesList);
+                
+                // for (i in recipesList) {
+                //     console.log('looking for the dates: ', recipesList[i]['date_added'])
+                // }
+                
+                // console.log('recipesList: ', recipesList);
                 // Setting up to make dashboard
                 function makeDashboard(recipesList) {
                     
@@ -82,6 +88,7 @@
                     cocktailTypeBar(ndx);
                     flavourProfileChart(ndx);
                     resetButton(ndx);
+                    // showMyRecipesTable(ndx);
                     
                     dc.renderAll();
                 }
@@ -114,7 +121,7 @@
                         let baseSpirit = myRecipesList[i]['base_spirit']
                         mySpirits.push(baseSpirit)
                     }
-                console.log('mySpirits: ', mySpirits);
+                // console.log('mySpirits: ', mySpirits);
 
                 var spiritDimension = ndx.dimension(function(d) {
                     return d['base_spirit'];
@@ -140,7 +147,7 @@
                             let cocktailType = myRecipesList[i]['cocktail_type']
                             myCocktailTypes.push(cocktailType)
                         }
-                    console.log('myCocktailTypes: ', myCocktailTypes);
+                    // console.log('myCocktailTypes: ', myCocktailTypes);
     
                     var cocktailTypeDimension = ndx.dimension(function(d) {
                         return d['cocktail_type'];
@@ -169,7 +176,7 @@
                             let flavourProfile = myRecipesList[i]['flavour_profile']
                             myFlavourProfiles.push(flavourProfile)
                         }
-                    console.log('myFlavourProfiles: ', myFlavourProfiles);
+                    // console.log('myFlavourProfiles: ', myFlavourProfiles);
     
                     var flavourProfileDimension = ndx.dimension(function(d) {
                         return d['flavour_profile'];
@@ -186,7 +193,6 @@
                         .group(flavourProfileGroup)
                         .render();
                 }
-                
             });
         </script>
     {% endif %} {% endblock %}

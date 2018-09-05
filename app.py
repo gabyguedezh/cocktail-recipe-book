@@ -239,7 +239,8 @@ def update_edited_cocktail(recipe_id):
     
     recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
-    return redirect(url_for('get_my_recipes'))
+    # return redirect(url_for('get_my_recipes'))
+    return ('', 204)
 
 
 if __name__ == '__main__':

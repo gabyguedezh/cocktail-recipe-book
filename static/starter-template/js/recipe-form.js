@@ -154,11 +154,16 @@ $(document).ready(function(){
         var recipe_rating = "0";
         // Getting the initial rnumber_of_votes
         var number_of_votes = "0";
+        // Getting the date_added
+        var date_added = new Date(); 
+        // PENDING - Keep the original date of creation even after editing
+        console.log('date_added: ', date_added);
         
         var formData = ['form data includes: ', recipe_name, recipe_url, 
                         recipe_description, recipe_image, is_vegan, 
                         ingredients, steps, base_spirit, cocktail_type,
-                        flavour_profile, author_name, recipe_rating, number_of_votes];
+                        flavour_profile, author_name, recipe_rating, 
+                        number_of_votes, date_added];
         console.log(formData);
         // This will take care of the POST for the add cocktail form
         $.ajax({
@@ -167,7 +172,8 @@ $(document).ready(function(){
             data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
                                 recipe_image, is_vegan, ingredients, steps,
                                 base_spirit, cocktail_type, flavour_profile,
-                                author_name, recipe_rating, number_of_votes}, null, '\t'),
+                                author_name, recipe_rating, number_of_votes,
+                                date_added}, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
