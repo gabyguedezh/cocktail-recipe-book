@@ -1,3 +1,186 @@
 {% extends 'base.html'%} {% block content %}
+<h2 class="art-deco-font">Search for a cocktail</h2>
+<div class="container">
+    <div class="col s3">
+        <h5>Base Spirit</h5>
+        <div id="spirit-selector"></div>
+    </div>
+    <div class="col s3">
+        <h5>Cocktail Type</h5>
+        <div id="type-selector"></div>
+    </div>
+    <div class="col s3">
+        <h5>Flavour Profile</h5>
+        <div id="flavour-selector"></div>
+    </div>
+    <div class="col s3">
+        <h5>Vegan Search</h5>
+        <div id="vegan-selector"></div>
+    </div>
+</div>
+<!-- Getting a table of all the recipes filtered -->
 
-{% endif %}
+<div class="container">
+    <table id="test"></table>
+    <div id="paging">
+        Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+    <input id="last" class="btn" type="Button" value="Last"/>
+    <input id="next" class="btn" type="button" value="Next"/>
+</div>
+
+<!-- End of table -->
+
+<p id="hidden-recipes-search" hidden>{{recipes|safe}}</p>
+<script>
+/*global $*/
+/*global d3*/
+/*global dc*/
+/*global crossfilter*/
+    $(document).ready(function() {
+                
+        var recipesText = $('#hidden-recipes-search').text();
+        var recipesJson = JSON.parse(recipesText);
+        
+        var recipesList = [];
+        
+        for (i in recipesJson) {
+            recipesList.push(recipesJson[i]);
+        }
+        // console.log('recipesList: ', recipesList);
+        
+        makeSearch(recipesList);
+        
+        // Functions to create and activate the search selectors
+        function makeSearch(recipesList) {
+            var ndx = crossfilter(recipesList);
+            
+            // Calling selector functions
+            spiritSelector(ndx);
+            typeSelector(ndx);
+            flavourSelector(ndx);
+            veganSelector(ndx);
+            recipesTable(ndx);
+            
+            dc.renderAll();
+        }
+        
+        function spiritSelector(ndx) {
+            var spiritDimension = ndx.dimension(function(d) {
+                    return d['base_spirit'];
+                });
+                
+            var spiritGroup = spiritDimension.group();
+            
+            dc.selectMenu("#spirit-selector")
+                .dimension(spiritDimension)
+                .group(spiritGroup);
+        }
+        
+        function typeSelector(ndx) {
+            var typeDimension = ndx.dimension(function(d) {
+                    return d['cocktail_type'];
+                });
+                
+            var typeGroup = typeDimension.group();
+            
+            dc.selectMenu("#type-selector")
+                .dimension(typeDimension)
+                .group(typeGroup);
+        }
+        
+        function flavourSelector(ndx) {
+            var flavourDimension = ndx.dimension(function(d) {
+                    return d['flavour_profile'];
+                });
+                
+            var flavourGroup = flavourDimension.group();
+            
+            dc.selectMenu("#flavour-selector")
+                .dimension(flavourDimension)
+                .group(flavourGroup);
+        }
+        
+        function veganSelector(ndx) {
+            var veganDimension = ndx.dimension(function(d) {
+                    return d['is_vegan'];
+                });
+                
+            var veganGroup = veganDimension.group();
+            
+            dc.selectMenu("#vegan-selector")
+                .dimension(veganDimension)
+                .group(veganGroup);
+        }
+        
+        function recipesTable(ndx) {
+            var chart = dc.dataTable("#recipes-table");
+            // Define dimensions and groups for dataTable - START
+            // var recipeDimension = ndx.dimension(function(d) {
+            //         return d['recipe_rating'];
+            // });
+            var recipeDimension = ndx.dimension(dc.pluck("recipe_rating"));
+            
+            var recipeGroup = recipeDimension.group();
+            
+            // Define dimensions and groups for dataTable - END
+            
+            // Update and pagination functionality - START
+            // use odd page size to show the effect better
+            var ofs = 0, pag = 17;
+            function display() {
+                d3.select('#begin')
+                    .text(ofs);
+                d3.select('#end')
+                    .text(ofs+pag-1);
+                d3.select('#last')
+                    .attr('disabled', ofs-pag<0 ? 'true' : null);
+                d3.select('#next')
+                    .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+                d3.select('#size').text(ndx.size());
+            }
+            function update() {
+                chart.beginSlice(ofs);
+                chart.endSlice(ofs+pag);
+                display();
+            }
+            
+            $("#next").on("click", function() {
+                ofs += pag;
+                update();
+                chart.redraw();
+            });
+            
+            $("#last").on("click", function(){
+                ofs -= pag;
+                update();
+                chart.redraw();
+            });
+            
+            
+            // Update and pagination functionality - END
+            
+            // Rendering the table - START
+            chart
+                .width(768)
+                .height(480)
+                .dimension(recipeDimension)
+                .group(recipeGroup)
+                .size(Infinity)
+                // .columns(['Rating', 'Name'])
+                .columns([
+                    function (d) { return d["recipe_rating"] },
+                    function (d) { return d["recipe_name"] }
+                ])
+                .sortBy(function(d) {
+                    return d["recipe_rating"];
+                })
+                .order(d3.descending);
+                
+            update();
+            chart.render();
+            // Rendering the table - END
+        }
+            
+    });
+</script>
+{% endblock %}

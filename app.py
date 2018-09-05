@@ -104,17 +104,6 @@ def get_login():
     This function shows you the login form if you're not logged in, and takes
     you to your dashboard if you are logged in
     """
-    # def get_dashboard_data():
-    #     """
-    #     This function will create a json file to use in my dashboard
-    #     """
-    #     recipes = mongo.db.recipes.find()
-    #     recipes_dict = {}
-    #     for i, recipe in enumerate(recipes):
-    #         recipe.pop('_id', None)
-    #         recipes_dict[i] = recipe
-    #     recipes_dict = json.dumps(recipes_dict)
-    #     return recipes_dict
     
     logged_in = False
     if request.method == 'GET' and not 'username' in session:
@@ -241,6 +230,22 @@ def update_edited_cocktail(recipe_id):
     
     # return redirect(url_for('get_my_recipes'))
     return ('', 204)
+
+
+@app.route('/get_search')
+def get_search():
+    recipes = mongo.db.recipes.find()
+        
+    recipes_dict = {}
+    
+    for i, recipe in enumerate(recipes):
+        recipe.pop('_id', None)
+        recipes_dict[i] = recipe
+    
+    recipes_dict = json.dumps(recipes_dict)
+
+    return render_template('search.html',
+                           recipes=recipes_dict)
 
 
 if __name__ == '__main__':
