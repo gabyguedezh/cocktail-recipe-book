@@ -93,8 +93,12 @@ don't overflow their boxes*/
 }
 
 .card-title-spice > #recipe_name {
-    font-size: 1em!important;
+    font-size: 0.9em!important;
     padding-bottom: 0px;
+    white-space: nowrap; 
+    width: 8em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 
 
