@@ -101,6 +101,17 @@ don't overflow their boxes*/
     text-overflow: ellipsis; 
 }
 
+#load-more-spice {
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+}
+
+#load-more-spice > a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
 
 /* MY RECIPES */
 /* Rating Star Widgets Style */
