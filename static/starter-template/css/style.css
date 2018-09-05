@@ -169,7 +169,7 @@ don't overflow their boxes*/
 }
 
 #selector-container > div > select {
-    display: block!important;
+    display: block;
 }
 
 

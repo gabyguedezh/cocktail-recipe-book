@@ -79,8 +79,19 @@ $(document).ready(function(){
         var recipe_name = $('#recipe_name').val();
         // Getting the recipe url
         var recipe_url = $('#recipe_name').val()
+        // Preparing random string to append -START
+        function makeid() {
+            var randomText = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        
+            for (var i = 0; i < 9; i++)
+                randomText += possible.charAt(Math.floor(Math.random() * possible.length));
+            return randomText;
+        }
+        // Preparing random string to append - END
         recipe_url = recipe_url.replace(/\s+/g, '-').toLowerCase();
-        // console.log('recipe url is: ', recipe_url);
+        recipe_url += makeid();
+        console.log('recipe url is: ', recipe_url);
         // Getting the description
         var recipe_description = $('#recipe_description').val();
         // Getting the image - PENDING REAL IMAGE 
