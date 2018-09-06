@@ -23,6 +23,10 @@ don't overflow their boxes*/
     padding: 0;
 }
 
+.margin-right-xs {
+    margin-right: 1em; 
+}
+
 .my-container {
     min-height: 35em;
 }
@@ -58,6 +62,10 @@ don't overflow their boxes*/
 /* FORMS */
 .float-right {
     float: right;
+}
+
+.form-padding {
+    padding: 1em;
 }
 
 
@@ -114,6 +122,19 @@ don't overflow their boxes*/
 }
 
 /* MY RECIPES */
+
+.add-cocktail-box {
+    margin-top: 2em;
+    padding-bottom: 2em!important;
+}
+
+.add-cocktail-box > a {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
 /* Rating Star Widgets Style */
 .rating-stars form {
   list-style-type:none;

@@ -2,25 +2,25 @@
 <h3 class="art-deco-font mb-3">Edit your Recipe</h3>
 <div class="row">
     <form class="col s12" method="POST" action="{{ url_for('write_to_cocktail_database') }}">
-        <div class="row white">
+        <div class="row white form-padding">
             <div class="input-field col s12">
                 <input value="{{recipe.recipe_name}}" id="recipe_name" name="recipe_name" type="text" class="validate">
                 <label for="recipe_name">Cocktail Name</label>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <div class="input-field col s12">
                 <input value="{{recipe.recipe_description}}" id="recipe_description" name="recipe_description" type="text" class="validate">
                 <label for="recipe_description">Description</label>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <div class="input-field col s12">
                 <input disabled value="Default Image" id="disabled" name="recipe_image" type="text" class="validate">
                 <label for="disabled">Cocktail Image</label>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <select class="form-select" id="is_vegan" name="is_vegan">
                 <option value="" disabled selected>Is it vegan? (*)</option>
                 {% if recipe['is_vegan'] == 'true' %}
@@ -33,7 +33,7 @@
             </select>
             <label>Vegan</label>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <h5>Ingredients:</h5>
             <div id="ingredient-adder">
                 {% for ingredient in recipe.ingredients %}
@@ -54,11 +54,11 @@
                 {% endfor %}
             </div>
             <div class="float-right">
-                <a id="remove-ingredient-btn" class="#b71c1c red darken-4 btn-small">Remove Ingredient <i class="fas fa-minus-circle fa-xs"></i></a>
-                <a id="add-ingredient-btn" class="btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
+                <a id="remove-ingredient-btn" class="#b71c1c red darken-4 btn-small margin-right-xs">Remove Ingredient <i class="fas fa-minus-circle fa-xs"></i></a>
+                <a id="add-ingredient-btn" class="#1b5e20 green darken-4 btn-small">Add Ingredient <i class="fas fa-plus fa-xs"></i></a>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <h5>Steps:</h5>
             <div id="step-adder">
                 {% for step in recipe.steps %}
@@ -71,11 +71,11 @@
                  {% endfor %}
             </div>
             <div class="float-right">
-                <a id="remove-step-btn" class="#b71c1c red darken-4 btn-small">Remove Step <i class="fas fa-minus-circle fa-xs"></i></a>
-                <a id="add-step-btn" class="btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
+                <a id="remove-step-btn" class="#b71c1c red darken-4 btn-small margin-right-xs">Remove Step <i class="fas fa-minus-circle fa-xs"></i></a>
+                <a id="add-step-btn" class="#1b5e20 green darken-4 btn-small">Add Step <i class="fas fa-plus fa-xs"></i></a>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <div class="input-field col s12">
                 <select class="form-select" id="base_spirit" name="base_spirit">
                     {% for spirit in base_spirit %}
@@ -114,16 +114,16 @@
                 <label>Flavour Profile</label>
             </div>
         </div>
-        <div class="row white">
+        <div class="row white form-padding">
             <div class="input-field col s12">
                 <input disabled value="{{session['username']}}" id="author_name" name="author_name" type="text" class="validate">
                 <label for="author_name">Author Name</label>
             </div>
         </div>
-        <a class="btn waves-effect waves-light" name="action" href="/get_my_recipes">
+        <a class="btn waves-effect waves-light margin-right-xs" name="action" href="/get_my_recipes">
             Go Back without Saving <i class="fas fa-arrow-circle-left fa-xs"></i>
         </a>
-        <button id="submit-form-button" class="btn waves-effect waves-light" type="submit" name="action" data-url="{{ url_for('update_edited_cocktail', recipe_id=recipe._id) }}">
+        <button id="submit-form-button" class="#880e4f pink darken-4 btn waves-effect waves-light" type="submit" name="action" data-url="{{ url_for('update_edited_cocktail', recipe_id=recipe._id) }}">
             Save changes <i class="far fa-save fa-xs"></i>
         </button>
     </form>
