@@ -15,31 +15,38 @@
     </div>
 {% endif %} {% if logged_in %}
     <h3 class="art-deco-font">Hi there, {{username}}. Welcome to your Mix and Shake dashboard!</h3>
-    <p>Here, you'll find some insights about your recipes and inspiration to keep mixing!</p>
     <h5>
         You have created <span id="counter-text-my-recipes"></span> recipes!
     </h5>
+    <br>
         <div class="container">
-
-            <div id="counter-box-my-recipes" class="art-deco-font center-align #880e4f pink darken-4">
-                <p class="art-deco-font">Cocktails Shared</p>
+            <div class="row white form-padding">
+                <div id="counter-box-my-recipes" class="art-deco-font center-align #880e4f pink darken-4 col s3 m3">
+                    <p class="art-deco-font">Cocktail Count</p>
+                </div>
+                <h5 class="margin-left mobile-hide col m7 offset-m1">Here, you'll find some insights about your recipes and preferences</h5>
+                <h5 class="margin-left show-on-small hide-on-med-and-up col s8">This is how you mix it</h5>
+                <input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />
             </div>
-            <h5>This is how you mix it</h5>
-            <div>
-            <input id="reset-button" class="btn" type="button" value="Reset all Selections" />
-            <div id='spirit-pie-chart'>
+        </div>
+        <br>
+        <div class="row">
+            <div id='spirit-pie-chart' class="col s12 m6 xl4">
                 <p>Favourite Base Spirits</p>
             </div>
-            <div id='cocktail-type-bar-chart'>
+            <div id='cocktail-type-bar-chart' class="col s12 m6 xl4">
                 <p>Favourite Cocktail Type</p>
             </div>
-            <div id='flavour-profile-chart'>
+            <div id='flavour-profile-chart' class="col s12 m12 xl4">
                 <p>Favourite Flavour Profile</p>
             </div>
         </div>
-        <div id="log-in-buttons">
-            <a href="{{url_for('get_my_recipes')}}" class="waves-effect waves-light btn-small pink darken-4"><i class="fas fa-cocktail"></i>See your Recipes</a>
-            <a href="/get_logout" class="waves-effect waves-light btn-small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+        <br>
+        <div class="row">
+            <div id="log-in-buttons" class="col m6 offset-m3">
+                <a href="{{url_for('get_my_recipes')}}" class="margin-right-xs waves-effect waves-light btn-small pink darken-4"><i class="fas fa-cocktail"></i>See your Recipes</a>
+                <a href="/get_logout" class="waves-effect waves-light btn-small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+            </div>
         </div>
         <p id="hidden-recipes" hidden>{{recipes|safe}}</p>
         <!-- Below, the script containing the dashboard grapshs -->
@@ -124,9 +131,9 @@
                 var spiritGroup = spiritDimension.group();
                 
                 dc.pieChart("#spirit-pie-chart")
-                    .width(300)
-                    .height(400)
-                    .radius(100)
+                    .width(200)
+                    .height(200)
+                    .radius(140)
                     .innerRadius(30)
                     .transitionDuration(500)
                     .minAngleForLabel(0.2)
@@ -150,8 +157,8 @@
                     var cocktailTypeGroup = cocktailTypeDimension.group();
                     
                     dc.barChart('#cocktail-type-bar-chart')
-                        .width(350)
-                        .height(250)
+                        .width(300)
+                        .height(200)
                         .margins({top: 10, right: 50, bottom: 30, left: 50})
                         .dimension(cocktailTypeDimension)
                         .group(cocktailTypeGroup)
@@ -179,8 +186,8 @@
                     var flavourProfileGroup = flavourProfileDimension.group();
                     
                     dc.rowChart("#flavour-profile-chart")
-                        .width(768)
-                        .height(480)
+                        .width(400)
+                        .height(200)
                         .x(d3.scale.ordinal())
                         .elasticX(true)
                         .dimension(flavourProfileDimension)

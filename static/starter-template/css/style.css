@@ -167,10 +167,10 @@ don't overflow their boxes*/
 
 /* My Dashboard */
 
-#log-in-buttons {
-    position: relative;
-    bottom: -12em;
-}
+/*#log-in-buttons {*/
+    /*position: relative;*/
+    /*bottom: -12em;*/
+/*}*/
 
 #counter-box-my-recipes {
     width: 8em;
@@ -186,6 +186,15 @@ don't overflow their boxes*/
     font-size: 1.4em;
     margin-bottom: 0;
 }
+
+#reset-button {
+    margin-top: 1.3em;
+}
+
+.margin-left {
+    margin-left: 1em;
+}
+
 
 
 /* SEARCH */
@@ -232,5 +241,20 @@ don't overflow their boxes*/
 @media (max-width:415px) {
     .mobile-hide {
         display: none!important;
+    }
+    
+    #counter-box-my-recipes {
+    width: 6em;
+    height: 6em;
+    color: white;
+    }
+
+    #counter-box-my-recipes > .number-display {
+        font-size: 2.5em;
+    }
+    
+    #counter-box-my-recipes > p {
+        font-size: 1em;
+        margin-bottom: 0;
     }
 }
