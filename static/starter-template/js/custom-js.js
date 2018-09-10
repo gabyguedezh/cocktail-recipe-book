@@ -90,4 +90,5 @@ $(document).ready(function() {
         $('.success-box').fadeIn(200);
         $('.success-box p.text-message').html("<span>" + msg + "</span>");
     }
+
 });

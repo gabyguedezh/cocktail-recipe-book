@@ -23,15 +23,15 @@
     </div>
     <h2 class="art-deco-font">Featured Cocktails</h2>
 </div>
-<div class="row">
-    {% for recipe in recipes %} {% if loop.index
-    < 5 %} <div class="col s12 m6">
+<div class="row featured-recipes">
+    {% for recipe in recipes %} {% if loop.index < 5 %}
+    <div class="featured-recipe col s12 m6" data-rating="{{recipe.average_rating}}">
         <div class="card horizontal">
             <div class="card-image">
                 <img src="{{recipe.recipe_image}}">
             </div>
             <div class="card-stacked">
-                <h5>{{recipe.recipe_name}}</h5>
+                <h5 id="card-horizontal-title" class="art-deco-font">{{recipe.recipe_name}}</h5>
                 <div class="card-content class-size">
                     <p id="description">{{recipe.recipe_description}}</p>
                 </div>
@@ -40,8 +40,8 @@
                 </div>
             </div>
         </div>
-</div>
-{% endif %} {% endfor %}
+    </div>
+    {% endif %} {% endfor %}
 </div>
 <div class="row">
     <div class="col s12">
@@ -52,4 +52,30 @@
         </div>
     </div>
 </div>
+
+<!-- Below, the script containing the sorting of the featured recipes -->
+// <script>
+//     $(document).ready(function() {
+        
+//         var sortableRating = $('.featured-recipe').each(function() {
+//           console.log('ratings: ', $(this).data('rating')); 
+//         });
+        
+//         sortableRating.sort();
+        
+//         console.log('sortableRating: ', sortableRating);
+        
+        
+        
+//         // function sortUsingNestedText(parent, childSelector, keySelector) {
+//         //     var items = parent.children(childSelector).sort(function(a, b) {
+//         //         var vA = $(keySelector, a).text();
+//         //         var vB = $(keySelector, b).text();
+//         //         return (vA < vB) ? -1 : (vA > vB) ? 1 : 0;
+//         //     });
+//         //     parent.append(items);
+//         // }
+//         // sortUsingNestedText($('.featured-recipes'), "div", "div.data_rating");
+//     });
+// </script>
 {% endblock %}

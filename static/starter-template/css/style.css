@@ -59,6 +59,11 @@ don't overflow their boxes*/
     background-image: url('/static/images/mojito.jpg')
 }
 
+#card-horizontal-title {
+    margin-left: 1em;
+}
+
+
 /* FORMS */
 .float-right {
     float: right;
@@ -215,6 +220,10 @@ don't overflow their boxes*/
 
 #selector-container > div > select {
     display: block;
+}
+
+.search-selector {
+    display: inline-block;
 }
 
 

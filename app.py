@@ -28,8 +28,7 @@ mongo = PyMongo(app)
 @app.route('/get_home')
 def get_home():
     return render_template('index.html',
-                           recipes=mongo.db.recipes.find())
-
+                          recipes = mongo.db.recipes.find())
 
 @app.route('/get_cocktails')
 def get_cocktails():
@@ -55,11 +54,11 @@ def show_cocktail(recipe_url):
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
-            recipe_rating = recipe['recipe_rating']
-            print('recipe_rating when method is GET: ', recipe_rating)
+            average_rating = recipe['average_rating']
+            print('average_rating when method is GET: ', average_rating)
         
     return render_template('show_cocktail.html',
-                           recipe_rating=recipe_rating,
+                           average_rating=average_rating,
                            recipe = cocktail)
 
 
@@ -76,7 +75,7 @@ def update_recipe_rating(recipe_id):
     number_of_votes = int(this_recipe['number_of_votes'])
     print('number_of_votes is: ', number_of_votes)
     
-    initial_recipe_rating = int(this_recipe['recipe_rating'])
+    initial_recipe_rating = int(this_recipe['average_rating'])
     print('initial recipe rating is: ',  initial_recipe_rating)
     
     latest_recipe_rating = int(request.json['recipe_rating'])
@@ -91,7 +90,7 @@ def update_recipe_rating(recipe_id):
     
     this_recipe['number_of_votes'] = str(number_of_votes + 1)
     
-    this_recipe['recipe_rating'] = average_rating
+    this_recipe['average_rating'] = average_rating
     
     recipes.update({'_id': ObjectId(recipe_id)}, this_recipe)
     
