@@ -226,6 +226,14 @@ don't overflow their boxes*/
     display: inline-block;
 }
 
+.search-selector > p {
+    font-size: 2em;
+}
+
+#teal-box {
+    height: 100px;
+}
+
 
 /* FOOTER */
 
