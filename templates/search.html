@@ -101,8 +101,10 @@
             .controlsUseVisibility(true);
         datatable
             .dimension(nameDimension)
-            .group(function(d) { return d.recipe_name; })
-            .columns(['Name', 'flavour'])
+            .group(function(d) { 
+                return ['<a href="' + 'show_cocktail/' + d.recipe_url + '">' + '<strong>' + d.recipe_name + '</strong>' + '</a>' + ': ' + d.recipe_description]; 
+            })
+            .columns(['# Cocktails Found'])
             .size(recipesList.length);
             
         dc.renderAll();
