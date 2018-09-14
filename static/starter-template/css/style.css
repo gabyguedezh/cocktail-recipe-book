@@ -141,31 +141,33 @@ don't overflow their boxes*/
 }
 
 /* Rating Star Widgets Style */
-.rating-stars form {
+.rating-stars div {
   list-style-type:none;
   padding:0;
   
   -moz-user-select:none;
   -webkit-user-select:none;
 }
-.rating-stars form > button.star {
+.rating-stars div > button.star {
   display:inline-block;
+  background-color: transparent;
+  border: none;
   
 }
 
 /* Idle State of the stars */
-.rating-stars form > button.star > i.fa {
+.rating-stars div > button.star > i.fa {
   font-size:1em; /* Change the size of the stars */
   color:#999999; /* Color on idle state */
 }
 
 /* Hover state of the stars */
-.rating-stars form > button.star.hover > i.fa {
+.rating-stars div > button.star.hover > i.fa {
   color:#ff4da6;
 }
 
 /* Selected state of the stars */
-.rating-stars form > button.star.selected > i.fa {
+.rating-stars div > button.star.selected > i.fa {
   color:#800040;
 }
 

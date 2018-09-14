@@ -17,7 +17,6 @@
     </div>
 <!--<div style="clear: both"></div>-->
 <div id="datatable"></div>
-
 <!-- Attempt with example - END -->
 
 <p id="hidden-recipes-search" hidden>{{recipes|safe}}</p>
@@ -42,6 +41,7 @@
             select2 = dc.selectMenu('#select2'),
             select3 = dc.selectMenu('#select3'),
             select4 = dc.selectMenu('#select4'),
+            // numberDisplay = dc.numberDisplay('#found-recipes');
             datatable = dc.dataTable('#datatable');
             
         // Fixing the selector classes - START
@@ -104,12 +104,19 @@
             .group(function(d) { 
                 return ['<a href="' + 'show_cocktail/' + d.recipe_url + '">' + '<strong>' + d.recipe_name + '</strong>' + '</a>' + ': ' + d.recipe_description]; 
             })
-            .columns(['# Cocktails Found'])
+            .columns([recipesList.length + ' Cocktails Found'])
             .size(recipesList.length);
             
+        
         dc.renderAll();
         // Getting search - END
         
+        // Create number display for total searches - START
+        var cocktailsFound = $( 'td' ).length;
+        
+        console.log('cocktailsFound: ', cocktailsFound);
+        
+        // Create number display for total searches - END
     });
 </script>
 {% endblock %}
