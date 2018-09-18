@@ -157,6 +157,22 @@ don't overflow their boxes*/
     width: 40%;
 }
 
+#top-collection-item {
+    padding-top: 2em!important;
+}
+
+#bottom-collection-item {
+    padding-bottom: 1px!important;
+}
+
+#my-recipe-name {
+    font-size: 2em;
+}
+
+#my-recpe-description {
+    margin-top: 1em;
+}
+
 /* Rating Star Widgets Style */
 .rating-stars div {
   list-style-type:none;

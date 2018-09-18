@@ -20,19 +20,25 @@
 {% for recipe in recipes %} {% if recipe.author_name == username %}
 <!-- Trying out a collection display-->
 <ul class="collection">
-    <li class="collection-item avatar">
+    <li class="collection-item avatar" id="top-collection-item">
         <img src="{{recipe.recipe_image}}" alt="" class="circle">
-        <span class="title"><strong>{{recipe.recipe_name}}</strong></span>
-        <p>{{recipe.recipe_description}}</p>
-        <span>Base Spirit: {{recipe.base_spirit}}</span>
-        <span>Cocktail Type: {{recipe.cocktail_type}}</span>
-        <span>Flavour Profile: {{recipe.flavour_profile}}</span>
-
-        <a href="#!" class="secondary-content">
-            Rating here
-        </a>
+        <span id="my-recipe-name" class="title art-deco-font"><strong>{{recipe.recipe_name}}</strong></span>
+        <p id="my-recpe-description">{{recipe.recipe_description}}</p>
+        <span><strong>Base Spirit:</strong> {{recipe.base_spirit}} |</span>
+        <span><strong>Cocktail Type:</strong> {{recipe.cocktail_type}} |</span>
+        <span><strong>Flavour Profile:</strong> {{recipe.flavour_profile}}</span>
+        
+        {% if recipe.average_rating != '0' %}
+        <p class="secondary-content">
+            Average Rating: {{recipe.average_rating}}/5
+        </p>
+        {% else %}
+        <p href="#!" class="secondary-content">
+            Average Rating: No Votes Yet
+        </p>
+        {% endif %}
     </li>
-    <li class="collection-item">
+    <li class="collection-item" id="bottom-collection-item">
         <div class="row">
             <div class="col s3 art-deco-font"><a href="/show_cocktail/{{ recipe.recipe_url }}" class="secondary-content"><i class="fas fa-cocktail"></i> Go to Recipe</a></div>
             <div class="col s3 art-deco-font"><a href="/get_edit_cocktail_form/{{ recipe._id }}" class="secondary-content"><i class="far fa-edit"></i> Edit</a></div>
