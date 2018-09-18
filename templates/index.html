@@ -55,27 +55,21 @@
 
 <!-- Below, the script containing the sorting of the featured recipes -->
 // <script>
-//     $(document).ready(function() {
+    $(document).ready(function() {
         
-//         var sortableRating = $('.featured-recipe').each(function() {
-//           console.log('ratings: ', $(this).data('rating')); 
-//         });
+        var recipeRating = $('.featured-recipe').each(function() {
+            console.log('recipe ratings: ', $(this).data('rating')); 
+        });
         
-//         sortableRating.sort();
+        // Trying pen - START
+        $(function() {
+            $(".featured-recipe").sort(sort_li).appendTo('.featured-recipes');
+            function sort_li(a, b) {
+                return ($(b).data('rating')) < ($(a).data('rating')) ? 1 : -1;
+            }
+        });
+        // Trying pen - END
         
-//         console.log('sortableRating: ', sortableRating);
-        
-        
-        
-//         // function sortUsingNestedText(parent, childSelector, keySelector) {
-//         //     var items = parent.children(childSelector).sort(function(a, b) {
-//         //         var vA = $(keySelector, a).text();
-//         //         var vB = $(keySelector, b).text();
-//         //         return (vA < vB) ? -1 : (vA > vB) ? 1 : 0;
-//         //     });
-//         //     parent.append(items);
-//         // }
-//         // sortUsingNestedText($('.featured-recipes'), "div", "div.data_rating");
-//     });
+    });
 // </script>
 {% endblock %}

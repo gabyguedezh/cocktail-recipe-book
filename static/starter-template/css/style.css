@@ -241,6 +241,10 @@ don't overflow their boxes*/
     margin-bottom: 1em;
 }
 
+#datatable {
+    margin-bottom: 2em;
+}
+
 /* FOOTER */
 
 #footer-custom {
