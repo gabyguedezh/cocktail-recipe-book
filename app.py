@@ -84,7 +84,7 @@ def update_recipe_rating(recipe_id):
     # Calculating average
     
     average_rating = ((initial_recipe_rating * number_of_votes) + latest_recipe_rating) / (number_of_votes + 1)
-    average_rating = round(average_rating, 1)
+    average_rating = round(average_rating, 2)
     
     print('average_rating is: ', average_rating)
     

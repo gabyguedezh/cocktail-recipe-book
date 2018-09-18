@@ -173,6 +173,23 @@ don't overflow their boxes*/
     margin-top: 1em;
 }
 
+#sorting-bar-my-recipes {
+    width: 100%;
+}
+
+#sorting-bar-my-recipes > h4 {
+    color: white;
+}
+
+
+#sorting-bar-my-recipes > a {
+    color: #00695c;
+    margin-top: 1.5em;
+    /*width: 25%*/
+    margin-right: 0.5em;
+}
+
+
 /* Rating Star Widgets Style */
 .rating-stars div {
   list-style-type:none;
