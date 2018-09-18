@@ -138,6 +138,9 @@ don't overflow their boxes*/
 
 #sorting-bar > a {
     color: #00695c;
+    margin-top: 1.5em;
+    /*width: 25%*/
+    margin-right: 0.5em;
 }
 
 /* MY RECIPES */
