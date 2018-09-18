@@ -126,6 +126,17 @@ don't overflow their boxes*/
     width: 40%;
 }
 
+#sorting-bar {
+    margin: 0.8em;
+    height: 5em;
+}
+
+#sorting-bar > h4 {
+    position: absolute;
+    margin-left: 1em;
+    color: white;
+}
+
 /* MY RECIPES */
 
 .add-cocktail-box {
