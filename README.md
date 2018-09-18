@@ -77,6 +77,7 @@ In addition, if it is not obvious, you should also describe how to run your code
 - [Text Shadow Generator](https://css3gen.com/text-shadow/)
 - For load More cocktail cards, I used "Load more content with jQuery", a [PEN BY Mahmoud Elmahdi](https://codepen.io/elmahdim/pen/sGkvH)
 - For the makeid() function, I used this [snippet from StackOverflow](https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript) 
+- For the sorting of the Featured Recipes in my index.html page, I used a [snippet by Rohan Kumar as seen on Stack Overflow](https://stackoverflow.com/questions/21600802/jquery-sort-list-based-on-data-attribute-value/21600865)
 
 ### Media
 - The photos used in this site were obtained from ...

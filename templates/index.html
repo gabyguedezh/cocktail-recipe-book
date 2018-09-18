@@ -48,28 +48,28 @@
         <div class="icon-block">
             <h2 class="center brown-text"><i class="fas fa-cocktail mobile-hide"></i></h2>
             <h4 class="center art-deco-font">Fancy More Mixing and Shaking?</h4>
-            <p class="light">Sign up or login to add your recipes and save your favourites or search our delicious menu with ideas for any occasion!</p>
+            <p class="light"><strong><a href="{{url_for('get_login')}}">Login</a> to add your recipes and save your favourites or <a href="{{url_for('get_search')}}">search</a> our delicious menu with ideas for any occasion!</strong></p>
         </div>
     </div>
 </div>
 
 <!-- Below, the script containing the sorting of the featured recipes -->
-// <script>
+<script>
     $(document).ready(function() {
         
         var recipeRating = $('.featured-recipe').each(function() {
             console.log('recipe ratings: ', $(this).data('rating')); 
         });
         
-        // Trying pen - START
+        // Sorting - START
         $(function() {
-            $(".featured-recipe").sort(sort_li).appendTo('.featured-recipes');
-            function sort_li(a, b) {
+            $(".featured-recipe").sort(sort_recipes).appendTo('.featured-recipes');
+            function sort_recipes(a, b) {
                 return ($(b).data('rating')) < ($(a).data('rating')) ? -1 : 1;
             }
         });
-        // Trying pen - END
+        // Sorting pen - END
         
     });
-// </script>
+</script>
 {% endblock %}
