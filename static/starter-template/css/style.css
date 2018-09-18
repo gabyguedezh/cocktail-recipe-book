@@ -132,9 +132,12 @@ don't overflow their boxes*/
 }
 
 #sorting-bar > h4 {
-    position: absolute;
-    margin-left: 1em;
     color: white;
+}
+
+
+#sorting-bar > a {
+    color: #00695c;
 }
 
 /* MY RECIPES */
