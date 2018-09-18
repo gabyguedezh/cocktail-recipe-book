@@ -6,7 +6,7 @@
 </div>
 <div id="recipe-cards" class="row">
     {% for recipe in recipes %}
-        <div class="col s12 m4 l3 recipe-card" id="cocktail-card" data-rating="{{recipe.average_rating}}">
+        <div class="col s12 m4 l3 recipe-card" id="cocktail-card" data-rating="{{recipe.average_rating}}" data-date="{{recipe.date_added}}">
             <div class="card">
                 <div class="card-image">
                     <img src="{{recipe.recipe_image}}">
@@ -32,14 +32,23 @@
 <script>
     $(document).ready(function() {
         
-        // Sorting - START
-         $("#sort-by-rating-button").on("click", function() {
+        // Sorting by rating - START
+        $("#sort-by-rating-button").on("click", function() {
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
             function sort_recipes(a, b) {
                 return ($(b).data('rating')) < ($(a).data('rating')) ? -1 : 1;
             }
         });
-        // Sorting pen - END
+        // Sorting by rating - END
+        
+        // Sorting by date - START
+        $("#sort-by-date-button").on("click", function() {
+            $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
+            function sort_recipes(a, b) {
+                return ($(b).data('date')) < ($(a).data('date')) ? -1 : 1;
+            }
+        });
+        // Sorting by date - END
         
     });
 </script>
