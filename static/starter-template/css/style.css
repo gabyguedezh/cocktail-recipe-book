@@ -236,6 +236,10 @@ don't overflow their boxes*/
     height: 100px;
 }
 
+#cocktails-found {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 /* FOOTER */
 

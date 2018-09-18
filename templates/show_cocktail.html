@@ -2,7 +2,7 @@
 <!--<p>A specific cocktail recipe you want to see</p>-->
 <div class="col s12">
     <div class="icon-block">
-        <h2 class="brown-text">{{recipe.recipe_name}}</h2>
+        <h2 class="brown-text art-deco-font">{{recipe.recipe_name}}</h2>
     </div>
 </div>
 <div class="row">
@@ -83,7 +83,7 @@
     </div>
 </div>
 <div class="row">
-    <h5>Ingredients:</h5>
+    <h5 class="art-deco-font">Ingredients:</h5>
         <ul>
             {% for ingredient in recipe.ingredients %}
                 <li>
@@ -95,7 +95,7 @@
         </ul>
         
         
-    <h5>Steps:</h5>
+    <h5 class="art-deco-font">Steps:</h5>
         <ol>
             {% for step in recipe.steps %}
                 <li>

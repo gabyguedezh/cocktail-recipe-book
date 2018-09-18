@@ -16,6 +16,7 @@
         <p class="no-margin  art-deco-font">Vegan Filter</p>
     </div>
 <!--<div style="clear: both"></div>-->
+<div id="cocktails-found"><strong><span></span> Cocktails Found</strong></div>
 <div id="datatable"></div>
 <!-- Attempt with example - END -->
 
@@ -73,6 +74,7 @@
             recipeName.push(recipesList[i]['recipe_name'])
         }
         
+        
         var ndx = crossfilter(recipesList),
             spiritDimension = ndx.dimension(function(d) { return d.base_spirit; }),
             typeDimension = ndx.dimension(function(d) { return d.cocktail_type; }),
@@ -104,19 +106,29 @@
             .group(function(d) { 
                 return ['<a href="' + 'show_cocktail/' + d.recipe_url + '">' + '<strong>' + d.recipe_name + '</strong>' + '</a>' + ': ' + d.recipe_description]; 
             })
-            .columns([recipesList.length + ' Cocktails Found'])
+            // .columns([' Cocktails Found'])
             .size(recipesList.length);
             
+        
+        // Calculate cocktails found - START
+        cocktailsFound = '';
+        $('.search-selector').on('change', function() {
+            // I count the amount of 'td' to get the total of cocktails found
+            cocktailsFound = $( 'td' ).length;
+            
+            console.log('cocktailsFound: ', cocktailsFound);
+            $('#cocktails-found span').empty().prepend(cocktailsFound);
+            
+        });
+        
+        // Calculate cocktails found - END
         
         dc.renderAll();
         // Getting search - END
         
-        // Create number display for total searches - START
-        var cocktailsFound = $( 'td' ).length;
+
         
-        console.log('cocktailsFound: ', cocktailsFound);
-        
-        // Create number display for total searches - END
+
     });
 </script>
 {% endblock %}
