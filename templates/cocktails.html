@@ -31,6 +31,23 @@
 <!-- Below, the script containing the sorting options for the recipes -->
 <script>
     $(document).ready(function() {
+    
+        // Load More button - START
+        $(function() {
+            $(".recipe-card").slice(0, 8).show();
+            $("#loadMore").on('click', function(e) {
+                e.preventDefault();
+                $(".recipe-card:hidden").slice(0, 4).slideDown();
+                if ($(".recipe-card:hidden").length == 0) {
+                    $("#load").fadeOut('slow');
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+            });
+        });
+        
+        // Load more button - END
         
         // Sorting by rating - START
         $("#sort-by-rating-button").on("click", function() {

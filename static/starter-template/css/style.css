@@ -86,7 +86,7 @@ don't overflow their boxes*/
     text-overflow: ellipsis;
 }
 
-.cocktail-card {
+.recipe-card {
     display:none;
 }
 

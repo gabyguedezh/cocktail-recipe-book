@@ -1,27 +1,5 @@
 $(document).ready(function() {
 
-    // Load More button - START
-    $(function() {
-        $(".cocktail-card").slice(0, 8).show();
-        $("#loadMore").on('click', function(e) {
-            e.preventDefault();
-            $(".cocktail-card:hidden").slice(0, 4).slideDown();
-            if ($(".cocktail-card:hidden").length == 0) {
-                $("#load").fadeOut('slow');
-            }
-            $('html,body').animate({
-                scrollTop: $(this).offset().top
-            }, 1500);
-        });
-    });
-    
-    // Load more button - END
-    
-    // https://codepen.io/elmahdim/pen/sGkvH
-    // http://jsfiddle.net/brynner/QDttv/
-    // https://stackoverflow.com/questions/14035180/jquery-load-more-data-on-scroll
-    // https://www.w3schools.com/xml/ajax_intro.asp
-    
     // Rating Stars Functionality and POST
     /* 1. Visualizing things on Hover - See next part for action on click */
     $('#stars button').on('mouseover', function() {
