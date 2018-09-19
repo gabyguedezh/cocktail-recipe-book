@@ -32,13 +32,13 @@
         <br>
         <div class="row">
             <div id='spirit-pie-chart' class="col s12 m6 xl4">
-                <p>Favourite Base Spirits</p>
+                <h4 class="art-deco-font">Favourite Base Spirits</h4>
             </div>
             <div id='cocktail-type-bar-chart' class="col s12 m6 xl4">
-                <p>Favourite Cocktail Type</p>
+                <h4 class="art-deco-font">Favourite Cocktail Type</h4>
             </div>
             <div id='flavour-profile-chart' class="col s12 m12 xl4">
-                <p>Favourite Flavour Profile</p>
+                <h4 class="art-deco-font">Favourite Flavour Profile</h4>
             </div>
         </div>
         <br>
@@ -137,6 +137,10 @@
                     .innerRadius(30)
                     .transitionDuration(500)
                     .minAngleForLabel(0.2)
+                    .colorAccessor(function (d) {
+                        return d.key;
+                    })
+                    .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
                     .dimension(spiritDimension)
                     .group(spiritGroup);
                 }
@@ -160,6 +164,10 @@
                         .width(300)
                         .height(200)
                         .margins({top: 10, right: 50, bottom: 30, left: 50})
+                        .colorAccessor(function (d) {
+                            return d.key;
+                          })
+                        .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
                         .dimension(cocktailTypeDimension)
                         .group(cocktailTypeGroup)
                         .transitionDuration(500)
@@ -190,6 +198,10 @@
                         .height(200)
                         .x(d3.scale.ordinal())
                         .elasticX(true)
+                        .colorAccessor(function (d) {
+                            return d.key;
+                          })
+                        .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
                         .dimension(flavourProfileDimension)
                         .group(flavourProfileGroup)
                         .render();

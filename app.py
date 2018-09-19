@@ -51,22 +51,31 @@ def show_cocktail(recipe_url):
     print(recipes)
     print('*************************')
 
-# datetime_object = datetime.strptime('Jun 1 2005  1:33PM', '%b %d %Y %I:%M%p')
-
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
             average_rating = recipe['average_rating']
-            date_added = recipe['date_added']
-            print(recipe['date_added'])
             date_added = datetime.strptime(recipe['date_added'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
+
+            if request.method == 'GET':
+                print('its a get!')
+                
+                number_of_views = int(recipe['number_of_views'])
+                print('number_of_views: ', number_of_views)
+                number_of_views += 1
+                # recipe.update({'_id': ObjectId(recipe_id)})
+                print('number_of_views: ', number_of_views)
+                
+                
             print('average_rating when method is GET: ', average_rating)
             print('date_added:', date_added)
+            print('number_of_views: ', number_of_views)
         
     return render_template('show_cocktail.html',
                            average_rating=average_rating,
                            recipe=cocktail,
-                           date_added=date_added)
+                           date_added=date_added,
+                           number_of_views=number_of_views)
 
 
 @app.route('/update_recipe_rating/<recipe_id>', methods=['POST'])
@@ -234,7 +243,6 @@ def update_edited_cocktail(recipe_id):
     
     recipes.update({'_id': ObjectId(recipe_id)}, request.json)
     
-    # return redirect(url_for('get_my_recipes'))
     return ('', 204)
 
 
