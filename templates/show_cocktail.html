@@ -18,12 +18,7 @@
         <section class='rating-widget'>
             <!-- Rating Stars Box -->
             <!-- PENDING - It currently lets you vote as many times as you want -->
-            {% if recipe.average_rating %}
-                <p>Click on the stars to add or change your rating.</p>
-            {% else %}
-                <p class="hidden">You've rated this recipe. Click on the stars to add or change your rating.</p>
-                <p>Rate this recipe:</p>
-            {% endif %}
+            <p>Click on the stars to add or change your rating.</p>
             <div class='rating-stars text-center'>
                 <div id='stars'>
                     {% if recipe.average_rating | int >= 1 %}
@@ -93,8 +88,6 @@
                 </li>
             {% endfor %}
         </ul>
-        
-        
     <h5 class="art-deco-font">Steps:</h5>
         <ol>
             {% for step in recipe.steps %}
@@ -103,6 +96,7 @@
                 </li>
             {% endfor %}
         </ol>
+    <p>Recipe added on: <em>{{date_added}}</em></p>
     <p>Recipe by <em>{{recipe.author_name}}</em></p>
 </div>
 {% endblock %}

@@ -5,7 +5,7 @@ import pymongo
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import json
-from datetime import timedelta
+from datetime import datetime
 from functools import update_wrapper
 
 
@@ -50,16 +50,23 @@ def show_cocktail(recipe_url):
     
     print(recipes)
     print('*************************')
-    
+
+# datetime_object = datetime.strptime('Jun 1 2005  1:33PM', '%b %d %Y %I:%M%p')
+
     for recipe in recipes:
         if recipe['recipe_url'] == recipe_url:
             cocktail = recipe
             average_rating = recipe['average_rating']
+            date_added = recipe['date_added']
+            print(recipe['date_added'])
+            date_added = datetime.strptime(recipe['date_added'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
             print('average_rating when method is GET: ', average_rating)
+            print('date_added:', date_added)
         
     return render_template('show_cocktail.html',
                            average_rating=average_rating,
-                           recipe = cocktail)
+                           recipe=cocktail,
+                           date_added=date_added)
 
 
 @app.route('/update_recipe_rating/<recipe_id>', methods=['POST'])
