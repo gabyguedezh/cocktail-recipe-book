@@ -33,13 +33,26 @@
     $(document).ready(function() {
         
         var totalRecipes = $(".recipe-card").length
-        
+
         // Show only the first eight recipes - START
         $(function() {
             $(".recipe-card").slice(0, 7).show();
             $(".recipe-card").slice(8, totalRecipes).hide();
         });
         // Show only the first eight recipes - END
+        
+        // Counting the number of recipes shown at a given time - START
+        var visibleRecipes = 0
+        checkVisible = function() {
+            $(".recipe-card").each(function() {
+                if ($(this).is(':visible') == true ) {
+                    visibleRecipes += 1;
+                }
+            });
+            console.log('visibleRecipes', visibleRecipes);
+        };
+        // Counting the number of recipes shown at a given time - END
+
         
         // Load More button - START
         $(function() {
@@ -53,30 +66,38 @@
                 $('html,body').animate({
                     scrollTop: $(this).offset().top
                 }, 1500);
+                checkVisible();
+                visibleRecipes = 0;
             });
         });
         
         // Load more button - END
         
+        
         // Sorting by rating - START
         $("#sort-by-rating-button").on("click", function() {
             
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
+            $(".recipe-card").slice(0, totalRecipes).show();
+            $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
+            $(".recipe-card").slice(visibleRecipes, totalRecipes).hide();
             function sort_recipes(a, b) {
                 return ($(b).data('rating')) < ($(a).data('rating')) ? -1 : 1;
             }
+            visibleRecipes = 0;
         });
         // Sorting by rating - END
         
         // Sorting by date - START
         $("#sort-by-date-button").on("click", function() {
-            console.log('totalRecipes:', totalRecipes);
+            checkVisible();
             $(".recipe-card").slice(0, totalRecipes).show();
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
-            $(".recipe-card").slice(8, totalRecipes).hide();
+            $(".recipe-card").slice(visibleRecipes, totalRecipes).hide();
             function sort_recipes(a, b) {
                 return ($(b).data('date')) < ($(a).data('date')) ? -1 : 1;
             }
+            visibleRecipes = 0;
         });
         // Sorting by date - END
         

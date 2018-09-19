@@ -86,9 +86,6 @@ don't overflow their boxes*/
     text-overflow: ellipsis;
 }
 
-/*.recipe-card {*/
-/*    display:none;*/
-/*}*/
 
 .card-title-spice {
     background-color: rgba(136, 14, 79, 0.7);
