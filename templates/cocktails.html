@@ -77,7 +77,7 @@
         // Sorting by rating - START
         $("#sort-by-rating-button").on("click", function() {
             
-            $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
+            checkVisible();
             $(".recipe-card").slice(0, totalRecipes).show();
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
             $(".recipe-card").slice(visibleRecipes, totalRecipes).hide();
