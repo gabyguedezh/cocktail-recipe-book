@@ -6,7 +6,7 @@
 </div>
 <div id="recipe-cards" class="row">
     {% for recipe in recipes %}
-        <div class="col s12 m4 l3 recipe-card" id="cocktail-card" data-rating="{{recipe.average_rating}}" data-date="{{recipe.date_added}}">
+        <div class="col s12 m4 l3 recipe-card" data-rating="{{recipe.average_rating}}" data-date="{{recipe.date_added}}">
             <div class="card">
                 <div class="card-image">
                     <img src="{{recipe.recipe_image}}">
@@ -31,15 +31,24 @@
 <!-- Below, the script containing the sorting options for the recipes -->
 <script>
     $(document).ready(function() {
-    
+        
+        var totalRecipes = $(".recipe-card").length
+        
+        // Show only the first eight recipes - START
+        $(function() {
+            $(".recipe-card").slice(0, 7).show();
+            $(".recipe-card").slice(8, totalRecipes).hide();
+        });
+        // Show only the first eight recipes - END
+        
         // Load More button - START
         $(function() {
-            $(".recipe-card").slice(0, 8).show();
+            
             $("#loadMore").on('click', function(e) {
                 e.preventDefault();
                 $(".recipe-card:hidden").slice(0, 4).slideDown();
                 if ($(".recipe-card:hidden").length == 0) {
-                    $("#load").fadeOut('slow');
+                    $("#loadMore").fadeOut('slow');
                 }
                 $('html,body').animate({
                     scrollTop: $(this).offset().top
@@ -51,6 +60,7 @@
         
         // Sorting by rating - START
         $("#sort-by-rating-button").on("click", function() {
+            
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
             function sort_recipes(a, b) {
                 return ($(b).data('rating')) < ($(a).data('rating')) ? -1 : 1;
@@ -60,7 +70,10 @@
         
         // Sorting by date - START
         $("#sort-by-date-button").on("click", function() {
+            console.log('totalRecipes:', totalRecipes);
+            $(".recipe-card").slice(0, totalRecipes).show();
             $(".recipe-card").sort(sort_recipes).appendTo('#recipe-cards');
+            $(".recipe-card").slice(8, totalRecipes).hide();
             function sort_recipes(a, b) {
                 return ($(b).data('date')) < ($(a).data('date')) ? -1 : 1;
             }
