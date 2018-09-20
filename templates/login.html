@@ -20,27 +20,19 @@
     </h5>
     <br>
         <div class="container">
-            <div class="row white form-padding">
-                <div id="counter-box-my-recipes" class="art-deco-font center-align #880e4f pink darken-4 col s3 m3">
-                    <p class="art-deco-font">Cocktail Count</p>
-                </div>
-                <h5 class="margin-left mobile-hide col m7 offset-m1">Here, you'll find some insights about your recipes and preferences</h5>
-
-                <h5 class="margin-left show-on-small hide-on-med-and-up col s8">This is how you mix it</h5>
-
-                <h5 class="margin-left show-on-small hide-on-med-and-up col s8">No recipes by this author</h5>
-
-
+                <div id="user-has-recipes" class="row white form-padding">
+                    <div id="counter-box-my-recipes" class="art-deco-font center-align #880e4f pink darken-4 col s3 m3">
+                        <p class="art-deco-font">Cocktail Count</p>
+                    </div>
+                    <h5 class="margin-left mobile-hide col m7 offset-m1">Here, you'll find some insights about your recipes and preferences</h5>
+                    <h5 class="margin-left show-on-small hide-on-med-and-up col s8">This is how you mix it</h5>
                     <input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />
-
-            </div>
-            <div class="row white form-padding">
-                <h5 class="margin-left mobile-hide col s12">You have no recipes yet, click to create your first cocktail!</h5>
-                <h5 class="margin-left show-on-small hide-on-med-and-up col s12">Add your first recipe!</h5>
-                <!--<input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />-->
-                <a href="/get_add_cocktail_form" class="waves-effect waves-light btn #00695c teal darken-3 btn col s12">Add a Cocktail</a>
-
-            </div>
+                </div>
+                <div id="user-zero-recipes" class="row white form-padding">
+                    <h5 class="margin-left mobile-hide col s12">You have no recipes yet, click to create your first cocktail!</h5>
+                    <h5 class="margin-left show-on-small hide-on-med-and-up col s12">Add your first recipe!</h5>
+                    <a href="/get_add_cocktail_form" class="waves-effect waves-light btn #00695c teal darken-3 btn col s12">Add a Cocktail</a>
+                </div>
         </div>
         <br>
 
@@ -157,13 +149,13 @@
                     .dimension(spiritDimension)
                     .group(spiritGroup);
                 }
+                
                 function cocktailTypeBar(ndx) {
                     myCocktailTypes = []
                     for ( var i = 0; i < myRecipesList.length; i++) {
                             let cocktailType = myRecipesList[i]['cocktail_type']
                             myCocktailTypes.push(cocktailType)
                         }
-                    // console.log('myCocktailTypes: ', myCocktailTypes);
     
                     var cocktailTypeDimension = ndx.dimension(function(d) {
                         return d['cocktail_type'];
@@ -217,6 +209,18 @@
                         .group(flavourProfileGroup)
                         .render();
                 }
+            
+                // Logic if recipe count is zero - START
+                MyRecipeCount = myRecipesList.length
+                
+                if ( MyRecipeCount != 0 ) {
+                    $('#user-zero-recipes').css('display', 'none');
+                } else {
+                    $('#user-has-recipes').css('display', 'none');
+                    $('.dashboard-graphs').css('display', 'none');
+                }
+                // Logic if recipe count is zero - END
+            
             });
         </script>
     {% endif %} {% endblock %}
