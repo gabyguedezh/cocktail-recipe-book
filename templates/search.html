@@ -19,6 +19,13 @@
 <div id="cocktails-found"><strong><span></span> Cocktails Found</strong></div>
 <div id="datatable"></div>
 <!-- Attempt with example - END -->
+<!-- Pagination - START -->
+<div id="paging">
+    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+    <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+    <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+</div>
+<!-- Pagination - ENd -->
 
 <p id="hidden-recipes-search" hidden>{{recipes|safe}}</p>
 <script>
@@ -122,11 +129,41 @@
         });
         
         // Calculate cocktails found - END
-        
+        update();
         dc.renderAll();
         // Getting search - END
         
+        // Pagination functionality - START
 
+        // use odd page size to show the effect better
+        var ofs = 0, pag = 17;
+        function display() {
+            d3.select('#begin')
+                .text(ofs);
+            d3.select('#end')
+                .text(ofs+pag-1);
+            d3.select('#last')
+                .attr('disabled', ofs-pag<0 ? 'true' : null);
+            d3.select('#next')
+                .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+            d3.select('#size').text(ndx.size());
+        }
+        function update() {
+            datatable.beginSlice(ofs);
+            datatable.endSlice(ofs+pag);
+            display();
+        }
+        function next() {
+            ofs += pag;
+            update();
+            chart.redraw();
+        }
+        function last() {
+            ofs -= pag;
+            update();
+            datatable.redraw();
+        }
+        //   Pagination functionality - END
         
 
     });

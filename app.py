@@ -8,7 +8,6 @@ import json
 from datetime import datetime
 from functools import update_wrapper
 
-
 # MONGO_DBNAME = os.environ.get('MONGODB_NAME')
 # MONGODB_URI = os.environ.get('MONGODB_URI')
 
@@ -23,6 +22,14 @@ app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25
 
 mongo = PyMongo(app)
 
+# # Jinja Custom Filter Datetime Object - START
+# @app.template_filter('strftime')
+# def _jinja2_filter_datetime(date, fmt=None):
+#     date = dateutil.parser.parse(date)
+#     native = date.replace(tzinfo=None)
+#     format='%b %d, %Y'
+#     return native.strftime(format)
+# ## Jinja Custom Filter Datetime Object - END
 
 @app.route('/')
 @app.route('/get_home')
@@ -169,9 +176,11 @@ def get_logout():
 def get_my_recipes():
     if not 'username' in session:
         return redirect('/get_login')
-    return render_template('my_recipes.html',
-                           username=session['username'],
-                           recipes=mongo.db.recipes.find())
+    else:
+        recipes = mongo.db.recipes.find()
+        return render_template('my_recipes.html',
+                               username=session['username'],
+                               recipes=recipes)
 
 
 @app.route('/get_add_cocktail_form')
