@@ -25,23 +25,38 @@
                     <p class="art-deco-font">Cocktail Count</p>
                 </div>
                 <h5 class="margin-left mobile-hide col m7 offset-m1">Here, you'll find some insights about your recipes and preferences</h5>
+                {% if recipes == True %}
                 <h5 class="margin-left show-on-small hide-on-med-and-up col s8">This is how you mix it</h5>
-                <input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />
+                {% else %}
+                <h5 class="margin-left show-on-small hide-on-med-and-up col s8">No recipes by this author</h5>
+                {% endif %}
+                {% if recipes == True %}
+                    <input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />
+                {% else %}
+            </div>
+            <div class="row white form-padding">
+                <h5 class="margin-left mobile-hide col s12">You have no recipes yet, click to create your first cocktail!</h5>
+                <h5 class="margin-left show-on-small hide-on-med-and-up col s12">Add your first recipe!</h5>
+                <!--<input id="reset-button" class="#00695c teal darken-3 btn col s12" type="button" value="Reset All" />-->
+                <a href="/get_add_cocktail_form" class="waves-effect waves-light btn #00695c teal darken-3 btn col s12">Add a Cocktail</a>
+                {% endif %}
             </div>
         </div>
         <br>
-        <div class="row">
-            <div id='spirit-pie-chart' class="col s12 m6 xl4">
-                <h4 class="art-deco-font">Favourite Base Spirits</h4>
+        {% if recipes == True %}
+            <div class="row dashboard-graphs">
+                <div id='spirit-pie-chart' class="col s12 m6 xl4">
+                    <h4 class="art-deco-font">Favourite Base Spirits</h4>
+                </div>
+                <div id='cocktail-type-bar-chart' class="col s12 m6 xl4">
+                    <h4 class="art-deco-font">Favourite Cocktail Type</h4>
+                </div>
+                <div id='flavour-profile-chart' class="col s12 m12 xl4">
+                    <h4 class="art-deco-font">Favourite Flavour Profile</h4>
+                </div>
             </div>
-            <div id='cocktail-type-bar-chart' class="col s12 m6 xl4">
-                <h4 class="art-deco-font">Favourite Cocktail Type</h4>
-            </div>
-            <div id='flavour-profile-chart' class="col s12 m12 xl4">
-                <h4 class="art-deco-font">Favourite Flavour Profile</h4>
-            </div>
-        </div>
-        <br>
+            <br>
+        {% endif %}
         <div class="row">
             <div id="log-in-buttons" class="col m6 offset-m3">
                 <a href="{{url_for('get_my_recipes')}}" class="margin-right-xs waves-effect waves-light btn-small pink darken-4"><i class="fas fa-cocktail"></i>See your Recipes</a>
@@ -198,13 +213,15 @@
                         .width(400)
                         .height(200)
                         .x(d3.scale.ordinal())
-                        .elasticX(true)
                         .colorAccessor(function (d) {
                             return d.key;
                           })
                         .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
                         .dimension(flavourProfileDimension)
                         .group(flavourProfileGroup)
+                        // .xAxisLabel("Amount of Cocktails")
+                        // .yAxisLabel("Flavour Profile")
+                        .elasticX(true)
                         .render();
                 }
             });

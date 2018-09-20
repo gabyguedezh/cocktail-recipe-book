@@ -249,7 +249,11 @@ don't overflow their boxes*/
     margin-left: 1em;
 }
 
-
+/*#cocktail-type-bar-chart .x-axis-label {*/
+    /*font-size: 2em!important;*/
+    /*transform: translate(10em, 15em);*/
+/*    z-index: 1;*/
+/*}*/
 
 /* SEARCH */
 
