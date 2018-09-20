@@ -22,7 +22,7 @@
 <!-- Pagination - START -->
 <div id="paging">
     Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
-    <input id="last" class="btn" type="Button" value="Last" onclick="javascript:last()" />
+    <input id="previous" class="btn" type="Button" value="Previous"/>
     <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
 </div>
 <!-- Pagination - ENd -->
@@ -49,7 +49,6 @@
             select2 = dc.selectMenu('#select2'),
             select3 = dc.selectMenu('#select3'),
             select4 = dc.selectMenu('#select4'),
-            // numberDisplay = dc.numberDisplay('#found-recipes');
             datatable = dc.dataTable('#datatable');
             
         // Fixing the selector classes - START
@@ -136,7 +135,7 @@
         // Pagination functionality - START
 
         // use odd page size to show the effect better
-        var ofs = 0, pag = 17;
+        var ofs = 0, pag = 7;
         function display() {
             d3.select('#begin')
                 .text(ofs);
@@ -153,16 +152,27 @@
             datatable.endSlice(ofs+pag);
             display();
         }
-        function next() {
-            ofs += pag;
-            update();
-            chart.redraw();
-        }
-        function last() {
+        // function next() {
+        //     ofs += pag;
+        //     update();
+        //     chart.redraw();
+        // }
+        $("#previous").on("click", function(){
             ofs -= pag;
             update();
             datatable.redraw();
-        }
+        });
+        $("#next").on("click", function(){
+            ofs += pag;
+            update();
+            datatable.redraw();
+        });
+        // function last() {
+        //     ofs -= pag;
+        //     update();
+        //     datatable.redraw();
+        // }
+        
         //   Pagination functionality - END
         
 

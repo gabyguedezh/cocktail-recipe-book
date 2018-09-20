@@ -163,7 +163,9 @@ $(document).ready(function(){
         // console.log("author_name: ", author_name);
         // Getting the initial recipe_rating
         var recipe_rating = "0";
-        // Getting the initial rnumber_of_votes
+        // Getting initial average rating
+        var average_rating = "0";
+        // Getting the initial number_of_votes
         var number_of_votes = "0";
         // Getting the date_added
         var date_added = new Date(); 
@@ -175,7 +177,8 @@ $(document).ready(function(){
                         recipe_description, recipe_image, is_vegan, 
                         ingredients, steps, base_spirit, cocktail_type,
                         flavour_profile, author_name, recipe_rating, 
-                        number_of_votes, date_added, number_of_views];
+                        average_rating, number_of_votes, date_added, 
+                        number_of_views];
         console.log(formData);
         // This will take care of the POST for the add cocktail form
         $.ajax({
@@ -184,8 +187,9 @@ $(document).ready(function(){
             data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
                                 recipe_image, is_vegan, ingredients, steps,
                                 base_spirit, cocktail_type, flavour_profile,
-                                author_name, recipe_rating, number_of_votes,
-                                date_added, number_of_views}, null, '\t'),
+                                author_name, recipe_rating, average_rating,
+                                number_of_votes, date_added, number_of_views}, 
+                                null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',
             success: function(response) {
