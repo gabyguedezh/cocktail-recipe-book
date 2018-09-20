@@ -175,7 +175,8 @@
                         .xUnits(dc.units.ordinal)
                         .elasticY(true)
                         .xAxisLabel("Cocktail Type")
-                        .yAxis().ticks(10);
+                        .yAxisLabel("Amount of Cocktails")
+                        .yAxis().tickFormat(d3.format('d'));
                 }
                 
                 function flavourProfileChart(ndx) {
