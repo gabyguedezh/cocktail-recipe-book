@@ -13,6 +13,9 @@
     <a id="sort-by-rating-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-star"></i> Sort by Rating</a>
     <a id="sort-by-date-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-exclamation"></i> See Newest First</a>
 </div>
+<div id="user-zero-my-recipes" class="row #00695c teal darken-3">
+    <h4 class="art-deco-font center-align col s12 m5">You have no cocktails yet</h4>
+</div>
 <div class="row collection-container">
     {% for recipe in recipes %} {% if recipe.author_name == username %}
      <!--Trying out a collection display-->
@@ -137,6 +140,15 @@
         });
         // Showing date_added - END
         
+        // Logic if recipe count is zero - START
+
+        if ( totalRecipes != 0 ) {
+            $('#user-zero-my-recipes').css('display', 'none');
+        } else {
+            $('#sorting-bar-my-recipes').css('display', 'none');
+            $('#load-more-spice').css('display', 'none');
+        }
+        // Logic if recipe count is zero - END
     });
 </script>
 {% endblock %}

@@ -186,6 +186,10 @@ don't overflow their boxes*/
     margin-right: 0.5em;
 }
 
+#user-zero-my-recipes > h4 {
+    color: white;
+    margin-left: 30%;
+}
 
 /* Rating Star Widgets Style */
 .rating-stars div {
