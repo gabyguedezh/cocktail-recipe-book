@@ -21,12 +21,11 @@
             <li class="collection-item avatar" id="top-collection-item">
                 <img src="{{recipe.recipe_image}}" alt="" class="circle">
                 <span id="my-recipe-name" class="title art-deco-font"><strong>{{recipe.recipe_name}}</strong></span>
-                <p><em>Recipe added on: {{date_added}}</em></p>
+                <p><em>Recipe added on: <span id="date-added">{{recipe.date_added}}</span></em></p>
                 <p id="my-recpe-description">{{recipe.recipe_description}}</p>
                 <span><strong>Base Spirit:</strong> {{recipe.base_spirit}} |</span>
                 <span><strong>Cocktail Type:</strong> {{recipe.cocktail_type}} |</span>
                 <span><strong>Flavour Profile:</strong> {{recipe.flavour_profile}}</span>
-                
                 {% if recipe.average_rating != '0' %}
                 <p class="secondary-content">
                     Average Rating: {{recipe.average_rating}}/5
@@ -75,7 +74,7 @@
         // Show only the first eight recipes - END
         
         // Counting the number of recipes shown at a given time - START
-        var visibleRecipes = 0
+        var visibleRecipes = 0;
         checkVisible = function() {
             $(".my-recipe-colelction-item").each(function() {
                 if ($(this).is(':visible') == true ) {
@@ -85,7 +84,6 @@
             console.log('visibleRecipes', visibleRecipes);
         };
         // Counting the number of recipes shown at a given time - END
-        
         
         // Load More button - START
         $(function() {
@@ -102,10 +100,8 @@
                 visibleRecipes = 0;
             });
         });
-        
         // Load more button - END
         
-    
          // Sorting by rating - START
         $("#sort-by-rating-button").on("click", function() {
             checkVisible();
@@ -131,6 +127,10 @@
             visibleRecipes = 0;
         });
         // Sorting by date - END
+        
+        // Formating the date_added string - START
+        console.log($('#date-added').text());
+        // Formating the date_added string - END
     });
 </script>
 {% endblock %}
