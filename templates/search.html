@@ -23,7 +23,7 @@
 <div id="paging">
     Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
     <input id="previous" class="btn" type="Button" value="Previous"/>
-    <input id="next" class="btn" type="button" value="Next" onclick="javascript:next()"/>
+    <input id="next" class="btn" type="button" value="Next"/>
 </div>
 <!-- Pagination - ENd -->
 
@@ -133,15 +133,25 @@
         // Getting search - END
         
         // Pagination functionality - START
-
+        
+        
         // use odd page size to show the effect better
-        var ofs = 0, pag = 7;
+        // Disable Effects update when changing the filters - START
+        
+        // Disable Effects update when changing the filters - END
+        var ofs = 1, pag = 10;
+        
+        // Begin and End of Total Numbers - SART
+        $("#begin").html(ofs);
+        $("#end").html(ofs + pag);
+        // Begin and End of Total Numbers - END
+         
         function display() {
             d3.select('#begin')
                 .text(ofs);
             d3.select('#end')
                 .text(ofs+pag-1);
-            d3.select('#last')
+            d3.select('#previous')
                 .attr('disabled', ofs-pag<0 ? 'true' : null);
             d3.select('#next')
                 .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
@@ -152,11 +162,7 @@
             datatable.endSlice(ofs+pag);
             display();
         }
-        // function next() {
-        //     ofs += pag;
-        //     update();
-        //     chart.redraw();
-        // }
+
         $("#previous").on("click", function(){
             ofs -= pag;
             update();
@@ -167,12 +173,6 @@
             update();
             datatable.redraw();
         });
-        // function last() {
-        //     ofs -= pag;
-        //     update();
-        //     datatable.redraw();
-        // }
-        
         //   Pagination functionality - END
         
 
