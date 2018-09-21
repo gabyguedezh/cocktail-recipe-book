@@ -49,7 +49,8 @@
             select2 = dc.selectMenu('#select2'),
             select3 = dc.selectMenu('#select3'),
             select4 = dc.selectMenu('#select4'),
-            datatable = dc.dataTable('#datatable');
+            datatable = dc.dataTable('#datatable'),
+            numberDisplay = dc.numberDisplay('cocktails-found')
             
         // Fixing the selector classes - START
 
@@ -87,6 +88,7 @@
             flavourDimension = ndx.dimension(function(d) { return d.flavour_profile; }),
             veganDimension = ndx.dimension(function(d) { return d.is_vegan; }),
             nameDimension = ndx.dimension(function(d) { return d.recipe_name; });
+        
         select1
             .dimension(spiritDimension)
             .group(spiritDimension.group())
@@ -114,19 +116,14 @@
             })
             // .columns([' Cocktails Found'])
             .size(recipesList.length);
-            
-        
         // Calculate cocktails found - START
-        // cocktailsFound = '';
-        // $('.search-selector').on('change', function() {
-        //     // I count the amount of 'td' to get the total of cocktails found
-        //     cocktailsFound = $( 'td' ).length;
-            
-        //     console.log('cocktailsFound: ', cocktailsFound);
-        //     $('#cocktails-found span').empty().prepend(cocktailsFound);
-            
-        // });
-        
+        numberDisplay
+            .formatNumber(d3.format("d"))
+            .valueAccessor(function (d) {
+                // d = myRecipesList.length
+                return (+d);
+            })
+            .group(nameDimension.group());
         // Calculate cocktails found - END
         update();
         dc.renderAll();
