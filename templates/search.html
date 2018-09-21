@@ -117,15 +117,15 @@
             
         
         // Calculate cocktails found - START
-        cocktailsFound = '';
-        $('.search-selector').on('change', function() {
-            // I count the amount of 'td' to get the total of cocktails found
-            cocktailsFound = $( 'td' ).length;
+        // cocktailsFound = '';
+        // $('.search-selector').on('change', function() {
+        //     // I count the amount of 'td' to get the total of cocktails found
+        //     cocktailsFound = $( 'td' ).length;
             
-            console.log('cocktailsFound: ', cocktailsFound);
-            $('#cocktails-found span').empty().prepend(cocktailsFound);
+        //     console.log('cocktailsFound: ', cocktailsFound);
+        //     $('#cocktails-found span').empty().prepend(cocktailsFound);
             
-        });
+        // });
         
         // Calculate cocktails found - END
         update();
@@ -139,23 +139,23 @@
         // Disable Effects update when changing the filters - START
         
         // Disable Effects update when changing the filters - END
-        var ofs = 1, pag = 10;
+        var ofs = 0, pag = 10;
         
         // Begin and End of Total Numbers - SART
-        $("#begin").html(ofs);
+        $("#begin").html(ofs + 1);
         $("#end").html(ofs + pag);
         // Begin and End of Total Numbers - END
          
         function display() {
             d3.select('#begin')
-                .text(ofs);
+                .text(ofs+1);
             d3.select('#end')
-                .text(ofs+pag-1);
-            d3.select('#previous')
-                .attr('disabled', ofs-pag<0 ? 'true' : null);
-            d3.select('#next')
-                .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
-            d3.select('#size').text(ndx.size());
+                .text(ofs+pag);
+        //     d3.select('#previous')
+        //         .attr('disabled', ofs-pag<0 ? 'true' : null);
+        //     d3.select('#next')
+        //         .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
+        //     d3.select('#size').text(ndx.size());
         }
         function update() {
             datatable.beginSlice(ofs);
