@@ -9,7 +9,7 @@
     </div>
 </div>
 <div id="sorting-bar-my-recipes" class="row #00695c teal darken-3">
-    <h4 class="art-deco-font col s12 m5">My Cocktails</h4>
+    <h4 class="art-deco-font center-align col s12 m5">My Cocktails</h4>
     <a id="sort-by-rating-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-star"></i> Sort by Rating</a>
     <a id="sort-by-date-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-exclamation"></i> See Newest First</a>
 </div>
@@ -32,11 +32,11 @@
                 <span><strong>Flavour Profile:</strong> {{recipe.flavour_profile}}</span>
                 {% if recipe.average_rating != '0' %}
                 <p class="secondary-content">
-                    Average Rating: {{recipe.average_rating}}/5
+                    Rating: {{recipe.average_rating}}/5
                 </p>
                 {% else %}
                 <p href="#!" class="secondary-content">
-                    Average Rating: No Votes Yet
+                    Rating: No Votes
                 </p>
                 {% endif %}
             </li>
