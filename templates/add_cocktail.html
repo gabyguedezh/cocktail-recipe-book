@@ -102,14 +102,19 @@
             </div>
         </div>
     </div>
-    <a class="btn waves-effect waves-light margin-right-xs" name="action" href="/get_my_recipes">
+    <a id="back-button" class="btn waves-effect waves-light margin-right-xs" name="action" href="#">
             Go Back without Saving <i class="fas fa-arrow-circle-left fa-xs"></i>
         </a>
     <a id="submit-form-button" href="/get_my_recipes" class="#880e4f pink darken-4 btn waves-effect waves-light" name="action" data-url="{{ url_for('write_to_cocktail_database') }}">
         Submit <i class="fas fa-glass-martini-alt fa-xs"></i>
     </a>
-    <!--<button id="submit-form-button" class="btn waves-effect waves-light" name="action" data-url="{{ url_for('write_to_cocktail_database') }}">-->
-    <!--    Submit <i class="fas fa-glass-martini-alt fa-xs"></i>-->
-    <!--</button>-->
 </div>
+<script>
+    // Go back button - START
+    $('#back-button').on('click', function(e){
+        e.preventDefault();
+        window.history.back();
+    });
+    // Go back button - END
+</script>
 {% endblock %}

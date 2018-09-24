@@ -31,6 +31,8 @@ mongo = PyMongo(app)
 #     return native.strftime(format)
 # ## Jinja Custom Filter Datetime Object - END
 
+
+
 @app.route('/')
 @app.route('/get_home')
 def get_home():
@@ -52,8 +54,10 @@ def show_cocktail(recipe_url):
     This function takes you to the recipe page of a specific cocktail
     you've selected
     """
+    
     cocktail = {}
     recipes = mongo.db.recipes.find()
+    number_of_views = ''
     
     print(recipes)
     print('*************************')
@@ -63,16 +67,10 @@ def show_cocktail(recipe_url):
             cocktail = recipe
             average_rating = recipe['average_rating']
             date_added = datetime.strptime(recipe['date_added'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
+                
+            # number_of_views = int(recipe['number_of_views'])
+            # print('number_of_views: ', number_of_views)
 
-            if request.method == 'GET':
-                print('its a get!')
-                
-                number_of_views = int(recipe['number_of_views'])
-                print('number_of_views: ', number_of_views)
-                number_of_views += 1
-                # recipe.update({'_id': ObjectId(recipe_id)})
-                print('number_of_views: ', number_of_views)
-                
                 
             print('average_rating when method is GET: ', average_rating)
             print('date_added:', date_added)

@@ -120,7 +120,7 @@
                 <label for="author_name">Author Name</label>
             </div>
         </div>
-        <a class="btn waves-effect waves-light margin-right-xs" name="action" href="/get_my_recipes">
+        <a id="back-button" class="btn waves-effect waves-light margin-right-xs" name="action" href="/get_my_recipes">
             Go Back without Saving <i class="fas fa-arrow-circle-left fa-xs"></i>
         </a>
         <button id="submit-form-button" class="#880e4f pink darken-4 btn waves-effect waves-light" type="submit" name="action" data-url="{{ url_for('update_edited_cocktail', recipe_id=recipe._id) }}">
@@ -128,4 +128,12 @@
         </button>
     </form>
 </div>
+<script>
+    // Go back button - START
+    $('#back-button').on('click', function(e){
+        e.preventDefault();
+        window.history.back();
+    });
+    // Go back button - END
+</script>
 {% endblock %}
