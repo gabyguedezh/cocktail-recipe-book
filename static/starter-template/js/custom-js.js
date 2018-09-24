@@ -50,7 +50,6 @@ $(document).ready(function() {
         // This will take care of the POST for the rating stars
         $.ajax({
             url: formStarUrl,
-            // data: {'data': steps},
             data: JSON.stringify({ recipe_rating }, null, '\t'),
             type: 'POST',
             contentType: 'application/json;charset=UTF-8',

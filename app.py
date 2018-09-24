@@ -48,7 +48,7 @@ def get_cocktails():
                            recipes=mongo.db.recipes.find())
 
 
-@app.route('/show_cocktail/<recipe_url>')
+@app.route('/show_cocktail/<recipe_url>', methods=['GET', 'POST'])
 def show_cocktail(recipe_url):
     """
     This function takes you to the recipe page of a specific cocktail
@@ -57,7 +57,9 @@ def show_cocktail(recipe_url):
     
     cocktail = {}
     recipes = mongo.db.recipes.find()
-    number_of_views = ''
+    
+    # post.views += 1
+    # post.views came from a blog app I have where post is the blog post and views is 0. 
     
     print(recipes)
     print('*************************')
@@ -68,19 +70,19 @@ def show_cocktail(recipe_url):
             average_rating = recipe['average_rating']
             date_added = datetime.strptime(recipe['date_added'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
                 
-            # number_of_views = int(recipe['number_of_views'])
-            # print('number_of_views: ', number_of_views)
+            number_of_views = int(recipe['number_of_views'])
+            # recipe.number_of_views += 1
+            print('number_of_views: ', number_of_views)
 
                 
             print('average_rating when method is GET: ', average_rating)
             print('date_added:', date_added)
-            print('number_of_views: ', number_of_views)
+            # print('number_of_views: ', number_of_views)
         
     return render_template('show_cocktail.html',
                            average_rating=average_rating,
                            recipe=cocktail,
-                           date_added=date_added,
-                           number_of_views=number_of_views)
+                           date_added=date_added)
 
 
 @app.route('/update_recipe_rating/<recipe_id>', methods=['POST'])
@@ -116,6 +118,42 @@ def update_recipe_rating(recipe_id):
     recipes.update({'_id': ObjectId(recipe_id)}, this_recipe)
     
     return ('', 204)
+
+
+# app.route('/update_recipe_views/<recipe_id>', methods=['POST'])
+# def update_recipe_views(recipe_id):
+#     """
+#     This function takes the new number_of_views after loading the page and
+#     updates the number_of_views field in the open document
+#     """
+#     recipes = mongo.db.recipes
+    
+#     this_recipe_views = mongo.db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    
+#     number_of_views = this_recipe_views['number_of_views']
+#     print('number_of_views is: ', number_of_views)
+    
+#     initial_number_of_views = this_recipe_views['number_of_views']
+#     print('initial number_of_views is: ',  initial_number_of_views)
+    
+#     latest_number_of_views = request.json['number_of_views']
+#     print('latest number_of_views is: ', latest_number_of_views)
+    
+#     # Calculating number_of_views
+    
+#     # number_of_views = ((initial_recipe_rating * number_of_votes) + latest_recipe_rating) / (number_of_votes + 1)
+#     # average_rating = round(average_rating, 2)
+#     number_of_views = latest_number_of_views
+    
+#     print('number_of_views: ', number_of_views)
+    
+#     this_recipe_views['number_of_views'] = str(number_of_views + 1)
+    
+#     # this_recipe['average_rating'] = average_rating
+    
+#     recipes.update({'_id': ObjectId(recipe_id)}, this_recipe_views)
+    
+#     return ('', 204)
     
 
 @app.route('/get_login', methods=['GET', 'POST'])

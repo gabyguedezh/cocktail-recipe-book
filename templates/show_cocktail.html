@@ -97,7 +97,39 @@
             {% endfor %}
         </ol>
     <p>Recipe added on: <em>{{date_added}}</em></p>
-    <p>Recipe seen <em>{{number_of_views}}</em> times</p>
+    <p>Recipe seen 
+    <!--<button id="number-of-views-button" name="action" data-url="{{ url_for('update_recipe_views', recipe_id=recipe._id) }}">-->
+    <!--    <p id="number-of-views-p">{{recipe.number_of_views}} times</p>-->
+    <!--</button>-->
+    <button id="number-of-views-button" name="action">
+        <p id="number-of-views-p">{{recipe.number_of_views}} times</p>
+    </button>
     <p>Recipe by <em>{{recipe.author_name}}</em></p>
 </div>
+<script>
+    var number_of_views = $('#number-of-views-p').text();
+    console.log('number_of_view before load: ', number_of_views);
+    $(document).ready(function(){
+        var formViewsUrl = $('#number-of-views-button').data('url');
+        console.log('formViewsUrl: ', formViewsUrl);
+        number_of_views ++;
+        console.log('number_of_view after load: ', number_of_views);
+    
+        // Post numbber_of_views with Ajax - START
+        // This will take the number of views and POST it after the page loads
+        // $.ajax({
+        //         url: formViewsUrl,
+        //         data: JSON.stringify({ number_of_views }, null, '\t'),
+        //         type: 'POST',
+        //         contentType: 'application/json;charset=UTF-8',
+        //         success: function(response) {
+        //             // console.log('success. Return does nothing', response);
+        //         },
+        //         error: function(error) {
+        //             console.log('error', error);
+        //         }
+        //     });
+        // Post numbber_of_views with Ajax - END
+    });
+</script>
 {% endblock %}
