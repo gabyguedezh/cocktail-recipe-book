@@ -51,7 +51,7 @@
             select3 = dc.selectMenu('#select3'),
             select4 = dc.selectMenu('#select4'),
             datatable = dc.dataTable('#datatable'),
-            numberDisplay = dc.numberDisplay('cocktails-found')
+            numberDisplay = dc.numberDisplay('cocktails-found');
             
         // Fixing the selector classes - START
 
@@ -103,8 +103,6 @@
         select3
             .dimension(flavourDimension)
             .group(flavourDimension.group())
-            // .multiple(true)
-            // .numberVisible(10)
             .controlsUseVisibility(true);
         select4
             .dimension(veganDimension)
@@ -117,6 +115,7 @@
             })
             // .columns([' Cocktails Found'])
             .size(recipesList.length);
+            
         // Calculate cocktails found - START
         numberDisplay
             .formatNumber(d3.format("d"))
@@ -145,7 +144,7 @@
          
         function display() {
             d3.select('#begin')
-                .text(ofs+1);
+                .text(ofs + 1);
             d3.select('#end')
                 .text(ofs+pag);
             d3.select('#previous')
