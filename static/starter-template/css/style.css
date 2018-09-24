@@ -348,6 +348,14 @@ don't overflow their boxes*/
     left: 15%;
     margin-right: 0.5em;
     }
+    
+    #sort-by-rating-button,
+    #sort-by-date-button {
+        width: 100%;
+    }
+    #sort-by-date-button {
+        margin-bottom: 1.5em;
+    }
 }
 
 /* Mobile Vertical 
