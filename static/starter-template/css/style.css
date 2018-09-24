@@ -130,6 +130,7 @@ don't overflow their boxes*/
 
 #sorting-bar > h4 {
     color: white;
+    font-size: 2em;
 }
 
 
@@ -338,5 +339,26 @@ don't overflow their boxes*/
     #counter-box-my-recipes > p {
         font-size: 1em;
         margin-bottom: 0;
+    }
+}
+
+ /*Very long mobiles - Vertical */
+@media (max-width:415px) and (min-height: 730px) {
+    .my-container {
+        min-height: 52em;
+    }
+}
+
+ /*Tablet - Vertical */
+@media (min-width:768px) and (min-height: 1024px) {
+    .my-container {
+        min-height: 52em;
+    }
+}
+
+/* Very long vertical devices */
+@media (min-width:1024px) and (min-height: 1366px) {
+    .my-container {
+        min-height: 78em;
     }
 }
