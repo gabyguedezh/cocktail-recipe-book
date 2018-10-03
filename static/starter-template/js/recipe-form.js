@@ -77,6 +77,10 @@ $(document).ready(function(){
         
         // Getting the recipe name
         var recipe_name = $('#recipe_name').val();
+        if (!recipe_name) {
+            $('#recipe_name').focus();
+            return;
+        }
         // Getting the recipe url
         var recipe_url = $('#recipe_name').val()
         // Preparing random string to append -START
@@ -91,14 +95,21 @@ $(document).ready(function(){
         // Preparing random string to append - END
         recipe_url = recipe_url.replace(/\s+/g, '-').toLowerCase();
         recipe_url += makeid();
-        console.log('recipe url is: ', recipe_url);
         // Getting the description
         var recipe_description = $('#recipe_description').val();
+        if (!recipe_description) {
+            $('#recipe_description').focus();
+            return;
+        }
         // Getting the image - PENDING REAL IMAGE 
         var recipe_image = '../static/images/default-cocktail-image.png';
         // Getting the vegan boolean
         var is_vegan = $('#is_vegan').val();
-        
+        if (!is_vegan) {
+            alert('Please indicate if the recipe is vegan or not');
+            $('#is_vegan').focus();
+            return;
+        }
         // Getting the recipe ingredients
         var ingredients = [];
         var inputTagIngredient = ($('#ingredient-adder').find('input'));
@@ -119,9 +130,17 @@ $(document).ready(function(){
                 ingredient[key] = value;
                 // console.log(key, value);
             }
-            // console.log(ingredient);
             ingredients.push(ingredient);
         }
+        console.log('ingredient:', ingredient);
+        var quantity = (Object.keys(ingredient)[0]);
+        var measure_unit = (Object.keys(ingredient)[1]);
+        var ingredient_name = (Object.keys(ingredient)[2]);
+        console.log('quantity: ', quantity);
+        console.log('measure_unit: ', measure_unit);
+        console.log('ingredient_name: ', ingredient_name);
+        
+        
         // Getting the key values -END
         // console.log(ingredients);
         
@@ -152,12 +171,27 @@ $(document).ready(function(){
         // Getting the base spirit selector
         var base_spirit = $('#base_spirit').val();
         // console.log("Base spirit is: ", baseSpiritSelector);
+        if (!base_spirit) {
+            alert('Please indicate the base spirit of this recipe');
+            $('#base_spirit').focus();
+            return;
+        }
         // Getting the cocktail type
         var cocktail_type = $('#cocktail_type').val();
         // console.log("cocktail type is: ", cocktailTypeSelector);
+        if (!cocktail_type) {
+            alert('Please indicate the cocktail type of this recipe');
+            $('#cocktail_type').focus();
+            return;
+        }
         // Getting the flavour profile
         var flavour_profile = $('#flavour_profile').val();
         // console.log("flavour profile is: ", flavourProfileSelector);
+        if (!flavour_profile) {
+            alert('Please indicate the flavour profile of this recipe');
+            $('#flavour_profile').focus();
+            return;
+        }
         // Getting the author name
         var author_name = $('#author_name').val();
         // console.log("author_name: ", author_name);
