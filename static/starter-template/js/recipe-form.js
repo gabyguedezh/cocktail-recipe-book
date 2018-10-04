@@ -104,10 +104,13 @@ $(document).ready(function(){
         // Getting the image - PENDING REAL IMAGE 
         var recipe_image = '../static/images/default-cocktail-image.png';
         // Getting the vegan boolean
-        var is_vegan = $('#is_vegan').val();
-        if (!is_vegan) {
-            alert('Please indicate if the recipe is vegan or not');
-            $('#is_vegan').focus();
+        var is_vegan = $('#is_vegan').find(":selected");
+        console.log(is_vegan);
+        if (is_vegan.attr('disabled', true)) {
+            // $('#is_vegan').focus();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#is_vegan").offset().top
+            }, 500);
             return;
         }
         // Getting the recipe ingredients
@@ -120,34 +123,27 @@ $(document).ready(function(){
             inputsByThree.push(inputTagIngredient.splice(0, size));
         // console.log('inputsByThree: ', inputsByThree);
         // Creating a nested list with groups of three per sublist
-        for(var i=0; i<inputsByThree.length; i++) {
+        for (var i = 0; i < inputsByThree.length; i++) {
             var inputBoxes = inputsByThree[i];
             var ingredient = {};
-            for(var j=0; j<inputBoxes.length; j++) {
+            for (var j = 0; j < inputBoxes.length; j++) {
                 var inputBox = inputBoxes[j];
                 var value = $(inputBox).val();
+                if (!value) {
+                    inputBox.focus();
+                    return;
+                }
                 var key = $(inputBox).attr('id').split('-')[0]
                 ingredient[key] = value;
                 // console.log(key, value);
             }
             ingredients.push(ingredient);
         }
-        console.log('ingredient:', ingredient);
-        var quantity = (Object.keys(ingredient)[0]);
-        var measure_unit = (Object.keys(ingredient)[1]);
-        var ingredient_name = (Object.keys(ingredient)[2]);
-        console.log('quantity: ', quantity);
-        console.log('measure_unit: ', measure_unit);
-        console.log('ingredient_name: ', ingredient_name);
-        
-        
         // Getting the key values -END
-        // console.log(ingredients);
         
         // Getting the recipe steps
         var steps = [];
         var stepInput = ($('#step-adder').find('input'));
-        // console.log('stepInput: ', stepInput);
         // Getting key values - START
         var inputsByOne = [], sizeStep = 1;
         while (stepInput.length > 0)
@@ -159,6 +155,10 @@ $(document).ready(function(){
             for(var l=0; l<inputStepBoxes.length; l++) {
                 var inputStepBox = inputStepBoxes[l];
                 var valueStep = $(inputStepBox).val();
+                if (!valueStep) {
+                    inputStepBox.focus();
+                    return;
+                }
                 var keyStep = $(inputStepBox).attr('id').split('-')[0]
                 step[keyStep] = valueStep;
                 // console.log(keyStep, valueStep);
@@ -215,25 +215,25 @@ $(document).ready(function(){
                         number_of_views];
         console.log(formData);
         // This will take care of the POST for the add cocktail form
-        $.ajax({
-            url: formUrl,
-            // data: {'data': steps},
-            data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
-                                recipe_image, is_vegan, ingredients, steps,
-                                base_spirit, cocktail_type, flavour_profile,
-                                author_name, recipe_rating, average_rating,
-                                number_of_votes, date_added, number_of_views}, 
-                                null, '\t'),
-            type: 'POST',
-            contentType: 'application/json;charset=UTF-8',
-            success: function(response) {
-                console.log('success');
-                // PENDING - The address is hardcoded, update before deployment
-                window.location.href = "http://cocktail-recipe-book-gabyguedezh.c9users.io/get_my_recipes";
-            },
-            error: function(error) {
-                console.log('error', error);
-            }
-        });
+        // $.ajax({
+        //     url: formUrl,
+        //     // data: {'data': steps},
+        //     data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
+        //                         recipe_image, is_vegan, ingredients, steps,
+        //                         base_spirit, cocktail_type, flavour_profile,
+        //                         author_name, recipe_rating, average_rating,
+        //                         number_of_votes, date_added, number_of_views}, 
+        //                         null, '\t'),
+        //     type: 'POST',
+        //     contentType: 'application/json;charset=UTF-8',
+        //     success: function(response) {
+        //         console.log('success');
+        //         // PENDING - The address is hardcoded, update before deployment
+        //         window.location.href = "http://cocktail-recipe-book-gabyguedezh.c9users.io/get_my_recipes";
+        //     },
+        //     error: function(error) {
+        //         console.log('error', error);
+        //     }
+        // });
     });
 });
