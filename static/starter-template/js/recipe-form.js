@@ -104,19 +104,17 @@ $(document).ready(function(){
         // Getting the image - PENDING REAL IMAGE 
         var recipe_image = '../static/images/default-cocktail-image.png';
         // Getting the vegan boolean
-        var is_vegan = $('#is_vegan').find(":selected");
+        var is_vegan = $('#is_vegan').find(":selected").val();
         console.log(is_vegan);
-        if (is_vegan.attr('disabled', true)) {
-            // $('#is_vegan').focus();
+        if (!is_vegan) {
             $([document.documentElement, document.body]).animate({
-                scrollTop: $("#is_vegan").offset().top
-            }, 500);
+                scrollTop: $("#is_vegan").offset().top + 400
+            }, 200);
             return;
         }
         // Getting the recipe ingredients
         var ingredients = [];
         var inputTagIngredient = ($('#ingredient-adder').find('input'));
-        // console.log('inputTagIngredient', inputTagIngredient);
         // Getting key values - START
         var inputsByThree = [], size = 3;
         while (inputTagIngredient.length > 0)
@@ -169,27 +167,31 @@ $(document).ready(function(){
         // console.log('steps: ', steps);
         
         // Getting the base spirit selector
+        // var base_spirit = $('#base_spirit').find(":selected");
         var base_spirit = $('#base_spirit').val();
-        // console.log("Base spirit is: ", baseSpiritSelector);
         if (!base_spirit) {
-            alert('Please indicate the base spirit of this recipe');
-            $('#base_spirit').focus();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#base_spirit").offset().top + 1000
+            }, 200);
             return;
         }
+ 
         // Getting the cocktail type
         var cocktail_type = $('#cocktail_type').val();
         // console.log("cocktail type is: ", cocktailTypeSelector);
         if (!cocktail_type) {
-            alert('Please indicate the cocktail type of this recipe');
-            $('#cocktail_type').focus();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#cocktail_type").offset().top + 1100
+            }, 200);
             return;
         }
         // Getting the flavour profile
         var flavour_profile = $('#flavour_profile').val();
         // console.log("flavour profile is: ", flavourProfileSelector);
         if (!flavour_profile) {
-            alert('Please indicate the flavour profile of this recipe');
-            $('#flavour_profile').focus();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#flavour_profile").offset().top + 1200
+            }, 200);
             return;
         }
         // Getting the author name
@@ -215,25 +217,25 @@ $(document).ready(function(){
                         number_of_views];
         console.log(formData);
         // This will take care of the POST for the add cocktail form
-        // $.ajax({
-        //     url: formUrl,
-        //     // data: {'data': steps},
-        //     data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
-        //                         recipe_image, is_vegan, ingredients, steps,
-        //                         base_spirit, cocktail_type, flavour_profile,
-        //                         author_name, recipe_rating, average_rating,
-        //                         number_of_votes, date_added, number_of_views}, 
-        //                         null, '\t'),
-        //     type: 'POST',
-        //     contentType: 'application/json;charset=UTF-8',
-        //     success: function(response) {
-        //         console.log('success');
-        //         // PENDING - The address is hardcoded, update before deployment
-        //         window.location.href = "http://cocktail-recipe-book-gabyguedezh.c9users.io/get_my_recipes";
-        //     },
-        //     error: function(error) {
-        //         console.log('error', error);
-        //     }
-        // });
+        $.ajax({
+            url: formUrl,
+            // data: {'data': steps},
+            data: JSON.stringify({recipe_name,  recipe_url, recipe_description,
+                                recipe_image, is_vegan, ingredients, steps,
+                                base_spirit, cocktail_type, flavour_profile,
+                                author_name, recipe_rating, average_rating,
+                                number_of_votes, date_added, number_of_views}, 
+                                null, '\t'),
+            type: 'POST',
+            contentType: 'application/json;charset=UTF-8',
+            success: function(response) {
+                console.log('success');
+                // PENDING - The address is hardcoded, update before deployment
+                window.location.href = "http://cocktail-recipe-book-gabyguedezh.c9users.io/get_my_recipes";
+            },
+            error: function(error) {
+                console.log('error', error);
+            }
+        });
     });
 });
