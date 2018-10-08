@@ -113,6 +113,7 @@
             })
             // .columns([' Cocktails Found'])
             .size(recipesList.length);
+            // .size(Infinity);
             
         // Calculate cocktails found - START
         numberDisplay
@@ -123,7 +124,7 @@
             })
             .group(nameDimension.group());
         // Calculate cocktails found - END
-        // update();
+        update();
         dc.renderAll();
         // Getting search - END
         
@@ -146,11 +147,16 @@
             d3.select('#end')
                 .text(ofs+pag);
             d3.select('#previous')
-                .attr('disabled', ofs-pag<0 ? 'true' : null);
+                .attr('disabled', 'disabled');
+                if ( ofs > 0 ) {
+                    $("#previous").removeAttr('disabled');
+                }
+                // .attr('disabled', ofs - pag < 0 ? 'true' : null);
             d3.select('#next')
-                .attr('disabled', ofs+pag>=ndx.size() ? 'true' : null);
-        //     d3.select('#size').text(ndx.size());
+                .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
+            d3.select('#size').text(ndx.size());
         }
+        
         function update() {
             datatable.beginSlice(ofs);
             datatable.endSlice(ofs+pag);
@@ -164,7 +170,7 @@
         });
         $("#next").on("click", function(){
             ofs += pag;
-            update();
+            display();
             datatable.redraw();
         });
         //   Pagination functionality - END
