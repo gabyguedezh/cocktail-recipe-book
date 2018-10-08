@@ -97,8 +97,6 @@
         select2
             .dimension(typeDimension)
             .group(typeDimension.group())
-            // .multiple(true)
-            // .numberVisible(10)
             .controlsUseVisibility(true);
         select3
             .dimension(flavourDimension)
@@ -125,7 +123,7 @@
             })
             .group(nameDimension.group());
         // Calculate cocktails found - END
-        update();
+        // update();
         dc.renderAll();
         // Getting search - END
         

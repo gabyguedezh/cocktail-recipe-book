@@ -192,7 +192,6 @@ def get_add_cocktail_form():
     """
     if request.url.startswith('http://'):
         request.url = request.url.replace('http://', 'https://', 1)
-    print('url when get_cocktail_form: ', request.url)
     return render_template('add_cocktail.html',
                            base_spirit=mongo.db.base_spirit.find(),
                            cocktail_type=mongo.db.cocktail_type.find(),
