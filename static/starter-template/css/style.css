@@ -309,6 +309,10 @@ don't overflow their boxes*/
     font-size: 1.3em;
 }
 
+#paging {
+    margin-bottom: 2em;
+}
+
 /* FOOTER */
 
 #footer-custom {
