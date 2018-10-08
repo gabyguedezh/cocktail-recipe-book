@@ -15,9 +15,13 @@
     <div id="select4" class="search-selector">
         <p class="no-margin  art-deco-font">Vegan Filter</p>
     </div>
+    <div>
+        <a id="reset-button" class="waves-effect waves-light btn art-deco-font #00695c teal darken-4 col s4"><span>Reset All</span></a>
+    </div>
 </div>
 <!--<div style="clear: both"></div>-->
-<div id="cocktails-found"><strong><span id="size-top-number"></span> Cocktails Found</strong></div>
+<h5 id="cocktails-found" class="col s4"><strong><span id="size-top-number"></span> Cocktails Found</strong></h5>
+
 <div id="datatable"></div>
 <!-- Attempt with example - END -->
 <!-- Pagination - START -->
@@ -193,6 +197,18 @@
         });
         // Re-drawing the dataTable after selecting options - END
         
+        // Reset button - START
+        $('#reset-button').on('click', function() {
+            ofs = 0;
+            dc.filterAll();
+            dc.redrawAll();
+            update();
+            $("#end").html(ofs + pag);
+            if ( filteredRecipes > pag ) {
+                $("#next").removeAttr('disabled');
+            }
+        });
+        // Reset Button - END
         
         update();
         dc.renderAll();

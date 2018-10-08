@@ -13,6 +13,11 @@
     <a id="sort-by-rating-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-star"></i> Sort by Rating</a>
     <a id="sort-by-date-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-exclamation"></i> See Newest First</a>
 </div>
+<div id="filter-bar-my-recipes" class="row #00695c teal darken-3">
+    <h4 class="art-deco-font center-align col s12 m5">Filter Cocktails</h4>
+    <a id="sort-by-rating-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-star"></i> Sort by Rating</a>
+    <a id="sort-by-date-button" class="waves-effect waves-light btn white col s6 m3"><i class="fas fa-exclamation"></i> See Newest First</a>
+</div>
 <div id="user-zero-my-recipes" class="row #00695c teal darken-3">
     <h4 class="art-deco-font center-align col s12 m5">You have no cocktails yet</h4>
 </div>
@@ -146,6 +151,7 @@
         } else {
             $('#sorting-bar-my-recipes').css('display', 'none');
             $('#load-more-spice').css('display', 'none');
+            $('filter-bar-my-recipes').css('display', 'none');
         }
         // Logic if recipe count is zero - END
     });

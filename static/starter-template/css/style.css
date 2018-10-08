@@ -301,6 +301,14 @@ don't overflow their boxes*/
     margin-bottom: 2em;
 }
 
+#reset-button {
+    padding: 0em 3.3em;
+}
+
+#reset-button span {
+    font-size: 1.3em;
+}
+
 /* FOOTER */
 
 #footer-custom {
