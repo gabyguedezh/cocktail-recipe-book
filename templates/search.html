@@ -137,15 +137,21 @@
         // Begin and End of Total Numbers - SART
         $("#begin").html(ofs + 1);
         $("#end").html(ofs + pag);
-        // $("#size").text('total filtered');
         // Begin and End of Total Numbers - END
 
         function display() {
 
             d3.select('#begin')
                 .text(ofs + 1);
-            d3.select('#end')
-                .text(ofs+pag);
+            // d3.select('#end')
+            //     .text(ofs+pag);
+            if ( ofs+pag > filteredRecipes) {
+                    d3.select('#end')
+                        .text(filteredRecipes);
+                } else {
+                     d3.select('#end')
+                        .text(ofs+pag);
+                }
             d3.select('#previous')
                 .attr('disabled', 'disabled');
                 if ( ofs > 0 ) {
@@ -180,11 +186,15 @@
         //   Pagination functionality - END
         
         // Re-drawing the dataTable after selecting options - START
+        
+        var filteredRecipes = filteredTotalRecipes.value();
         $(".search-selector").on('change', function() {
+            filteredRecipes = filteredTotalRecipes.value();
             update();
             datatable.redraw();
         });
         // Re-drawing the dataTable after selecting options - END
+        
         
         update();
         dc.renderAll();
