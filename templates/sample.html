@@ -52,6 +52,8 @@
             select4 = dc.selectMenu('#select4'),
             datatable = dc.dataTable('#datatable'),
             numberDisplay = dc.numberDisplay('cocktails-found');
+            filteredTotal = ndx.groupAll();
+            previousFilteredTotal = filteredTotal.value();
             
         // Fixing the selector classes - START
 
@@ -106,14 +108,16 @@
             .dimension(veganDimension)
             .group(veganDimension.group())
             .controlsUseVisibility(true);
+            
         datatable
             .dimension(nameDimension)
             .group(function(d) { 
                 return ['<a href="' + 'show_cocktail/' + d.recipe_url + '">' + '<strong>' + d.recipe_name + '</strong>' + '</a>' + ': ' + d.recipe_description]; 
             })
             // .columns([' Cocktails Found'])
-            .size(recipesList.length);
+            .size(Infinity);
 
+        
         // Calculate cocktails found - START
         numberDisplay
             .formatNumber(d3.format("d"))
@@ -121,10 +125,8 @@
                 // d = myRecipesList.length
                 return (+d);
             })
-            .group(nameDimension.group());
+            .group(filteredTotal);
         // Calculate cocktails found - END
-        update();
-        dc.renderAll();
         // Getting search - END
         
         // Pagination functionality - START
