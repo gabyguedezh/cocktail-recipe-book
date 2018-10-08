@@ -17,12 +17,12 @@
     </div>
 </div>
 <!--<div style="clear: both"></div>-->
-<div id="cocktails-found"><strong><span></span> Cocktails Found</strong></div>
+<div id="cocktails-found"><strong><span class="size"></span> Cocktails Found</strong></div>
 <div id="datatable"></div>
 <!-- Attempt with example - END -->
 <!-- Pagination - START -->
 <div id="paging">
-    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size"></span>.
+    Showing <span id="begin"></span>-<span id="end"></span> of <span class="size"></span>.
     <input id="previous" class="btn" type="Button" value="Previous"/>
     <input id="next" class="btn" type="button" value="Next"/>
 </div>
@@ -113,8 +113,7 @@
             })
             // .columns([' Cocktails Found'])
             .size(recipesList.length);
-            // .size(Infinity);
-            
+
         // Calculate cocktails found - START
         numberDisplay
             .formatNumber(d3.format("d"))
@@ -132,16 +131,17 @@
         
         // use odd page size to show the effect better
 
-        var ofs = 0, pag = 10;
-        console.log('ofs: ', ofs);
+        var ofs = 0;
+        var pag = 10;
         
         // Begin and End of Total Numbers - SART
         $("#begin").html(ofs + 1);
         $("#end").html(ofs + pag);
+        $("#size").text('total filtered');
         // Begin and End of Total Numbers - END
-        
-         
+
         function display() {
+
             d3.select('#begin')
                 .text(ofs + 1);
             d3.select('#end')
@@ -151,11 +151,14 @@
                 if ( ofs > 0 ) {
                     $("#previous").removeAttr('disabled');
                 }
-                // .attr('disabled', ofs - pag < 0 ? 'true' : null);
             d3.select('#next')
                 .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
-            d3.select('#size').text(ndx.size());
+                console.log('ofs + pag: ', ofs + pag);
+                console.log('ndx.size(): ', ndx.size());
+            d3.select('.size')
+                .text('mu');
         }
+        
         
         function update() {
             datatable.beginSlice(ofs);
@@ -170,11 +173,19 @@
         });
         $("#next").on("click", function(){
             ofs += pag;
-            display();
+            update();
             datatable.redraw();
         });
         //   Pagination functionality - END
         
+        // Re-drawing the dataTable after selecting options - START
+        $(".search-selector").on('change', function() {
+            console.log('selector changed');
+            update();
+            datatable.redraw();
+        });
+        
+        // Re-drawing the dataTable after selecting options - END
 
     });
 </script>
