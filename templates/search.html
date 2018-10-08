@@ -204,6 +204,7 @@
             dc.redrawAll();
             update();
             $("#end").html(ofs + pag);
+            filteredRecipes = recipesList.length;
             if ( filteredRecipes > pag ) {
                 $("#next").removeAttr('disabled');
             }
