@@ -143,8 +143,6 @@
 
             d3.select('#begin')
                 .text(ofs + 1);
-            // d3.select('#end')
-            //     .text(ofs+pag);
             if ( ofs+pag > filteredRecipes) {
                     d3.select('#end')
                         .text(filteredRecipes);
@@ -158,8 +156,7 @@
                     $("#previous").removeAttr('disabled');
                 }
             d3.select('#next')
-                .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
-
+                .attr('disabled', ofs + pag >= filteredRecipes ? 'true' : null);
             d3.select('#size-number')
                 .text(filteredTotalRecipes.value());
             d3.select('#size-top-number')
@@ -189,6 +186,7 @@
         
         var filteredRecipes = filteredTotalRecipes.value();
         $(".search-selector").on('change', function() {
+            ofs = 0;
             filteredRecipes = filteredTotalRecipes.value();
             update();
             datatable.redraw();
