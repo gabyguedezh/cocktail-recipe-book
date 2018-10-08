@@ -45,6 +45,13 @@
             recipesList.push(recipesJson[i]);
         }
         
+        var ndx = crossfilter(recipesList),
+            spiritDimension = ndx.dimension(function(d) { return d.base_spirit; }),
+            typeDimension = ndx.dimension(function(d) { return d.cocktail_type; }),
+            flavourDimension = ndx.dimension(function(d) { return d.flavour_profile; }),
+            veganDimension = ndx.dimension(function(d) { return d.is_vegan; }),
+            nameDimension = ndx.dimension(function(d) { return d.recipe_name; });
+        
         // Getting search - START
         var select1 = dc.selectMenu('#select1'),
             select2 = dc.selectMenu('#select2'),
@@ -52,8 +59,11 @@
             select4 = dc.selectMenu('#select4'),
             datatable = dc.dataTable('#datatable'),
             numberDisplay = dc.numberDisplay('cocktails-found');
+            offset = 0;
             filteredTotal = ndx.groupAll();
             previousFilteredTotal = filteredTotal.value();
+            
+        const ITEMS_PER_PAGE = 5;
             
         // Fixing the selector classes - START
 
@@ -84,14 +94,7 @@
             recipeName.push(recipesList[i]['recipe_name'])
         }
         
-        
-        var ndx = crossfilter(recipesList),
-            spiritDimension = ndx.dimension(function(d) { return d.base_spirit; }),
-            typeDimension = ndx.dimension(function(d) { return d.cocktail_type; }),
-            flavourDimension = ndx.dimension(function(d) { return d.flavour_profile; }),
-            veganDimension = ndx.dimension(function(d) { return d.is_vegan; }),
-            nameDimension = ndx.dimension(function(d) { return d.recipe_name; });
-        
+
         select1
             .dimension(spiritDimension)
             .group(spiritDimension.group())
@@ -133,62 +136,51 @@
         
         // use odd page size to show the effect better
 
-        var ofs = 0;
-        var pag = 10;
-        
-        // Begin and End of Total Numbers - SART
-        $("#begin").html(ofs + 1);
-        $("#end").html(ofs + pag);
-        $("#size").text('total filtered');
-        // Begin and End of Total Numbers - END
-
-        function display() {
-
-            d3.select('#begin')
-                .text(ofs + 1);
-            d3.select('#end')
-                .text(ofs+pag);
-            d3.select('#previous')
-                .attr('disabled', 'disabled');
-                if ( ofs > 0 ) {
-                    $("#previous").removeAttr('disabled');
-                }
-            d3.select('#next')
-                .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
-                console.log('ofs + pag: ', ofs + pag);
-                console.log('ndx.size(): ', ndx.size());
-            d3.select('.size')
-                .text('mu');
+        function updatePaginationElements() {
+            d3.select('#begin').text(offset);
+            d3.select('#end').text(
+                Math.min(offset+ITEMS_PER_PAGE-1, filteredTotal.value()));
+            d3.select('#size').text(filteredTotal.value());
+            d3.select('#previous').attr(
+                'disabled', offset <= 0 ? "true" : null);
+            d3.select('#next').attr(
+                'disabled', offset + ITEMS_PER_PAGE >= filteredTotal.value() ? "true" : null);
         }
-        
-        
-        function update() {
-            datatable.beginSlice(ofs);
-            datatable.endSlice(ofs+pag);
-            display();
+    
+        function updateTable() {
+            datatable.beginSlice(offset);
+            datatable.endSlice(offset+ITEMS_PER_PAGE);
+            updatePaginationElements();
         }
-
-        $("#previous").on("click", function(){
-            ofs -= pag;
-            update();
+    
+    
+        // Revert table to the first page when a filter is applied to any chart,
+        // if another page of the table was being viewed
+        function revertToFirstPageIfNeeded() {
+            if (filteredTotal.value() !== previousFilteredTotalValue) {
+                offset = 0;
+                previousFilteredTotalValue = filteredTotal.value();
+                updateTable(); 
+                datatable.redraw();
+            }
+        }
+        datatable.on('renderlet', revertToFirstPageIfNeeded);
+    
+        function nextPage() {
+            offset += ITEMS_PER_PAGE;
+            updateTable();
             datatable.redraw();
-        });
-        $("#next").on("click", function(){
-            ofs += pag;
-            update();
+        }
+        $('#next').on('click', nextPage);
+        function previousPage() {
+            offset -= ITEMS_PER_PAGE;
+            updateTable();
             datatable.redraw();
-        });
-        //   Pagination functionality - END
-        
-        // Re-drawing the dataTable after selecting options - START
-        $(".search-selector").on('change', function() {
-            console.log('selector changed');
-            update();
-            datatable.redraw();
-        });
-        
+        }
+        $('#previous').on('click', previousPage);
+            
         // Re-drawing the dataTable after selecting options - END
-        update();
+        updateTable();
         dc.renderAll();
 
     });

@@ -268,6 +268,21 @@ def get_search():
 
     return render_template('search.html',
                            recipes=recipes_dict)
+                           
+@app.route('/sample')
+def get_sample_search():
+    recipes = mongo.db.recipes.find()
+        
+    recipes_dict = {}
+    
+    for i, recipe in enumerate(recipes):
+        recipe.pop('_id', None)
+        recipes_dict[i] = recipe
+    
+    recipes_dict = json.dumps(recipes_dict)
+
+    return render_template('sample.html',
+                           recipes=recipes_dict)
 
 
 if __name__ == '__main__':

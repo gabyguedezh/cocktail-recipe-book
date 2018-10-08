@@ -22,7 +22,7 @@
 <!-- Attempt with example - END -->
 <!-- Pagination - START -->
 <div id="paging">
-    Showing <span id="begin"></span>-<span id="end"></span> of <span class="size"></span>.
+    Showing <span id="begin"></span>-<span id="end"></span> of <span id="size-number" class="size"></span>.
     <input id="previous" class="btn" type="Button" value="Previous"/>
     <input id="next" class="btn" type="button" value="Next"/>
 </div>
@@ -115,13 +115,14 @@
             .size(recipesList.length);
 
         // Calculate cocktails found - START
+        var filteredTotalRecipes = ndx.groupAll();
         numberDisplay
             .formatNumber(d3.format("d"))
             .valueAccessor(function (d) {
-                // d = myRecipesList.length
                 return (+d);
             })
-            .group(nameDimension.group());
+            .group(filteredTotalRecipes);
+            console.log('filteredTotalRecipes: ', filteredTotalRecipes.value());
         // Calculate cocktails found - END
         update();
         dc.renderAll();
@@ -137,7 +138,7 @@
         // Begin and End of Total Numbers - SART
         $("#begin").html(ofs + 1);
         $("#end").html(ofs + pag);
-        $("#size").text('total filtered');
+        // $("#size").text('total filtered');
         // Begin and End of Total Numbers - END
 
         function display() {
@@ -153,10 +154,10 @@
                 }
             d3.select('#next')
                 .attr('disabled', ofs + pag >= ndx.size() ? 'true' : null);
-                console.log('ofs + pag: ', ofs + pag);
-                console.log('ndx.size(): ', ndx.size());
-            d3.select('.size')
-                .text('mu');
+                // console.log('ofs + pag: ', ofs + pag);
+                // console.log('ndx.size(): ', ndx.size());
+            d3.select('#size-number')
+                .text(filteredTotalRecipes.value());
         }
         
         
@@ -181,6 +182,7 @@
         // Re-drawing the dataTable after selecting options - START
         $(".search-selector").on('change', function() {
             console.log('selector changed');
+            console.log('filteredTotalRecipes: ', filteredTotalRecipes.value());
             update();
             datatable.redraw();
         });
