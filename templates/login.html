@@ -36,13 +36,13 @@
         </div>
         <br>
             <div class="row dashboard-graphs">
-                <div id='spirit-pie-chart' class="col s12 m6 xl4">
+                <div id='spirit-pie-chart' class="col s12 l6">
                     <h4 class="art-deco-font">Favourite Base Spirits</h4>
                 </div>
-                <div id='cocktail-type-bar-chart' class="col s12 m6 xl4">
+                <div id='cocktail-type-bar-chart' class="col s12 l6">
                     <h4 class="art-deco-font">Favourite Cocktail Type</h4>
                 </div>
-                <div id='flavour-profile-chart' class="col s12 m12 xl4">
+                <div id='flavour-profile-chart' class="col s12 l6">
                     <h4 class="art-deco-font">Favourite Flavour Profile</h4>
                 </div>
             </div>
@@ -69,10 +69,35 @@
                 
                 makeDashboard(recipesList);
                 
+                // Setting up responsiveness - START
+                function apply_resizing(chart, element, adjustX, adjustY, onresize) {
+                    adjustX = adjustX || 0;
+                    adjustY = adjustY || adjustX || 0;
+                    chart
+                        .width(element.innerWidth() - adjustX)
+                        // .height(element.innerHeight() - adjustY);
+                        .height(400);
+                    window.onresize = function () {
+                        console.log("X: " + element.innerWidth() +  "Y: " + element.innerHeight());
+                        if (onresize) {
+                            onresize(chart);
+                        }
+                        chart
+                            .width(element.innerWidth() - 20)
+                            // .height(element.innerHeight() - 20);
+                            .height(400);
+            
+                        if (chart.rescale) {
+                            chart.rescale();
+                        }
+                        chart.redraw();
+                    };
+                }
+                // Setting up responsiveness - END
+                
                 // Setting up to make dashboard
                 function makeDashboard(recipesList) {
-                    
-                    
+
                     // Separating only recipes created by current user
                     myRecipesList = [];
                     
@@ -121,31 +146,44 @@
             
                 function spiritPieChart(ndx) {
                 
-                mySpirits = []
-                for ( var i = 0; i < myRecipesList.length; i++) {
-                        let baseSpirit = myRecipesList[i]['base_spirit']
-                        mySpirits.push(baseSpirit)
-                    }
-                // console.log('mySpirits: ', mySpirits);
-                var spiritDimension = ndx.dimension(function(d) {
-                    return d['base_spirit'];
-                });
-                
-                var spiritGroup = spiritDimension.group();
-                
-                dc.pieChart("#spirit-pie-chart")
-                    .width(200)
-                    .height(200)
-                    .radius(140)
-                    .innerRadius(30)
-                    .transitionDuration(500)
-                    .minAngleForLabel(0.2)
-                    .colorAccessor(function (d) {
-                        return d.key;
-                    })
-                    .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
-                    .dimension(spiritDimension)
-                    .group(spiritGroup);
+                    mySpirits = []
+                    for ( var i = 0; i < myRecipesList.length; i++) {
+                            let baseSpirit = myRecipesList[i]['base_spirit']
+                            mySpirits.push(baseSpirit)
+                        }
+                    // console.log('mySpirits: ', mySpirits);
+                    var spiritDimension = ndx.dimension(function(d) {
+                        return d['base_spirit'];
+                    });
+                    
+                    var spiritGroup = spiritDimension.group();
+                    
+                    var pieChart = dc.pieChart("#spirit-pie-chart")
+                    var pieElement = $("#spirit-pie-chart")
+                    var adjustX = 60, adjustY = 10;
+                    pieChart
+                        .width(pieElement.innerWidth() - adjustX)
+                        // .height(pieElement.innerHeight() - adjustY)
+                        .height(400)
+                        .radius(280)
+                        .innerRadius(60)
+                        .transitionDuration(500)
+                        .minAngleForLabel(0.2)
+                        .colorAccessor(function (d) {
+                            return d.key;
+                        })
+                        .ordinalColors(["#880D40", "#890F0C", "#8B460B", "#8C7F0A", "#628E08", "#279007", "#04935F" ])
+                        .dimension(spiritDimension)
+                        .group(spiritGroup)
+                        .on('pretransition', function(pieChart) {
+                            pieChart.selectAll('text.pie-slice').text(function(d) {
+                                if (( (d.endAngle - d.startAngle) / (2*Math.PI) * 100 ) != 0) {
+                                    return  d.data.key + ' ' + dc.utils.printSingleValue((d.endAngle - d.startAngle) / (2*Math.PI) * 100) + '%';
+                                }
+                            });
+                        });
+                        
+                        apply_resizing(pieChart, pieElement, adjustX, adjustY);
                 }
                 
                 function cocktailTypeBar(ndx) {
@@ -161,9 +199,13 @@
                     
                     var cocktailTypeGroup = cocktailTypeDimension.group();
                     
-                    dc.barChart('#cocktail-type-bar-chart')
-                        .width(300)
-                        .height(200)
+                    var barChart = dc.barChart('#cocktail-type-bar-chart')
+                    var barElement = $("#cocktail-type-bar-chart")
+                    var adjustX = 20, adjustY = 10;
+                    barChart
+                        .width(barElement.innerWidth() - adjustX)
+                        // .height(barElement.innerHeight() - adjustY)
+                        .height(400)
                         .margins({top: 10, right: 50, bottom: 30, left: 50})
                         .colorAccessor(function (d) {
                             return d.key;
@@ -178,6 +220,8 @@
                         .xAxisLabel("Cocktail Type")
                         .yAxisLabel("Amount of Cocktails")
                         .yAxis().tickFormat(d3.format('d'));
+                        
+                    apply_resizing(barChart, barElement, adjustX, adjustY);
                 }
                 
                 function flavourProfileChart(ndx) {
@@ -194,9 +238,13 @@
                     
                     var flavourProfileGroup = flavourProfileDimension.group();
                     
-                    dc.rowChart("#flavour-profile-chart")
-                        .width(400)
-                        .height(200)
+                    var rowChart = dc.rowChart("#flavour-profile-chart")
+                    var rowElement = $("#flavour-profile-chart")
+                    var adjustX = 20, adjustY = 10;
+                    rowChart
+                        .width(rowElement.innerWidth() - adjustX)
+                        // .height(rowElement.innerHeight() - adjustY)
+                        .height(400)
                         .x(d3.scale.ordinal())
                         .elasticX(true)
                         .colorAccessor(function (d) {
@@ -206,6 +254,8 @@
                         .dimension(flavourProfileDimension)
                         .group(flavourProfileGroup)
                         .render();
+                    apply_resizing(rowChart, rowElement, adjustX, adjustY);
+                    
                 }
             
                 // Logic if recipe count is zero - START
