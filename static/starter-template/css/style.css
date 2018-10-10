@@ -39,8 +39,14 @@ don't overflow their boxes*/
     visibility: hidden;
 }
 
-/* NAV BAR */
+.hover-text-shadow:hover {
+    text-shadow: 1px 0px 1px rgba(255, 255, 255, 0.5);
+}
 
+/* NAV BAR */
+#nav-mobile li:hover {
+    background-color: #ffb3d9;
+}
 
 /* SECTIONS */
 /* HOMEPAGE */
@@ -254,11 +260,6 @@ don't overflow their boxes*/
     margin-left: 1em;
 }
 
-/*#cocktail-type-bar-chart .x-axis-label {*/
-    /*font-size: 2em!important;*/
-    /*transform: translate(10em, 15em);*/
-/*    z-index: 1;*/
-/*}*/
 
 /* SEARCH */
 

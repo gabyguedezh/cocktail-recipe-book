@@ -163,7 +163,6 @@
                     var adjustX = 60, adjustY = 10;
                     pieChart
                         .width(pieElement.innerWidth() - adjustX)
-                        // .height(pieElement.innerHeight() - adjustY)
                         .height(400)
                         .radius(280)
                         .innerRadius(60)
@@ -184,6 +183,10 @@
                         });
                         
                         apply_resizing(pieChart, pieElement, adjustX, adjustY);
+                        
+                        // Changing the color when selected - START
+                        $('.deselected').css('opacity', 0.5);
+                        // Changing the color when selected - END
                 }
                 
                 function cocktailTypeBar(ndx) {
@@ -204,7 +207,6 @@
                     var adjustX = 20, adjustY = 10;
                     barChart
                         .width(barElement.innerWidth() - adjustX)
-                        // .height(barElement.innerHeight() - adjustY)
                         .height(400)
                         .margins({top: 10, right: 50, bottom: 30, left: 50})
                         .colorAccessor(function (d) {
@@ -230,8 +232,7 @@
                             let flavourProfile = myRecipesList[i]['flavour_profile']
                             myFlavourProfiles.push(flavourProfile)
                         }
-                    // console.log('myFlavourProfiles: ', myFlavourProfiles);
-    
+
                     var flavourProfileDimension = ndx.dimension(function(d) {
                         return d['flavour_profile'];
                     });
@@ -243,7 +244,6 @@
                     var adjustX = 20, adjustY = 10;
                     rowChart
                         .width(rowElement.innerWidth() - adjustX)
-                        // .height(rowElement.innerHeight() - adjustY)
                         .height(400)
                         .x(d3.scale.ordinal())
                         .elasticX(true)
