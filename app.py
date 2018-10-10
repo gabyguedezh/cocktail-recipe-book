@@ -8,17 +8,19 @@ import json
 from datetime import datetime
 from functools import update_wrapper
 
-# MONGO_DBNAME = os.environ.get('MONGODB_NAME')
-# MONGODB_URI = os.environ.get('MONGODB_URI')
-
+MONGO_DBNAME = os.environ.get('MONGODB_NAME')
+MONGODB_URI = os.environ.get('MONGODB_URI')
+print(MONGO_DBNAME, MONGODB_URI)
 
 app = Flask(__name__)
 app.config['TESTING'] = True
 app.testing = True
 app.secret_key = "mix_and_shake_secret"
 
-app.config['MONGO_DBNAME'] = 'cocktail_book'
-app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+# app.config['MONGO_DBNAME'] = 'cocktail_book'
+# app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+app.config['MONGO_DBNAME'] = MONGODB_NAME
+app.config['MONGO_URI'] = MONGODB_URI
 
 mongo = PyMongo(app)
 

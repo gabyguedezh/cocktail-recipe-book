@@ -232,11 +232,6 @@ don't overflow their boxes*/
 
 /* My Dashboard */
 
-/*#log-in-buttons {*/
-    /*position: relative;*/
-    /*bottom: -12em;*/
-/*}*/
-
 #counter-box-my-recipes {
     width: 8em;
     height: 8em;
@@ -260,6 +255,14 @@ don't overflow their boxes*/
     margin-left: 1em;
 }
 
+.x-axis-label {
+    font-weight: bold;
+    transform: translate(200px, 395px);
+}
+
+.y-axis-label {
+    font-weight: bold;
+}
 
 /* SEARCH */
 

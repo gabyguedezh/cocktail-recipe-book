@@ -239,13 +239,24 @@
                     
                     var flavourProfileGroup = flavourProfileDimension.group();
                     
+                    // Create domain - START
+                    var genderColors = d3.scale.ordinal()
+                        .domain(["Bitter", "Citrus", "Coffee", "Floral", "Herbacious", "Milk or Creamy", "Spicy", "Sweet and Fruity"])
+                    
+                    var fpDim = ndx.dimension(dc.pluck("flavour_profile"));
+                    
+                    var minAmount = fpDim.bottom(1)[0].flavour_profile;
+                    var maxAmount = fpDim.top(1)[0].flavour_profile;
+                    // Create domain - END
+                    
                     var rowChart = dc.rowChart("#flavour-profile-chart")
                     var rowElement = $("#flavour-profile-chart")
                     var adjustX = 20, adjustY = 10;
                     rowChart
                         .width(rowElement.innerWidth() - adjustX)
                         .height(400)
-                        .x(d3.scale.ordinal())
+                        // .x(d3.scale.ordinal())
+                        .x(d3.scale.linear().domain([minAmount, maxAmount]))
                         .elasticX(true)
                         .colorAccessor(function (d) {
                             return d.key;
@@ -255,6 +266,10 @@
                         .group(flavourProfileGroup)
                         .render();
                     apply_resizing(rowChart, rowElement, adjustX, adjustY);
+                    
+                    // Adding labels to chart - START
+   
+                    // Adding labels to chart - END
                     
                 }
             
