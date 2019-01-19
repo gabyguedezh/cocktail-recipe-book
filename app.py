@@ -17,11 +17,8 @@ app.config['TESTING'] = True
 app.testing = True
 app.secret_key = "mix_and_shake_secret"
 
-# app.config['MONGO_DBNAME'] = MONGO_DBNAME
-# app.config['MONGO_URI'] = MONGODB_URI
-
-app.config['MONGO_DBNAME'] = 'cocktail_book'
-app.config['MONGO_URI'] = 'mongodb://admin:cocktail_book123@ds125352.mlab.com:25352/cocktail_book'
+app.config['MONGO_DBNAME'] = MONGO_DBNAME
+app.config['MONGO_URI'] = MONGODB_URI
 
 mongo = PyMongo(app)
 
