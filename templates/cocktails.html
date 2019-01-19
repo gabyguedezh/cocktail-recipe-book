@@ -32,7 +32,7 @@
 <script>
     $(document).ready(function() {
         
-        var totalRecipes = $(".recipe-card").length
+        var totalRecipes = $(".recipe-card").length;
 
         // Show only the first eight recipes - START
         $(function() {
@@ -42,7 +42,7 @@
         // Show only the first eight recipes - END
         
         // Counting the number of recipes shown at a given time - START
-        var visibleRecipes = 0
+        var visibleRecipes = 0;
         checkVisible = function() {
             $(".recipe-card").each(function() {
                 if ($(this).is(':visible') == true ) {

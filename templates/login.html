@@ -138,7 +138,7 @@
                     dc.numberDisplay(element)
                         .formatNumber(d3.format("d"))
                         .valueAccessor(function (d) {
-                            d = myRecipesList.length
+                            d = myRecipesList.length;
                             return (+d);
                         })
                         .group(myRecipesTotal);
@@ -146,10 +146,10 @@
             
                 function spiritPieChart(ndx) {
                 
-                    mySpirits = []
+                    mySpirits = [];
                     for ( var i = 0; i < myRecipesList.length; i++) {
-                            let baseSpirit = myRecipesList[i]['base_spirit']
-                            mySpirits.push(baseSpirit)
+                            let baseSpirit = myRecipesList[i]['base_spirit'];
+                            mySpirits.push(baseSpirit);
                         }
                     // console.log('mySpirits: ', mySpirits);
                     var spiritDimension = ndx.dimension(function(d) {
@@ -158,8 +158,8 @@
                     
                     var spiritGroup = spiritDimension.group();
                     
-                    var pieChart = dc.pieChart("#spirit-pie-chart")
-                    var pieElement = $("#spirit-pie-chart")
+                    var pieChart = dc.pieChart("#spirit-pie-chart");
+                    var pieElement = $("#spirit-pie-chart");
                     var adjustX = 60, adjustY = 10;
                     pieChart
                         .width(pieElement.innerWidth() - adjustX)
@@ -190,10 +190,10 @@
                 }
                 
                 function cocktailTypeBar(ndx) {
-                    myCocktailTypes = []
+                    myCocktailTypes = [];
                     for ( var i = 0; i < myRecipesList.length; i++) {
-                            let cocktailType = myRecipesList[i]['cocktail_type']
-                            myCocktailTypes.push(cocktailType)
+                            let cocktailType = myRecipesList[i]['cocktail_type'];
+                            myCocktailTypes.push(cocktailType);
                         }
     
                     var cocktailTypeDimension = ndx.dimension(function(d) {
@@ -202,8 +202,8 @@
                     
                     var cocktailTypeGroup = cocktailTypeDimension.group();
                     
-                    var barChart = dc.barChart('#cocktail-type-bar-chart')
-                    var barElement = $("#cocktail-type-bar-chart")
+                    var barChart = dc.barChart('#cocktail-type-bar-chart');
+                    var barElement = $("#cocktail-type-bar-chart");
                     var adjustX = 20, adjustY = 10;
                     barChart
                         .width(barElement.innerWidth() - adjustX)
@@ -227,10 +227,10 @@
                 }
                 
                 function flavourProfileChart(ndx) {
-                    myFlavourProfiles = []
+                    myFlavourProfiles = [];
                     for ( var i = 0; i < myRecipesList.length; i++) {
-                            let flavourProfile = myRecipesList[i]['flavour_profile']
-                            myFlavourProfiles.push(flavourProfile)
+                            let flavourProfile = myRecipesList[i]['flavour_profile'];
+                            myFlavourProfiles.push(flavourProfile);
                         }
 
                     var flavourProfileDimension = ndx.dimension(function(d) {
@@ -249,8 +249,8 @@
                     var maxAmount = fpDim.top(1)[0].flavour_profile;
                     // Create domain - END
                     
-                    var rowChart = dc.rowChart("#flavour-profile-chart")
-                    var rowElement = $("#flavour-profile-chart")
+                    var rowChart = dc.rowChart("#flavour-profile-chart");
+                    var rowElement = $("#flavour-profile-chart");
                     var adjustX = 20, adjustY = 10;
                     rowChart
                         .width(rowElement.innerWidth() - adjustX)
@@ -274,7 +274,7 @@
                 }
             
                 // Logic if recipe count is zero - START
-                MyRecipeCount = myRecipesList.length
+                MyRecipeCount = myRecipesList.length;
                 
                 if ( MyRecipeCount != 0 ) {
                     $('#user-zero-recipes').css('display', 'none');

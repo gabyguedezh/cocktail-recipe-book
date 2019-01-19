@@ -1,17 +1,47 @@
 # Your Project's Name
 
-One or two paragraphs providing an overview of your project.
+Mix and Shake: 
 
-Essentially, this part is your sales pitch.
+A cocktail recipe book that allows you to save your personal
+drinks collection and find new recipes according to different useful categories.
+
  
 ## UX
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
+#### Scope
 
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+Scope 1 - Beta version. A fully functional cocktail recipe book in which users
+can read, creat, edit and delvete cocktail recipes, as well as seeing different
+attributes each recipe, and rate them.
+In this version, an image placeholder will accompany all recipes, however, it
+is intended to make it possible for users to upload their own images after
+the beta phase. 
+It was decided to launch before having this functionality as the recipe book
+meets the basic requirements of the brief and most of the optional add-ons and
+a decision was made that prolonging the launch until the image functionality 
+was fully integrated would go against agile principles as the Minimum Viable 
+Product has been achieved for this scope.
+
+Scope 2 - Multimedia version. Users will be able to upload images and videos
+to illustrate their recipes. It is plan to use AWS to host the multimedia 
+elements due to the fact that Heroku, where the site has been deployed, doesn't.
+
+##### User stories:
+Example:
 - As a user type, I want to perform an action, so that I can achieve a goal.
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+- As a bartender, I want to save my own recipes, so I can craft a personal repertoire.
+- As a cocktail enthusiast, I want to find highly rated recipes, so I can make high-quality drinks at home.
+- As a person learning about mixology, I want to find recipes by cocktail type, spirit and other categories, so I can study specify styles.
+- As a vegan, I want to search only through vegan friendly recipes, so I can find only drinks without animal products.
+- As a gin lover, I want to find only gin-based recipes, so I can try my favourite spirits in different ways.
+- As a statistics geek, I want to see charts that show me insights on the recipes I upload, so I can spot trends and discover my mixing style.
+
+##### Mockups and wireframes
+
+- See the [mockup](https://drive.google.com/file/d/1IBZhaEBv6aHc9tRcjJ0oM813mmQfHwVE/view?usp=sharing)
+    - The mockup for this project was created with Balsamiq.
+    - All of the key pages we included in the mockup.
+- Alternatively, you can find the mockup uploaded as a PDF within the folder ASSETS/MOCKUP.
 
 ## Features
 
