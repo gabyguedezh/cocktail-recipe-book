@@ -1,6 +1,4 @@
-# Your Project's Name
-
-Mix and Shake: 
+# Mix and Shake: 
 
 A cocktail recipe book that allows you to save your personal
 drinks collection and find new recipes according to different useful categories.
@@ -10,19 +8,21 @@ drinks collection and find new recipes according to different useful categories.
 #### Scope
 
 Scope 1 - Beta version. A fully functional cocktail recipe book in which users
-can read, creat, edit and delvete cocktail recipes, as well as seeing different
+can read, creat, edit and delete cocktail recipes, as well as seeing different
 attributes each recipe, and rate them.
+
 In this version, an image placeholder will accompany all recipes, however, it
 is intended to make it possible for users to upload their own images after
 the beta phase. 
+
 It was decided to launch before having this functionality as the recipe book
 meets the basic requirements of the brief and most of the optional add-ons and
 a decision was made that prolonging the launch until the image functionality 
-was fully integrated would go against agile principles as the Minimum Viable 
-Product has been achieved for this scope.
+was fully integrated would go against Agile principles as the **Minimum Viable 
+Product** has been achieved for this scope.
 
 Scope 2 - Multimedia version. Users will be able to upload images and videos
-to illustrate their recipes. It is plan to use AWS to host the multimedia 
+to illustrate their recipes. It is planned to use AWS to host the multimedia 
 elements due to the fact that Heroku, where the site has been deployed, doesn't.
 
 ##### User stories:
@@ -41,7 +41,7 @@ My user stories
 
 - See the [mockup](https://drive.google.com/file/d/1IBZhaEBv6aHc9tRcjJ0oM813mmQfHwVE/view?usp=sharing)
     - The mockup for this project was created with Balsamiq.
-    - All of the key pages we included in the mockup.
+    - All of the key pages were included in the mockup.
 - Alternatively, you can find the mockup uploaded as a PDF within the folder ASSETS/MOCKUP.
 
 ## Features
@@ -49,20 +49,18 @@ My user stories
 
 ##### Existing features
 
-Below, you'll read about the different parts of your project, described briefly.
-
 - Reading featured cocktails: The highest rated recipes appear on the homepage.
 - All cocktails: Users can freely browse through the whole repository of recipes.
-- Sort: Users can sort recipes by rating or choose to see newset first.
+- Sort: Users can sort recipes by rating or choose to see newest first.
 - See a recipe: Users can see individual recipes with their own URLs.
 - Rate a recipe: In the individual view of each recipe, users have the option to rate them one to five starts.
 - Login: Users can create a username to access the private section, insights, and personal cocktail repo.
-- My Dashboard: Loged users can see insights about the recipes they upload including number of uploads, recipes bu sirit, flavour, and cocktail type.
+- My Dashboard: Logged users can see insights about the recipes they upload including number of uploads, recipes by spirit, flavour, and cocktail type.
 - Interactive graphs: Users can cross reference the graphs in their dashboard  section to get interesting insights.
-- My recipes: Users can browse thourhg recipes they've created, sorting them out by rating or by newset first.
+- My recipes: Users can browse through recipes they've created, sorting them out by rating or by newest first.
 - My recipe cards: Each card on the my recipes section contains basic information about a recipe (name, description, rating, base spirit, cocktail type, flavour and date of creation). The cards also have links that allow users to open, edit or delete their recipes.
 - Search: Users can search through the database by manipulating four selectors (base spirit, type, flavour and vegan) which are cross-referenceable.
-- Results: Users will see the numbers of results of a query, and each result will have a link in the cocktail name, as well as a short description.
+- Results: Users will see the number of results of a query, and each result will have a link in the cocktail name, as well as a short description.
 - Pagination: There is a pagination allowing users to easily navigathe through the search results.
 - Add a cocktail form: Users can fill a form to add all the necessary information to add new cocktails to the database.
 - Edit a cocktail form: Users can open an existing cocktail and make changes to it.
@@ -77,8 +75,6 @@ Below, you'll read about the different parts of your project, described briefly.
 
 
 ## Technologies Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to simplify DOM manipulation.
@@ -101,7 +97,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 User stories reviewed:
 My user stories
 - **As a bartender, I want to save my own recipes, so I can craft a personal repertoire.**
-*Users can create a profile with the login functionality, which will allow them to have a personal cocktail book within the main collection of recipes, which they can access separatedly and edit when they wish.*
+*Users can create a profile with the login functionality, which will allow them to have a personal cocktail book within the main collection of recipes, which they can access separately and edit when they wish.*
 - **As a cocktail enthusiast, I want to find highly rated recipes, so I can make high-quality drinks at home.**
 *The homepage of the site will always show the featured or highest rated recipes, but also, users can choose to sort the recipes in the ALL RECIPES section to see the highest rated first*
 - **As a person learning about mixology, I want to find recipes by cocktail type, spirit and other categories, so I can study specify styles.**
@@ -114,15 +110,16 @@ My user stories
 *Users have access to graphs and insights in their dashboard*
 
 
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant.
+#### MANUAL TESTING
 Below, a description of the manual tests run to ensure the site works.
+
 *NOTE: A particularly useful form for describing your testing process is via scenarios*
 
 1. See a recipe:
     1. Go to the ALL COCKTAILS page
     2. Click SEE RECIPE on all the cocktails visible.
     3. Click LOAD MORE
-    4. Click SEE RECIPE in the next fou cocktails
+    4. Click SEE RECIPE in the next four cocktails
 
 2. Rate a recipe:
     1. Open a recipe
@@ -195,7 +192,7 @@ Below, a description of the manual tests run to ensure the site works.
 Process to deploy the project to a hosting platform:
 
 This project was deployed on Heroku under the name of [cocktail-recipe-book](https://cocktail-recipe-book.herokuapp.com/).
-Both the deployed project on Heroku and the project ran from Cloud9 look identycal and behave identically.
+Both the deployed project on Heroku and the project ran from Cloud9 look identical and behave identically.
 - Different values for environment variables: 
 Config Vars --> IP = 0.0.0.0, PORT = 5000
 app.secret_key = "mix_and_shake_secret"
@@ -207,11 +204,10 @@ app.url_map.strict_slashes = False
 ## Credits
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
 - Inspiration for the colour palette [HERE](https://www.pinterest.ie/pin/263882859399545467/)
 - I used the [Rating Stars with Simple Jquery](https://codepen.io/depy/pen/vEWWdw) by Deepak Kamat to let users rate drinks
 - [Text Shadow Generator](https://css3gen.com/text-shadow/)
-- For load More cocktail cards, I used "Load more content with jQuery", a [PEN BY Mahmoud Elmahdi](https://codepen.io/elmahdim/pen/sGkvH)
+- For Load More cocktail cards, I used "Load more content with jQuery", a [PEN BY Mahmoud Elmahdi](https://codepen.io/elmahdim/pen/sGkvH)
 - For the makeid() function, I used this [snippet from StackOverflow](https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript) 
 - For the sorting of the Featured Recipes in my index.html page, I used a [snippet by Rohan Kumar as seen on Stack Overflow](https://stackoverflow.com/questions/21600802/jquery-sort-list-based-on-data-attribute-value/21600865)
 
@@ -221,5 +217,7 @@ app.url_map.strict_slashes = False
 
 ### Acknowledgements
 Code Institute Tutors Nakita, Haley and Niel
+
 Mentor Chris Zielinski
+
 Code Insitute Alumni Andres Correa
